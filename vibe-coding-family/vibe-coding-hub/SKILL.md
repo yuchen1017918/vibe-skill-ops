@@ -5,7 +5,7 @@ description: |
   当用户提到 vibe coding、快速开发 MVP、迭代式写代码、skill 全家桶、
   或需要"这个开发任务该用哪个 skill"时，先加载本 skill 做三层路由。
   本层只列 L2 分类目录，不罗列具体 skill。
-version: 3.6.0
+version: 1.0.0
 author: Hermes Agent (基于真实 GitHub 项目 + 本地 skill 库整合)
 license: MIT
 metadata:
@@ -14,7 +14,7 @@ metadata:
     related_skills: [dev-core-hub, dev-stack-hub, dev-infra-hub, dev-agent-hub, dev-ai-hub, vibe-coding, dev-team, snapshot-notes, project-scaffold, plan-workflow, agent-workspace, agent-loop, agent-collab, agent-permissions, rollback-backup, release-management, project-tracker-dashboard, global-experience, china-env-adapt, fallback-general-dev]
 ---
 
-# Vibe-Coding Skill 全家桶（L1 总目录 v3.6 — 三层渐进式披露）
+# Vibe-Coding Skill 全家桶（L1 总目录 v1.0.0 — 三层渐进式披露）
 
 你是全家桶的**总目录页**。三层结构：
 
@@ -193,7 +193,7 @@ L3 执行具体 skill 细节
 
 > 全家桶是"增强"不是"依赖"：路由失效也能继续干活。
 
-## 🎯 触发词治理（v3.6 新增 — 28 个 skill 的信号仲裁）
+## 🎯 触发词治理（v1.0.0 新增 — 28 个 skill 的信号仲裁）
 
 **目的**：多个 skill 抢同一个关键词（"继续"→snapshot？"复盘"→knowledge？），
 没有仲裁机制会全加载（上下文爆炸）或随机选（行为不可预测）。
@@ -215,7 +215,7 @@ L3 执行具体 skill 细节
 - **触发词+上下文绑定**：knowledge-extraction"复盘"仅"任务完成且 git diff 非空"时生效；cost-agent"成本"仅"会话 token > 3K"时生效
 - **负向触发词**：security-audit 遇"草稿/测试/临时"不触发；任何 skill 定义 negative_trigger 防误触发
 
-## 📦 懒加载与契约层规范（v3.6 新增 — 防上下文挤占）
+## 📦 懒加载与契约层规范（v1.0.0 新增 — 防上下文挤占）
 
 **原则**：description 是**契约层**（≤10 行，常驻可见）；正文是**细节层**（按需读取，用完即释放）。
 
@@ -236,7 +236,7 @@ key_rule: 一条必须记住的核心规则
 > 新 skill 必须带契约层；存量 skill 逐步补齐（优先核心 workflow）。
 > 这也是"少即是多"的落地：上下文窗口里永远只放契约，不放全文。
 
-## 📉 执行走样日志（v3.6 新增 — 文档被遵循的证据）
+## 📉 执行走样日志（v1.0.0 新增 — 文档被遵循的证据）
 
 **目的**：全家桶设计了很多精巧机制（熔断器/冲突四分类/信任链），但没有任何机制知道 Agent 实际执行时走了多少样。没有执行数据，文档迭代只能靠"作者想象"。
 
@@ -277,7 +277,7 @@ key_rule: 一条必须记住的核心规则
 
 > 原则：阻塞型守住数据安全底线，通知型保效率，批量型防疲劳。
 
-## 🌱 新手梯度 v2.0（v3.6 升级 — 连续梯度，不是阶梯跳跃）
+## 🌱 新手梯度 v2.0（v1.0.0 升级 — 连续梯度，不是阶梯跳跃）
 
 **目的**：v1.0 按"对话次数"切换会出"第 11 次悬崖"（突然面对 28 个 skill 全量复杂度）。
 v2.0 改按**已掌握概念数**，且每层都有缓冲。
@@ -299,9 +299,9 @@ v2.0 改按**已掌握概念数**，且每层都有缓冲。
 - 覆盖后记住偏好，不再自动切换
 - 概念首次出现仍必须附带"为什么我需要知道这个"（认知保护原则不变）
 
-## 🔗 兼容性声明（v3.6 新增 — 防文档间语义断裂）
+## 🔗 兼容性声明（v1.0.0 新增 — 防文档间语义断裂）
 
-**目的**：hub v3.6 可能引用 agent-loop v1.4 的"信任令牌"，但用户若还是 v1.3（无该概念），
+**目的**：hub v1.0.0 可能引用 agent-loop v1.4 的"信任令牌"，但用户若还是 v1.3（无该概念），
 引用即悬空。版本不匹配 = Agent 读到"请按信任链验证"但 skill 里没有，直接懵掉。
 
 **契约**：

@@ -11,7 +11,7 @@
 
 ## 一、这是什么
 
-`vibe-coding-family` 是运行在 Hermes Agent 上的**自治理 Vibe Coding skill 体系**（v3.6）：
+`vibe-coding-family` 是运行在 Hermes Agent 上的**自治理 Vibe Coding skill 体系**（v1.0.0）：
 
 - **三层路由**：L1 总目录（vibe-coding-hub）→ 5 个 L2 分类目录 → 22 个 L3 具体 skill
 - **核心机制**：复杂度 Triage 判定清单、确认交互契约（Confirmation SLA）、心跳熔断器、Agent 信任链、知识萃取、成本治理、元治理审查
@@ -59,7 +59,7 @@ cp -r /tmp/vibe-skill-ops-main/vibe-coding-family ~/.hermes/skills/
 1. **目录完整**：28 个 `SKILL.md`（上一步 wc -l 应为 28）
 2. **frontmatter 合法**：每个 SKILL.md 开头有 `---` 包裹的 YAML（name / description / version / metadata.hermes.type）
 3. **Agent 识别**：重启会话后，技能列表出现 `vibe-coding-hub` 及 28 个 skill（Hermes 用 `skills_list` 查看）
-4. **自检**：加载 `vibe-coding-hub`，应看到「L1 总目录 v3.6」
+4. **自检**：加载 `vibe-coding-hub`，应看到「L1 总目录 v1.0.0」
 
 **未通过验证 → 不要声称安装成功**，先看 §六 排障。
 
@@ -102,4 +102,4 @@ rm -rf ~/.hermes/skills/vibe-coding-family
 
 ---
 
-*本仓库：https://github.com/yuchen1017918/vibe-skill-ops · MIT License · v3.6*
+*本仓库：https://github.com/yuchen1017918/vibe-skill-ops · MIT License · v1.0.0*

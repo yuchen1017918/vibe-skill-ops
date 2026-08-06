@@ -47,16 +47,16 @@ All L3 skills carry a `metadata.hermes.type` tag defining how they are invoked:
 
 | Mechanism | Version | What it does |
 |-----------|---------|--------------|
-| **Complexity Triage** | v3.6 | 5-question yes/no checklist → L0/L1/L2; project-context weighting; dynamic calibration from actual cost/retry data |
-| **Cost awareness** | v3.6 | Token estimate per workflow task; `/simple` family of degradation policies; cost-agent weekly report + ROI dashboard; observer-exemption accounting |
-| **Confirmation SLA** | v3.6 | Blocking / Notify / Batch confirmation tiers with timeouts; `/focus 30m` do-not-disturb; per-user preference learning |
-| **Trigger governance** | v3.6 | Namespace rules + conflict arbitration for 28 skills; context-bound triggers & negative triggers |
+| **Complexity Triage** | v1.0.0 | 5-question yes/no checklist → L0/L1/L2; project-context weighting; dynamic calibration from actual cost/retry data |
+| **Cost awareness** | v1.0.0 | Token estimate per workflow task; `/simple` family of degradation policies; cost-agent weekly report + ROI dashboard; observer-exemption accounting |
+| **Confirmation SLA** | v1.0.0 | Blocking / Notify / Batch confirmation tiers with timeouts; `/focus 30m` do-not-disturb; per-user preference learning |
+| **Trigger governance** | v1.0.0 | Namespace rules + conflict arbitration for 28 skills; context-bound triggers & negative triggers |
 | **Snapshot health check** | v1.5 | Conflict classification 🟢🟡🟠🔴 vs git (source of truth); manual-confirm alignment; cross-device sync (optional) |
 | **Circuit breaker** | v1.4 | CLOSED/OPEN/HALF-OPEN state machine; timeout tiers; error-type disposition matrix; agent trust chain |
 | **Knowledge extraction** | v1.1 | Post-incident 5-Whys review; 4-element quality gate; human review hook; verification loop |
 | **Security audit** | v1.1 | 6-dimension pre-commit scan; rule tiers (🔴 never degrade); false-positive feedback loop |
 | **Meta-governance** | v1.4 | Event-driven audits (conflict matrix / fallback loop detection / permission recursion); 30-day deprecation cooling period |
-| **Lazy-load contract layer** | v3.6 | Description = contract (≤10 lines); body = detail (load on demand); prevents context crowding |
+| **Lazy-load contract layer** | v1.0.0 | Description = contract (≤10 lines); body = detail (load on demand); prevents context crowding |
 
 ---
 
@@ -86,7 +86,7 @@ Requires a Hermes Agent installation with the skills/ plugin layout.
 | v3.3 | Self-healing | Complexity Triage, snapshot health check, security audit, heartbeat, experience recall |
 | v3.4 | Constraints & boundaries | Triage checklist, conflict-classified alignment, circuit breaker state machine, cost awareness |
 | v3.5 | Cognitive enhancement | knowledge-extraction, confirmation SLA, project-context weighting, smart /simple, meta-governance |
-| v3.6 | Verifiable consistency | Trigger governance, lazy-load contract layer, execution-drift log, progressive-disclosure v2, compatibility contract |
+| v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, progressive-disclosure v2, compatibility contract |
 
 ---
 
