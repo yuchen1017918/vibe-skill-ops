@@ -1,0 +1,7 @@
+# local artifacts — never commit
+.snapshots/
+.vibe/
+*.log
+.DS_Store
+__pycache__/
+*.pyc

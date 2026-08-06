@@ -1,0 +1,341 @@
+---
+name: vibe-coding-hub
+description: |
+  Vibe-Coding Skill 全家桶 L1 总目录 — 三层渐进式披露入口。
+  当用户提到 vibe coding、快速开发 MVP、迭代式写代码、skill 全家桶、
+  或需要"这个开发任务该用哪个 skill"时，先加载本 skill 做三层路由。
+  本层只列 L2 分类目录，不罗列具体 skill。
+version: 3.6.0
+author: Hermes Agent (基于真实 GitHub 项目 + 本地 skill 库整合)
+license: MIT
+metadata:
+  hermes:
+    tags: [vibe-coding, hub, directory, workflow, family, dev]
+    related_skills: [dev-core-hub, dev-stack-hub, dev-infra-hub, dev-agent-hub, dev-ai-hub, vibe-coding, dev-team, snapshot-notes, project-scaffold, plan-workflow, agent-workspace, agent-loop, agent-collab, agent-permissions, rollback-backup, release-management, project-tracker-dashboard, global-experience, china-env-adapt, fallback-general-dev]
+---
+
+# Vibe-Coding Skill 全家桶（L1 总目录 v3.6 — 三层渐进式披露）
+
+你是全家桶的**总目录页**。三层结构：
+
+```
+L1  vibe-coding-hub（本目录）      → 选 L2 分类
+L2  dev-core-hub / dev-stack-hub / dev-infra-hub / dev-agent-hub / dev-ai-hub  → 选 L3 skill
+L3  具体 skill（编码/调试/测试/语言/部署/AI/治理…）
+```
+
+**本层只路由到 L2，不重复 L3 细节。**
+
+## 🗂 L2 分类目录
+
+| L2 目录 | 管什么 | 加载时机 |
+|---------|--------|----------|
+| `dev-core-hub` | 主流程（vibe-coding/dev-team）+ 编码纪律 + 调试 + 测试 + 版本控制 | 开发主链路：开工→编码→调试→测试→提交 |
+| `dev-stack-hub` | 编程语言 + 前端/UI + 数据库 + 移动端 + 游戏引擎 + Web3 | 项目确定技术栈后 |
+| `dev-infra-hub` | 终端安全 + 容器 + MCP 生态 + 部署/DevOps + 安全 | 跑命令/容器/MCP/部署上线/安全审查 |
+| `dev-agent-hub` | Agent 编排 + AI 编码器委派 + 代码搜索 + skill 治理 | 多Agent协作/委派外部编码器/大项目检索/治理 |
+| `dev-ai-hub` | 模型训练/微调 + 推理部署 + 提示词/RAG + 多模态 | 项目涉及 AI/ML 功能时 |
+
+## 🏷 技能类型标签（v3.2 新增 — L3 四类划分）
+
+所有 L3 skill 的 frontmatter `metadata.hermes.type` 标注类型，决定调用方式：
+
+| 类型 | 含义 | 调用方式 | 自建 L3 示例 |
+|------|------|----------|--------------|
+| `tool` | 做一件具体事，有明确输入输出 | 按需显式调用 | snapshot-notes / security-audit / project-scaffold / china-env-adapt |
+| `workflow` | 管一段流程，有阶段和状态 | 阶段推进式调用 | plan-workflow / agent-loop / knowledge-extraction |
+| `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
+| `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
+
+> 22 个自建 L3 全量标注：tool 9 个 / workflow 6 个 / policy 5 个 / meta 2 个。
+
+## 🚀 三层路由流程
+
+```
+用户需求
+  │
+  ▼
+L1 加载 vibe-coding-hub ──────────────── 看 L2 五个分类
+  │
+  ├─ 开工/编码/调试/测试/提交 ──────────→ dev-core-hub
+  ├─ 定了技术栈（语言/前端/DB/游戏） ───→ dev-stack-hub
+  ├─ 跑命令/容器/MCP/部署/安全 ─────────→ dev-infra-hub
+  ├─ 多Agent/委派外部AI/搜索/治理 ─────→ dev-agent-hub
+  └─ AI/ML（训练/推理/RAG/多模态） ────→ dev-ai-hub
+  │
+  ▼
+L2 加载对应分类目录 → 定位 L3 具体 skill（skill_view）
+  │
+  ▼
+L3 执行具体 skill 细节
+```
+
+## 🧭 L1 决策树 + 复杂度分层（v3.3 — 先判复杂度，再判类型）
+
+### Step 0：复杂度评估（Triage，v3.4 升级 — 判定清单替代主观判断）
+
+**执行方式**：逐题回答 是/否，按分支走。不要凭"感觉"分级。
+
+```
+问题 1：是否只涉及单个文件的纯内容修改（文案/注释/常量值）？
+  ├─ 是 → 问题 2
+  └─ 否 → 进入 L1 判定（问题 3）
+
+问题 2：该文件是否被其他文件 import/引用？
+  ├─ 是 → 升级 L1（边界不清）
+  └─ 否 → L0 快进快出
+
+问题 3：是否涉及数据库 schema / API 契约 / 配置文件格式变更？
+  ├─ 是 → 直接 L2
+  └─ 否 → 问题 4
+
+问题 4：是否涉及 3 个以上模块的联动修改？
+  ├─ 是 → L2
+  └─ 否 → 问题 5
+
+问题 5：是否涉及生产敏感操作（支付/权限/安全相关）？
+  ├─ 是 → L2 + 强制 security-audit
+  └─ 否 → L1（固定三件事：明确边界 → 步骤追踪 → 完成前验证）
+```
+
+| 级别 | 处理方式 |
+|------|----------|
+| **L0 微小改动** | 跳过 plan-workflow，直接 tool 级快进快出，不上全套 |
+| **L1 中等功能** | 三件事：明确边界 → 步骤追踪 → 完成前验证 |
+| **L2 高风险/核心链路** | 完整流程：dev-team + agent-loop + plan-workflow，买确定性 |
+
+> 误判护栏：L0 任务中途发现牵连（import 链/多文件）→ 立即升级 L1/L2，不硬撑。
+> 校准机制：任务完成后记录"实际耗时 vs 初始判定"（见 snapshot-notes 复杂度校准），
+> 同类任务多次低估 → 自动提升该类型级别。
+
+### Step 0.5：成本意识 + /simple 智能降级（v3.5 升级）
+
+```
+【成本提示】workflow 型任务开始时评估：本次预计触发几个 skill，预估 token 消耗范围。
+- 判定 L0/L1 → 不加载 plan-workflow / agent-loop 全套
+- 记录 ~/.vibe/metrics/usage.log（skill 名/调用次数/预估 token），月度复盘
+```
+
+**/simple 智能降级**（v3.5 — 从"一刀切"到"可配置策略"）：
+
+| 策略 | 跳过内容 | 保留内容 |
+|------|----------|----------|
+| `/simple` | 全套精简 | 只跑核心链路 |
+| `/simple-no-recall` | 经验主动召回 | Triage + 安全审计 |
+| `/simple-no-design` | 设计系统校验 | 召回 + 审计 |
+| `/simple-no-audit` | 安全审计（降 Level 1） | 召回 + 设计 |
+| `/simple-once` | 本次会话生效，下次恢复 | — |
+
+- 自定义策略：用户可配置 `~/.vibe/simple-config.yml`（如"跳过召回但保留审计"）
+- 策略推荐：成本提示时按任务类型主动推荐（UI 调整 → `/simple-no-design`；纯文案 → `/simple`）
+- `/focus 30m` 免打扰窗口对通知型确认自动生效
+
+### Step 1：类型判定（决策树）
+
+```
+任务来了
+  │
+  ├─ 涉及模型训练/推理/RAG/多模态？ ──────→ dev-ai-hub
+  ├─ 涉及多Agent协作/委派外部AI/治理？ ──→ dev-agent-hub
+  ├─ 涉及环境/容器/MCP/部署/安全？ ──────→ dev-infra-hub
+  ├─ 技术栈已确定（语言/前端/DB）？ ────→ dev-stack-hub
+  └─ 主链路：开工/编码/调试/测试/提交 ──→ dev-core-hub
+```
+
+> 判断顺序即优先级：AI 功能 > 多Agent > 基础设施 > 技术栈 > 主链路。
+> 命中多个条件时走优先级最高的分支；拿不准就走 dev-core-hub（主链路兜底）。
+
+## 🚀 场景模板（v3.2 新增 — 常用组合一键直达）
+
+> 场景模板 = 预设 skill 组合 + 入口指令。与三层结构是"使用手册 vs 技能库"的关系，两者不冲突：
+> 三层结构管"技能怎么组织"，场景模板管"常见需求怎么一步到位"。
+
+| 场景 | 加载的 skill 组合 | 入口指令 |
+|------|------------------|----------|
+| 中小型 MVP | `project-scaffold` + `vibe-coding` + `snapshot-notes` | "做个 MVP" / "快速开发" |
+| 中大型组队开发 | `dev-team` + `plan-workflow` + `agent-workspace` | "组队开发" / "dev-team" |
+| 疑难 Bug | `systematic-debugging` + `vibe-code-search` | "有 Bug" / "调试" |
+| 新建项目/初始化 | `project-scaffold` + `plan-workflow` | "新建项目" / "脚手架" |
+| 跨对话恢复进度 | `snapshot-notes` | "继续上次" / "别丢上下文" |
+| 发布/打版本 | `release-management` + `security-audit` + `rollback-backup` | "发布" / "打版本" |
+| 国内环境适配 | `china-env-adapt` + `project-scaffold` | "换源" / "国内环境" |
+| 路由失败/兜底 | `fallback-general-dev`（自动触发） | 无需指令 |
+
+### 单点直达（场景模板外的专项需求）
+
+| 需求 | 直达 |
+|------|------|
+| 跑 build/test | `dev-infra-hub` → `vibe-terminal-safe` |
+| 大项目定位代码 | `dev-agent-hub` → `vibe-code-search` |
+| 拆分任务/做计划 | `dev-core-hub` → `plan-workflow` |
+| 项目可视化/看板 | `dev-core-hub` → `project-tracker-dashboard` |
+| 跨项目经验沉淀 | `dev-agent-hub` → `global-experience` |
+| 多Agent工位工作区 | `dev-agent-hub` → `agent-workspace` |
+| 无人自动开发 | `dev-agent-hub` → `agent-loop`（配合 dev-team） |
+| Agent间协作修Bug | `dev-agent-hub` → `agent-collab`（tester↔bug-fixer） |
+| 权限/职责/安全红线 | `dev-agent-hub` → `agent-permissions` |
+| AI/ML 训练或推理 | `dev-ai-hub` → `huggingface-hub` / `vllm` |
+| 部署/上线/回滚 | `dev-infra-hub` → `cloud-deployment` + `rollback-backup` |
+| 建定时任务 | `dev-infra-hub` → `hermes-cron-patterns` |
+| 需要 MCP 文件/git 能力 | `dev-infra-hub` → `vibe-mcp-connect` |
+| Python 项目 | `dev-stack-hub` → `python3` + `py` |
+| Web UI 设计 | `dev-stack-hub` → `frontend-design` |
+
+## 🚨 通用降级协议（v3.1 新增 — 路由失效时自救）
+
+```
+当 L1/L2 路由失败、skill 加载异常、或不知道用哪个 skill 时：
+1. 自动加载 fallback-general-dev（三步基本盘：写代码→git→测试）
+2. 具体 skill 执行报错 ≥3 次 → 激活 vibe-terminal-safe 安全模式（仅只读命令）
+3. 降级事件记录到 .snapshots/ + 输出降级报告
+4. 不陷入死循环：最多降级 2 层，仍失败 → 保存状态等用户
+```
+
+> 全家桶是"增强"不是"依赖"：路由失效也能继续干活。
+
+## 🎯 触发词治理（v3.6 新增 — 28 个 skill 的信号仲裁）
+
+**目的**：多个 skill 抢同一个关键词（"继续"→snapshot？"复盘"→knowledge？），
+没有仲裁机制会全加载（上下文爆炸）或随机选（行为不可预测）。
+
+**命名空间规则**：
+| 类型 | 词 | 归属 |
+|------|-----|------|
+| 全局保留词 | "全家桶"、"按流程"、/simple、/focus、/mode | hub / meta skill 独占 |
+| 场景保留词 | "发布"、"MVP"、"疑难 Bug" | 场景模板独占 |
+| 自由竞争词 | "快照"、"审计"、"熔断" | L3 skill 可用 |
+
+**冲突仲裁优先级**（多 skill 触发词同时命中时）：
+1. 场景模板 > 单个 skill（"发布"优先命中 release 场景模板，而非 security-audit）
+2. workflow > tool（"计划"优先 plan-workflow，而非 project-scaffold）
+3. 最近使用 > 历史记录
+4. 仍不确定 → **显式消歧**：列出候选让用户选，或 /all 全加载
+
+**上下文增强**（触发词不是死匹配）：
+- **触发词+上下文绑定**：knowledge-extraction"复盘"仅"任务完成且 git diff 非空"时生效；cost-agent"成本"仅"会话 token > 3K"时生效
+- **负向触发词**：security-audit 遇"草稿/测试/临时"不触发；任何 skill 定义 negative_trigger 防误触发
+
+## 📦 懒加载与契约层规范（v3.6 新增 — 防上下文挤占）
+
+**原则**：description 是**契约层**（≤10 行，常驻可见）；正文是**细节层**（按需读取，用完即释放）。
+
+**契约层必须包含**（写进 frontmatter description）：
+```
+trigger: 触发词
+negative_trigger: 负向触发词（防误触发）
+type: 类型标签
+deps: 依赖 skill（进入该阶段时懒加载）
+key_rule: 一条必须记住的核心规则
+```
+
+**加载策略**：
+- 初始：只读契约层（skills_list / description），**不全文加载**
+- 进入具体阶段 → 按 deps 懒加载细节层（skill_view 正文）
+- 细节用完即压缩为摘要，不常驻上下文
+
+> 新 skill 必须带契约层；存量 skill 逐步补齐（优先核心 workflow）。
+> 这也是"少即是多"的落地：上下文窗口里永远只放契约，不放全文。
+
+## 📉 执行走样日志（v3.6 新增 — 文档被遵循的证据）
+
+**目的**：全家桶设计了很多精巧机制（熔断器/冲突四分类/信任链），但没有任何机制知道 Agent 实际执行时走了多少样。没有执行数据，文档迭代只能靠"作者想象"。
+
+**原理**：不监控（无后台进程），而是**检查点自检**。
+
+- **定义检查点**：关键 workflow skill（agent-loop / plan-workflow / release-management）在文档中定义 2-4 个检查点：
+  ```yaml
+  # agent-loop 预期路径示例
+  checkpoints:
+    - step: "委派前"
+      verify: "是否生成 Trust Token？"
+    - step: "子Agent返回后"
+      verify: "是否执行了回归/交叉/渐进验证之一？"
+    - step: "异常时"
+      verify: "是否进入 OPEN 状态？"
+  ```
+- **自检时机**：snapshot-notes 会话摘要中，Agent 自检"本次是否走了预期路径"；
+  knowledge-extraction 复盘阶段检查"实际执行 vs 规范"偏差
+- **落盘**：偏差写入 `~/.vibe/drift/`（轻量文本，不建复杂 schema）
+- **月度汇总**（用户主动要求时）："agent-loop 加载 12 次，3 次未执行验证步骤 → 该步骤设计太复杂，建议简化"
+
+> 目的不是追责，而是**用执行数据指导文档简化**——某步骤总被跳过，说明它该删或该拆。
+> 这是"少即是多"的证据闭环：不是让文档更厚，而是让文档被遵循的证据更可见。
+
+## 📋 确认交互契约 v1.0（v3.5 新增 — 人工确认的 UX 契约）
+
+**目的**：全家桶多处要求"人工确认"，但缺少统一交互契约 → 确认疲劳（习惯性点"是"）或确认逃避（直接 /simple 跳过）。以下契约统一所有确认场景（快照对齐/终端命令/审计放行）。
+
+| 类型 | 适用场景 | 行为 | 超时策略 | UX |
+|------|----------|------|----------|-----|
+| **阻塞型 Blocking** | 🔴 双向漂移、🔴 系统级终端命令 | 必须等用户输入 YES/NO | 10 分钟无响应 → abort，状态存 `~/.vibe/pending/` | 高亮红色横幅 + diff 预览 |
+| **通知型 Notify** | 🟡 快照超前、🟠 git 超前 | 推送通知，30 秒无回复按默认策略 | 默认：🟡=否（不应用快照）、🟠=是（更新基线） | 右下角轻量提示，可展开 |
+| **批量型 Batch** | 同类冲突 ≥3 个 | 合并为一个确认单 | 列出影响文件数 + 预估风险 | 选项：全部应用/逐条审查/全部跳过 |
+
+**免打扰窗口**：
+- `/focus 30m` → 30 分钟内通知型确认自动按默认策略执行
+- 阻塞型仍强制弹出（可延迟到 focus 结束后）
+
+> 原则：阻塞型守住数据安全底线，通知型保效率，批量型防疲劳。
+
+## 🌱 新手梯度 v2.0（v3.6 升级 — 连续梯度，不是阶梯跳跃）
+
+**目的**：v1.0 按"对话次数"切换会出"第 11 次悬崖"（突然面对 28 个 skill 全量复杂度）。
+v2.0 改按**已掌握概念数**，且每层都有缓冲。
+
+**梯度分层**（按"成功完成过完整流程"的 skill 数，不是加载过）：
+| 已掌握 | 模式 | 暴露内容 |
+|--------|------|----------|
+| 0-3 个 | 极简 | 3 入口：vibe-coding / fix-bug / new-project |
+| 4-6 个 | 基础 | + snapshot-notes、plan-workflow |
+| 7-10 个 | 标准 | + Triage、security-audit |
+| 11-15 个 | 进阶 | + agent-loop、knowledge-extraction |
+| 16+ 个 | 完整 | 全部暴露 |
+
+**掌握判定**：成功完成过一次完整流程（由 snapshot-notes 记录实际使用历史），
+不是"加载过就算掌握"。
+
+**手动覆盖**：
+- `/mode beginner` / `/mode standard` / `/mode full`
+- 覆盖后记住偏好，不再自动切换
+- 概念首次出现仍必须附带"为什么我需要知道这个"（认知保护原则不变）
+
+## 🔗 兼容性声明（v3.6 新增 — 防文档间语义断裂）
+
+**目的**：hub v3.6 可能引用 agent-loop v1.4 的"信任令牌"，但用户若还是 v1.3（无该概念），
+引用即悬空。版本不匹配 = Agent 读到"请按信任链验证"但 skill 里没有，直接懵掉。
+
+**契约**：
+- 每个 skill 的 frontmatter 可声明依赖（存量逐步补齐，新 skill 必须带）：
+  ```yaml
+  requires:
+    hub: ">=3.4"      # 需要 vibe-coding-hub 最低版本
+    skills:           # 依赖 skill 最低版本
+      - name: agent-permissions
+        version: ">=1.0"
+  ```
+- 加载 L3 前检查 requires；不匹配 → 提示"部分功能可能失效"，**不阻断**（符合增强不是依赖）
+- 月度打快照 `vibe-coding-family/.vibe/versions.lock`（记录全家桶所有 skill 精确版本）
+- `/rollback-family 3.5` → 按 versions.lock 回退到上一版本组合
+
+## 全局底线（所有层通用）
+
+1. **主流程唯一**：一次只走 `vibe-coding`（单人）或 `dev-team`（团队），不叠加。
+2. **改前看 git，改后 diff，重要改动 commit**。
+3. **终端过白名单**：禁 `rm -rf`/`sudo`/`mkfs`/`dd`（除非用户明确要求）。
+4. **报错不臆测**，跑命令拿真实错误；小步迭代，不一次性大规模重写。
+5. **大项目不全文塞上下文**，用 `vibe-code-search` 检索。
+
+## 来源说明（真实可验证，2026-08-06 复核）
+
+- 官方 MCP servers：https://github.com/modelcontextprotocol/servers （⭐89k）
+- Hermes 主仓库：https://github.com/NousResearch/hermes-agent
+- Aider：https://github.com/Aider-AI/aider （⭐30k+）
+- OpenVibeCoding：https://github.com/TencentCloudBase/OpenVibeCoding
+- vibekit：https://github.com/superagent-ai/vibekit
+- Undermybelt/hermes-skills（1422 个 SKILL.md）：https://github.com/Undermybelt/hermes-skills
+- RobinBeraud/hermes-skills：https://github.com/RobinBeraud/hermes-skills
+- 其余为本地已装 skill（software-development / github / devops / mcp / creative 等分类）
+
+> ⚠️ 已复核为 404 不存在的链接：`anthropics/mcp-code-search`、
+> `wong2/mcp-server-typescript-check`、`joewing/mcp-server-python-linter`、
+> `paul-gauthier/aider-chat`（正确名 Aider-AI/aider）等。
