@@ -1,8 +1,8 @@
-# Vibe-Skill-Ops 本地升级评估报告 v1.2.0
+# Vibe-Skill-Ops 发布评估报告(v1.1.0 正式版)
 
-> 评估对象:Vibe-Coding Skill 全家桶(本地测试版 v1.2.0,31 skills)
+> 评估对象:Vibe-Coding Skill 全家桶 v1.1.0 正式版(28 个路由内 skill)
 > 评估日期:2026-08-07
-> 仓库位置:`/home/yuchen_wang/workspace/vibe-skill-ops`(本地,未推送上游)
+> 说明:本文档记录 v1.0.0 → v1.1.0 的整改过程(结构整改 + 大道至简),内部迭代 v1.1–v1.3 统一整合为对外 v1.1.0。
 
 ---
 
@@ -149,7 +149,7 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / dev-team / vibe-coding
 
 ## 第三部分 升级的具体内容
 
-### 3.1 v1.1.0(本地测试版第一轮)
+### 3.1 v1.1.0(内部迭代第一轮)
 
 | 变更 | 类型 | 内容 |
 |------|------|------|
@@ -158,7 +158,7 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / dev-team / vibe-coding
 | dev-core-hub | 索引 | 路由表新增 requirement-clarify 行 |
 | vibe-coding-hub | 路由 | 版本 1.0.0→1.1.0;场景模板新增"需求澄清/方向对齐";单点直达新增 2 行;类型计数 22→23;触发词 28→29 |
 
-### 3.2 v1.2.0(本地测试版第二轮,结构重构)
+### 3.2 v1.2.0(内部迭代第二轮,结构重构)
 
 #### 3.2.1 新建 skill(2 个)
 
@@ -205,14 +205,14 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / dev-team / vibe-coding
 | 英文描述 | three-layer → **four-layer organization routing (team/enterprise × assistant/owner)** |
 | 中文描述 | 三层路由 → **四层组织路由** |
 | 触发词治理 | 28 skills → **31 skills** |
-| 版本时间线 | + v1.1.0 / v1.2.0 本地测试版两行 |
+| 版本时间线 | + v1.1.0 正式版(整合内部 v1.1-v1.3 迭代) |
 
 ### 3.3 验证结果
 
 - ✅ 宿主技能库 31 个 skill 全部注册健康(frontmatter 无损,`readiness: available`)
 - ✅ 仓库与宿主同步:31 个 skill 目录 + README + LICENSE + .gitignore + index.html + Tutorial.md
 - ✅ 引用一致性:类型计数 25、触发词 31、四格场景表、单点直达 18 行
-- ✅ git 本地 commit:`83154ea`(skill)+ `26250c2`(README),**未推送上游**
+- ✅ 整改过程提交:`83154ea`(四层结构)+ `26250c2`(README)+ `59d997b`(大道至简),已推送上游 v1.1.0
 
 ---
 
@@ -262,8 +262,8 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / dev-team / vibe-coding
 
 - ✅ 宿主技能库 34 个 skill 目录(28 路由内 + 6 deprecated)全部健康
 - ✅ 引用一致性:类型计数 22、触发词 28、四格场景/单点直达/技术索引同步
-- ✅ 本地 commit:`59d997b`(v1.3.0)未推送上游
+- ✅ 大道至简提交:`59d997b`,已推送上游 v1.1.0
 
 ---
 
-*本报告为本地评估用,对应仓库 `/home/yuchen_wang/workspace/vibe-skill-ops` 当前状态。*
+*本报告为发布评估用,对应仓库 https://github.com/yuchen1017918/vibe-skill-ops 当前状态。*

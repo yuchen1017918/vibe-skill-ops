@@ -5,7 +5,7 @@ description: |
   当用户提到 vibe coding、快速开发 MVP、迭代式写代码、skill 全家桶、
   或需要"这个开发任务该用哪个 skill"时，先加载本 skill。
   四层路由：L1 组织形态(团队/企业) → L2 开发模式(助手/全盘) → L3 四格场景 → L4 执行 skill。
-version: 1.3.0
+version: 1.1.0
 author: Hermes Agent (基于真实 GitHub 项目 + 本地 skill 库整合)
 license: MIT
 metadata:
@@ -14,7 +14,7 @@ metadata:
     related_skills: [dev-core-hub, dev-stack-hub, dev-infra-hub, dev-agent-hub, dev-ai-hub, vibe-coding, dev-team, snapshot-notes, project-init, agent-ops, release-ops, agent-loop, agent-permissions, global-experience, china-env-adapt, fallback-general-dev, dev-assistant, quick-dev, requirement-clarify]
 ---
 
-# Vibe-Coding Skill 全家桶（L1 总目录 v1.3.0 — 四层组织路由）
+# Vibe-Coding Skill 全家桶（L1 总目录 v1.1.0 — 四层组织路由）
 
 你是全家桶的**总目录页**。四层组织路由结构（v1.2 重构 — 组织形态驱动，替代旧三层）：
 
