@@ -5,7 +5,7 @@ description: |
   深色主题 Web 看板，手机友好，从 .snapshots/ 和 plan 自动生成。
   当用户说"项目可视化"、"看板"、"进度面板"、"HTML跟踪"、
   "可视化项目"、或想把当前项目状态变成网页查看时加载。
-  配套 plan-workflow（计划）+ snapshot-notes（状态）→ 本 skill 做可视化。
+  配套 project-init（计划）+ snapshot-notes（状态）→ 本 skill 做可视化。
 version: 1.0.0
 author: Hermes Agent
 license: MIT

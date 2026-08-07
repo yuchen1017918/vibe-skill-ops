@@ -4,7 +4,7 @@ description: |
   需求澄清访谈 skill：编码前主动向用户提问 3-5 轮，穷尽目标/边界/技术/验收
   决策分支，产出 DECISIONS.md。解决"AI 没按我想的做"——主动澄清而非被动确认。
   当用户说"做个X"（L1 及以上）、"需求澄清"、"grill me"、"先问清楚"、
-  "别急着写代码"、或接手模糊需求时加载。与 plan-workflow 配合：先澄清后拆任务。
+  "别急着写代码"、或接手模糊需求时加载。与 project-init 配合：先澄清后拆任务。
 version: 1.0.0
 author: Hermes Agent
 license: MIT
