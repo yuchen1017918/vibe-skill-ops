@@ -32,9 +32,8 @@ metadata:
 |-------|------|----------|
 | `multi-agent-config-manager` | 多代理编排引擎：任务分解/分支执行/验证审核/返工 | 深度研究、项目协作、多Agent（主） |
 | `agent-loop` | 自动开发指挥循环：子Agent汇报→主Agent指挥→无人值守，定期汇报/重大决策询问 | 自动开发、无人值守（主） |
-| `agent-collab` | 平级协作协议：tester↔bug-fixer 等协作对，三步闭环（请求→响应→验证） | 两个Agent直接配合时（主） |
+| `agent-ops` | 多Agent基础设施：工位工作区 + 平级协作协议（v1.3 合并自 workspace+collab） | 多Agent协作/工位/子Agent直接配合时（主） |
 | `agent-permissions` | 权限规范：职责边界/文件权限矩阵/命令分级/安全红线 | 多Agent任务启动时（自动） |
-| `agent-workspace` | 多Agent工位：每人一个文件夹存记忆/规划/经验 | 启用多Agent协作时（自动） |
 | `subagent-driven-development` | 用 delegate_task 子代理执行计划（2 阶段审查） | 委派子任务 |
 | `devops/kanban-orchestrator` | 看板编排：任务拆解/专家角色/并发约定 | 看板驱动开发 |
 | `devops/kanban-worker` | 看板执行者：陷阱/边界/并发冲突规避 | 看板任务执行 |

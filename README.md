@@ -50,7 +50,7 @@ All L3 skills carry a `metadata.hermes.type` tag defining how they are invoked:
 | **Complexity Triage** | v1.0.0 | 5-question yes/no checklist → L0/L1/L2; project-context weighting; dynamic calibration from actual cost/retry data |
 | **Cost awareness** | v1.0.0 | Token estimate per workflow task; `/simple` family of degradation policies; cost-agent weekly report + ROI dashboard; observer-exemption accounting |
 | **Confirmation SLA** | v1.0.0 | Blocking / Notify / Batch confirmation tiers with timeouts; `/focus 30m` do-not-disturb; per-user preference learning |
-| **Trigger governance** | v1.0.0 | Namespace rules + conflict arbitration for 31 skills; context-bound triggers & negative triggers |
+| **Trigger governance** | v1.0.0 | Namespace rules + conflict arbitration for 28 skills; context-bound triggers & negative triggers |
 | **Snapshot health check** | v1.5 | Conflict classification 🟢🟡🟠🔴 vs git (source of truth); manual-confirm alignment; cross-device sync (optional) |
 | **Circuit breaker** | v1.4 | CLOSED/OPEN/HALF-OPEN state machine; timeout tiers; error-type disposition matrix; agent trust chain |
 | **Knowledge extraction** | v1.1 | Post-incident 5-Whys review; 4-element quality gate; human review hook; verification loop |
@@ -89,6 +89,7 @@ Requires a Hermes Agent installation with the skills/ plugin layout.
 | v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, progressive-disclosure v2, compatibility contract |
 | v1.1.0 | Local beta | requirement-clarify (proactive interview → DECISIONS.md), fallback escalation chain (upgrade-then-degrade) |
 | v1.2.0 | Local beta | Four-layer organization routing (team/enterprise × assistant/owner), dev-assistant copilot protocol, quick-dev lightweight flow (31 skills) |
+| v1.3.0 | Local beta | 大道至简: merged 3 skill pairs (project-init/agent-ops/release-ops, 22 active L3), one-line profile routing, default-path execution, intervention depth L0-L4, escalation ceiling, evidence consumption, contract layer ≤5 lines |
 
 ---
 

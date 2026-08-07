@@ -5,7 +5,7 @@ description: |
   （Primary route、promotion metadata、replay ledger、destructive gate、proof bundle），
   防止全家桶 skill 数量增长后互相冲突。当用户提到 skill sprawl、promotion gate、
   多个 skill 争抢控制权、治理/路由时加载。
-version: 1.4.0
+version: 1.5.0
 author: Undermybelt/hermes-skills (MIT) → Hermes Agent 整合
 license: MIT
 metadata:
@@ -124,6 +124,34 @@ metadata:
 2. 30 天冷静期 → 期间如果被触发，自动取消标记
 3. 冷静期结束 → 归档到 ~/.vibe/archive/，保留 1 年可恢复
 ```
+
+## 🔗 合并审查机制（v1.5 — 大道至简的执行器）
+
+**目的**：skill 数量增长 = 加载决策变多 + 触发词打架。**合并优先于新增**。
+
+**季度合并审查**（每季度或用户主动触发,由 cost-agent 月报的"证据消费"驱动）：
+
+| 信号 | 判定 | 动作 |
+|------|------|------|
+| 触发词重叠 >50% | 两个 skill 抢同一批关键词 | 合并候选 |
+| 30 天未加载（高频型） | 没人用 | 标记 deprecated（走废弃流程） |
+| 一方总被另一方引用 | A 的职责被 B 覆盖 | 合并候选(A→B) |
+
+**合并执行规范**（v1.3 已执行 3 组）：
+```
+1. 新建合并 skill:吸收双方核心 + 新增整合价值(如 project-init 吸收嗅探)
+2. 被合并方:description 加 ⚠️ deprecated 标注 + 从索引移除
+3. 文件保留(防交叉引用破坏),不物理删除
+4. 路由表/触发词/类型计数/README 全量同步
+5. 合并后验证:全量索引零缺失零重复
+```
+
+**新增 skill 门槛**（v1.5 — 防回潮）：
+- 必须证明:无法由现有 skill 组合实现(组合尝试过)
+- 必须指明与哪些现有 skill 触发词冲突,冲突已解决
+- 7 天冷静期:先写草案不注册,7 天后再决定是否转正
+
+> 合并不是损失:是让"该用哪个"的答案更少、更清晰。
 
 ## 🪞 元治理审查 v2.0（v1.4 升级 — 事件驱动，而非时间驱动）
 

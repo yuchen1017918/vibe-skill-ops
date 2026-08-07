@@ -5,16 +5,16 @@ description: |
   当用户提到 vibe coding、快速开发 MVP、迭代式写代码、skill 全家桶、
   或需要"这个开发任务该用哪个 skill"时，先加载本 skill。
   四层路由：L1 组织形态(团队/企业) → L2 开发模式(助手/全盘) → L3 四格场景 → L4 执行 skill。
-version: 1.2.0
+version: 1.3.0
 author: Hermes Agent (基于真实 GitHub 项目 + 本地 skill 库整合)
 license: MIT
 metadata:
   hermes:
     tags: [vibe-coding, hub, directory, workflow, family, dev]
-    related_skills: [dev-core-hub, dev-stack-hub, dev-infra-hub, dev-agent-hub, dev-ai-hub, vibe-coding, dev-team, snapshot-notes, project-scaffold, plan-workflow, agent-workspace, agent-loop, agent-collab, agent-permissions, rollback-backup, release-management, project-tracker-dashboard, global-experience, china-env-adapt, fallback-general-dev]
+    related_skills: [dev-core-hub, dev-stack-hub, dev-infra-hub, dev-agent-hub, dev-ai-hub, vibe-coding, dev-team, snapshot-notes, project-init, agent-ops, release-ops, agent-loop, agent-permissions, global-experience, china-env-adapt, fallback-general-dev, dev-assistant, quick-dev, requirement-clarify]
 ---
 
-# Vibe-Coding Skill 全家桶（L1 总目录 v1.2.0 — 四层组织路由）
+# Vibe-Coding Skill 全家桶（L1 总目录 v1.3.0 — 四层组织路由）
 
 你是全家桶的**总目录页**。四层组织路由结构（v1.2 重构 — 组织形态驱动，替代旧三层）：
 
@@ -46,6 +46,9 @@ L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
 | `dev-agent-hub` | Agent 编排 + AI 编码器委派 + 代码搜索 + skill 治理 | 多Agent协作/委派外部编码器/大项目检索/治理 |
 | `dev-ai-hub` | 模型训练/微调 + 推理部署 + 提示词/RAG + 多模态 | 项目涉及 AI/ML 功能时 |
 
+> 技术栈纪律摘要(v1.3):进入技术索引后,只加载对应技术段的**纪律摘要 ≤5 条**(首行),
+> 不全文加载。技术栈由 project-init 嗅探写入 .vibe/stack.yaml 自动激活。
+
 ## 🏷 技能类型标签（v3.2 新增 — L3 四类划分）
 
 所有 L3 skill 的 frontmatter `metadata.hermes.type` 标注类型，决定调用方式：
@@ -57,7 +60,9 @@ L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
 | `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
 | `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
 
-> 25 个自建 L3 全量标注：tool 9 个 / workflow 9 个 / policy 5 个 / meta 2 个。
+> 22 个自建 L3 全量标注：tool 7 个 / workflow 8 个 / policy 5 个 / meta 2 个（v1.3 合并 3 组后净减 3）。
+> 已合并 deprecated（文件保留防交叉引用）：project-scaffold+plan-workflow → project-init；
+> agent-workspace+agent-collab → agent-ops；release-management+rollback-backup → release-ops。
 
 ## 🚀 四层路由流程（v1.2 — 组织形态驱动）
 
@@ -81,6 +86,35 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
   ▼
 技术二级索引（dev-core/stack/infra/agent/ai，按需进入找具体语言/工具 skill）
 ```
+
+## ⚡ 一句话画像（v1.3 新增 — 路由压缩，四层体验压缩为三层）
+
+> 四层决策链过长?**一句话画像**锁定 L1+L2,后续反驳只更新画像,不重走路由。
+
+```
+【组织】【主导】【类型】【技术】
+  团队     助手     局部实现    Python
+  企业     全盘     Bug修复     TS/React
+                   …
+```
+
+**使用方式**:
+1. 任务到达 → 15 秒内填出画像(组织/主导 两问定 L1+L2,类型/技术 两问定 L3/索引)
+2. 画像即路由:【团队·助手】→ dev-assistant 轻档;【团队·全盘】→ quick-dev / vibe-coding
+3. 用户反驳 → **只更新画像字段**,不重新走完整判定
+4. 画像写入工作记忆(会话内),同类型后续任务直接复用
+
+## 🚀 默认路径化（v1.3 新增 — 常见任务免判断直走）
+
+| 用户说 | 免判断直走 | 不经过的判定 |
+|--------|-----------|--------------|
+| "帮我看看"/"帮我review"/"这bug怎么改" | dev-assistant L3 档 | L1/L2 判定省略 |
+| "随手做个"/"写个脚本" | quick-dev L1 档 | L1/L2 判定省略 |
+| "新建项目"/"做个计划" | project-init | L1/L2 判定省略 |
+| "发布"/"回滚" | release-ops | L1/L2 判定省略 |
+| "组队开发"/"自动开发" | dev-team | 仅确认规模(企业级) |
+
+> 边界感:默认路径只在**无歧义**时生效;触发词打架 → 走触发词治理仲裁。
 
 ## 🧭 复杂度分层（v3.3 — 先判复杂度，再走组织路由）
 
@@ -176,11 +210,11 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 
 | 场景 | 加载的 skill 组合 | 入口指令 |
 |------|------------------|----------|
-| 需求澄清/方向对齐(全盘模式前置) | `requirement-clarify` + `plan-workflow` | "先问清楚" / "grill me" / 模糊需求 |
+| 需求澄清/方向对齐(全盘模式前置) | `requirement-clarify` + `project-init` | "先问清楚" / "grill me" / 模糊需求 |
 | 疑难 Bug | `systematic-debugging` + `vibe-code-search` | "有 Bug" / "调试" |
-| 新建项目/初始化 | `project-scaffold` + `plan-workflow` | "新建项目" / "脚手架" |
+| 新建项目/初始化+计划 | `project-init`（v1.3 合并，含嗅探） | "新建项目" / "脚手架" / "做个计划" |
 | 跨对话恢复进度 | `snapshot-notes` | "继续上次" / "别丢上下文" |
-| 发布/打版本 | `release-management` + `security-audit` + `rollback-backup` | "发布" / "打版本" |
+| 发布/打版本/回滚 | `release-ops`（v1.3 合并）+ `security-audit` | "发布" / "打版本" / "回滚" |
 | 国内环境适配 | `china-env-adapt` + `project-scaffold` | "换源" / "国内环境" |
 | 路由失败/兜底 | `fallback-general-dev`（自动触发） | 无需指令 |
 
@@ -190,18 +224,17 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 |------|------|
 | 跑 build/test | `dev-infra-hub` → `vibe-terminal-safe` |
 | 大项目定位代码 | `dev-agent-hub` → `vibe-code-search` |
-| 拆分任务/做计划 | `dev-core-hub` → `plan-workflow` |
+| 拆分任务/做计划 | `dev-core-hub` → `project-init`（v1.3 合并） |
 | 需求澄清/先问清楚 | `dev-core-hub` → `requirement-clarify` |
 | 副驾驶/帮我看看 | `dev-core-hub` → `dev-assistant`（助手模式） |
 | 随手做/写脚本 | `dev-core-hub` → `quick-dev`（团队·全盘） |
 | 项目可视化/看板 | `dev-core-hub` → `project-tracker-dashboard` |
 | 跨项目经验沉淀 | `dev-agent-hub` → `global-experience` |
-| 多Agent工位工作区 | `dev-agent-hub` → `agent-workspace` |
+| 多Agent工位+协作 | `dev-agent-hub` → `agent-ops`（v1.3 合并） |
 | 无人自动开发 | `dev-agent-hub` → `agent-loop`（配合 dev-team） |
-| Agent间协作修Bug | `dev-agent-hub` → `agent-collab`（tester↔bug-fixer） |
 | 权限/职责/安全红线 | `dev-agent-hub` → `agent-permissions` |
 | AI/ML 训练或推理 | `dev-ai-hub` → `huggingface-hub` / `vllm` |
-| 部署/上线/回滚 | `dev-infra-hub` → `cloud-deployment` + `rollback-backup` |
+| 部署/上线/回滚 | `dev-infra-hub` → `cloud-deployment` + `release-ops` |
 | 建定时任务 | `dev-infra-hub` → `hermes-cron-patterns` |
 | 需要 MCP 文件/git 能力 | `dev-infra-hub` → `vibe-mcp-connect` |
 | Python 项目 | `dev-stack-hub` → `python3` + `py` |
@@ -219,7 +252,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 
 > 全家桶是"增强"不是"依赖"：路由失效也能继续干活。
 
-## 🎯 触发词治理（v3.6 新增 — 31 个 skill 的信号仲裁）
+## 🎯 触发词治理（v3.6 新增 — 28 个 skill 的信号仲裁）
 
 **目的**：多个 skill 抢同一个关键词（"继续"→snapshot？"复盘"→knowledge？），
 没有仲裁机制会全加载（上下文爆炸）或随机选（行为不可预测）。
@@ -243,16 +276,18 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 
 ## 📦 懒加载与契约层规范（v3.6 新增 — 防上下文挤占）
 
-**原则**：description 是**契约层**（≤10 行，常驻可见）；正文是**细节层**（按需读取，用完即释放）。
+**原则**：description 是**契约层**（≤5 行，v1.3 从 ≤10 行压缩，常驻可见）；正文是**细节层**（按需读取，用完即释放）。
 
 **契约层必须包含**（写进 frontmatter description）：
 ```
-trigger: 触发词
+trigger: 触发词（合并后 ≤3 个核心词）
 negative_trigger: 负向触发词（防误触发）
 type: 类型标签
 deps: 依赖 skill（进入该阶段时懒加载）
 key_rule: 一条必须记住的核心规则
 ```
+
+> v1.3 大道至简：契约层压缩至 ≤5 行，31 skill × 5 行 ≈ 155 行常驻（较原 310 行减半）。
 
 **加载策略**：
 - 初始：只读契约层（skills_list / description），**不全文加载**
@@ -342,6 +377,22 @@ v2.0 改按**已掌握概念数**，且每层都有缓冲。
 - 加载 L3 前检查 requires；不匹配 → 提示"部分功能可能失效"，**不阻断**（符合增强不是依赖）
 - 月度打快照 `vibe-coding-family/.vibe/versions.lock`（记录全家桶所有 skill 精确版本）
 - `/rollback-family 3.5` → 按 versions.lock 回退到上一版本组合
+
+## 🌱 大道至简（v1.3 — 设计哲学升级）
+
+**token × 质量 = 乘积最优,不是取舍**:
+- token 消耗 ≈ 加载的机制量;质量 ≈ 机制被遵循的程度
+- 机制越多 → 加载越贵(token↑)且走样越多(质量↓)= **双输**
+- 机制越少 → 加载便宜(token↓)且执行越准(质量↑)= **双赢**
+
+**落地动作(减法)**:
+1. 合并 3 组重叠 skill → 净减 3(加载决策变少、歧义消除)
+2. 契约层 ≤5 行(常驻减半)
+3. 一句话画像 + 默认路径化(判定次数减少)
+4. 30 天未加载 → 标记 deprecated(从索引移除,文件保留)
+5. 证据消费驱动删减(周报一句话洞察)
+
+> 简化不是偷懒——是唯一同时优化 token 与质量的路。
 
 ## 全局底线（所有层通用）
 

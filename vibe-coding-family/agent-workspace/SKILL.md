@@ -1,6 +1,7 @@
 ---
 name: agent-workspace
 description: |
+  ⚠️ v1.3 deprecated — 由 agent-ops 取代（合并了工位+协作）。文件保留防交叉引用。
   多Agent工位工作区 skill：在项目根目录建立多Agent工作区，
   每个Agent一个专属工位文件夹，存自己的工作记忆、规划、经验。
   .snapshots/ 保持共享记忆规划不变（团队级），工位是个人级（Agent级）。

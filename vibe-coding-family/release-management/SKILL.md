@@ -1,6 +1,7 @@
 ---
 name: release-management
 description: |
+  ⚠️ v1.3 deprecated — 由 release-ops 取代（合并了发布+回滚）。文件保留防交叉引用。
   通用发布与版本管理 skill：语义化版本（SemVer）、CHANGELOG 维护、
   发布流程、tag 管理、发布检查清单。语言无关，适用任何项目。
   当用户说"发布"、"发版本"、"打tag"、"版本号"、"CHANGELOG"、

@@ -1,11 +1,11 @@
 ---
 name: cost-agent
 description: |
-  成本智能体 policy：自动监控全家桶 token 消耗，每周一输出消耗周报，
-  实时告警异常消耗（Triage 低估/单日超限），维护 skill ROI 看板。
-  当用户问"token 花了多少"、"哪个skill最费"、"本周消耗"时加载。
-  触发词：成本、token消耗、周报、ROI、用量、花了多少。
-version: 1.1.0
+  成本智能体 policy:每周一 token 消耗周报 + 实时告警 + ROI 看板 +
+  证据消费(v1.2:走样/Triage 误判一句话洞察,月报强制决策)。
+  当用户问"token 花了多少/哪个skill最费/本周消耗"时加载。
+  触发词:成本、token消耗、周报、ROI、用量。
+version: 1.2.0
 author: Hermes Agent
 license: MIT
 metadata:
@@ -44,6 +44,30 @@ Top 3 开销：snapshot-notes (30%) / vibe-code-search (25%) / agent-loop (20%)
 - ROI 连续 2 周 < 0.5 的 skill → 黄色标记 → 建议 review 或替换（走 vibe-skills-gov-patterns）
 - 看板数据由 vibe-skills-gov-patterns 月度治理会议消费
 
+## 📈 证据消费（v1.2 — 数据要变成洞察和决策）
+
+**目的**：走样日志/Triage 准确率日志躺在 ~/.vibe/drift/ 和 triage-accuracy.log 里没人看 = 没证据。
+v1.2 起,周报/月报主动消费这些日志,驱动删减决策。
+
+**周报加"一句话洞察"**（每周一推送,末尾固定段）：
+```
+【一句话洞察】
+- 走样 Top 偏差：agent-loop 验证步骤被跳过 3 次（本周）→ 建议简化该步骤或改检查点
+- Triage 误判：2 次 L0 判定实际消耗超 L1 均值 → 建议提升"脚本处理数据"类任务级别
+- 行动建议：下月删除/合并候选 [skill 名]（30 天未加载）
+```
+
+**月报强制决策**（每月最后一天,不输出洞察 = 违规）：
+```
+本月必答三问：
+1. 哪些 skill 30 天未加载 → 标记 deprecated（vibe-skills-gov-patterns 执行）
+2. 哪些机制步骤总被跳过 → 简化或删除（执行走样数据支撑）
+3. 哪些合并候选 → 执行/否决（触发词重叠数据支撑）
+```
+
+**证据可消费性标准**：每条洞察必须 = 一句话发现 + 数据来源 + 行动建议；
+不产出"看了等于没看"的原始数据堆。
+
 ## 🧮 观测者豁免与分层记账（v1.1 — 防自我测量递归）
 
 **目的**：cost-agent 自身运行也耗 token；告警链可能递归（cost → knowledge → cost）。
@@ -56,7 +80,7 @@ Top 3 开销：snapshot-notes (30%) / vibe-code-search (25%) / agent-loop (20%)
 
 **分层记账**：
 ```
-【开发成本】直接服务任务的 skill（scaffold/vibe-coding/snapshot 等）
+【开发成本】直接服务任务的 skill（project-init/vibe-coding/snapshot 等）
 【治理成本】维持全家桶运转的 skill（cost-agent/governance/knowledge-extraction 复盘）
 【总成本】开发 + 治理
 周报默认展示"开发成本"，展开后显示"治理成本占比"

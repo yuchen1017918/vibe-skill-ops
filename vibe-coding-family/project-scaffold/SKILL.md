@@ -1,6 +1,7 @@
 ---
 name: project-scaffold
 description: |
+  ⚠️ v1.3 deprecated — 由 project-init 取代（合并了骨架+计划+嗅探）。文件保留防交叉引用。
   项目脚手架初始化 skill：从零创建新项目时一键生成
   标准目录结构 + 依赖配置 + git 初始化 + .snapshots 快照目录。
   当用户说"新建项目"、"初始化项目"、"start new project"、

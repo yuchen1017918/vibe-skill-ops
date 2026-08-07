@@ -1,6 +1,7 @@
 ---
 name: agent-collab
 description: |
+  ⚠️ v1.3 deprecated — 由 agent-ops 取代（合并了工位+协作）。文件保留防交叉引用。
   多Agent协作 skill：定义子Agent之间的平级协作协议——
   测试Agent与Bug修复Agent协作修Bug、编码与测试互相反馈、
   规范与编码澄清歧义等各协作对的协作指导。

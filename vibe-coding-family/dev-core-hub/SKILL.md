@@ -50,10 +50,9 @@ metadata:
 | `python-project-refactoring` | 单体 Python 拆分层级架构 | Python 项目重构 |
 | `api-development` | API 全生命周期开发编排 | 做 API 项目 |
 | `cli-tool-building` | Click + Typer + Rich 专业 CLI 构建 | 做 CLI 工具 |
-| `project-scaffold` | 项目脚手架：标准目录+依赖+git+快照初始化 | 新建项目（主） |
-| `plan-workflow` | 任务拆分→写计划→存 .snapshots/plans/ | 复杂多步任务（主） |
+| `project-init` | 项目初始化+规划+技术栈嗅探（v1.3 合并自 scaffold+plan） | 新建项目/做计划（主） |
 | `requirement-clarify` | 需求澄清访谈：编码前主动提问产出 DECISIONS.md | 模糊需求/编码前（v1.1 新增） |
-| `release-management` | 通用发布/版本管理：SemVer+CHANGELOG+tag+发布清单 | 发布/打版本（主） |
+| `release-ops` | 发布+回滚一体化：SemVer+CHANGELOG+tag+备份+回滚（v1.3 合并） | 发布/打版本/回滚（主） |
 | `project-tracker-dashboard` | HTML 可视化项目跟踪看板（深色/手机友好） | 项目可视化/看板（主） |
 | `spike` | 一次性实验验证想法 | 技术选型验证前 |
 
@@ -87,7 +86,7 @@ metadata:
 ## 选择规则
 
 1. **先判组织路由**（v1.2）：用户主导 → `dev-assistant`（助手）；用户给方向 → 按规模选 `quick-dev`（团队·随手做）/ `vibe-coding`（团队·单人 MVP）/ `dev-team`（企业·全流程）。
-2. **新建项目** → `project-scaffold` 初始化；复杂多步任务 → `plan-workflow` 先拆解成计划。
+2. **新建项目/做计划** → `project-init`（初始化+规划+嗅探一体，v1.3 合并）。
 3. **调试优先**：疑难 Bug 先用 `systematic-debugging` 理解根因，再动手。
 4. **测试配套**：严谨项目用 `test-driven-development`，API 用 `api-testing-contracts`，Web 用 `webapp-testing`/`dogfood`。
 5. **版本保护**：所有改动前确认 git 状态，改动后 diff，重要改动 commit（`git-workflow`）。

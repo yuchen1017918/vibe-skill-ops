@@ -1,6 +1,7 @@
 ---
 name: plan-workflow
 description: |
+  ⚠️ v1.3 deprecated — 由 project-init 取代（合并了骨架+计划+嗅探）。文件保留防交叉引用。
   计划工作流 skill：把用户需求拆分为可执行任务，写成结构化计划，
   并把计划持久化到项目根目录 .snapshots/plans/ 文件夹。
   当用户说"做个计划"、"拆分任务"、"规划一下"、"写个方案"、
