@@ -24,13 +24,17 @@ metadata:
 - ❌ **不管**：具体语言语法与框架 → `dev-stack-hub`；部署/容器/CI → `dev-infra-hub`；多Agent协作 → `dev-agent-hub`；模型训练 → `dev-ai-hub`
 - 🔄 **协作点**：编码完成选框架 → `dev-stack-hub`；要部署上线 → `dev-infra-hub`；要多Agent并行 → `dev-agent-hub`
 
-## 🎯 主流程（先选一个，Primary route first）
+## 🎯 主流程（v1.2 — 四选一，先走组织路由）
+
+> 与 hub 四格场景表对应：助手/全盘 × 团队/企业。先判组织形态与开发模式，再选主流程。
 
 | Skill | 定位 | 加载时机 |
 |-------|------|----------|
-| `vibe-coding` | 单人 5 步流程：Idea→Research→PRD→TechDesign→Build | 中小型项目、快速 MVP |
-| `dev-team` | 多Agent团队 v2.1：主Agent+4子Agent、3并发、双模式、断点续传 | 中大型项目、全流程、批量并行（用户偏好优先） |
-| `fallback-general-dev` | 降级兜底：路由失败时三步基本盘（写码→git→测试） | 路由失败/不知道用哪个skill（兜底） |
+| `dev-assistant` | 副驾驶协议（助手模式）：局部实现/Bug定位/审查/答疑/小重构/写草稿 | 用户主导开发（用户=司机），团队·轻/企业·重双参数 |
+| `quick-dev` | 轻量全包（团队·全盘）：四步循环，非项目随手做/小工具/脚本/一次性任务 | 随手做、写脚本、迷你交付（v1.2 新增） |
+| `vibe-coding` | 单人 5 步流程：Idea→Research→PRD→TechDesign→Build | 单人做 MVP 项目（非随手做，是完整项目） |
+| `dev-team` | 多Agent团队 v2.1：主Agent+4子Agent、3并发、双模式、断点续传 | 企业·全盘：中大型项目、全流程、批量并行 |
+| `fallback-general-dev` | 降级兜底：路由失败时三步基本盘（写码→git→测试） | 路由失败/不知道用哪个skill（兜底，非正常流程） |
 
 ## 🧭 子层路由
 
@@ -48,6 +52,7 @@ metadata:
 | `cli-tool-building` | Click + Typer + Rich 专业 CLI 构建 | 做 CLI 工具 |
 | `project-scaffold` | 项目脚手架：标准目录+依赖+git+快照初始化 | 新建项目（主） |
 | `plan-workflow` | 任务拆分→写计划→存 .snapshots/plans/ | 复杂多步任务（主） |
+| `requirement-clarify` | 需求澄清访谈：编码前主动提问产出 DECISIONS.md | 模糊需求/编码前（v1.1 新增） |
 | `release-management` | 通用发布/版本管理：SemVer+CHANGELOG+tag+发布清单 | 发布/打版本（主） |
 | `project-tracker-dashboard` | HTML 可视化项目跟踪看板（深色/手机友好） | 项目可视化/看板（主） |
 | `spike` | 一次性实验验证想法 | 技术选型验证前 |
@@ -81,7 +86,7 @@ metadata:
 
 ## 选择规则
 
-1. **先选主流程**：中小型/快速 MVP → `vibe-coding`；中大型/全流程/批量并行 → `dev-team`（用户偏好）。
+1. **先判组织路由**（v1.2）：用户主导 → `dev-assistant`（助手）；用户给方向 → 按规模选 `quick-dev`（团队·随手做）/ `vibe-coding`（团队·单人 MVP）/ `dev-team`（企业·全流程）。
 2. **新建项目** → `project-scaffold` 初始化；复杂多步任务 → `plan-workflow` 先拆解成计划。
 3. **调试优先**：疑难 Bug 先用 `systematic-debugging` 理解根因，再动手。
 4. **测试配套**：严谨项目用 `test-driven-development`，API 用 `api-testing-contracts`，Web 用 `webapp-testing`/`dogfood`。

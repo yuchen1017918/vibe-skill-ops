@@ -1,11 +1,11 @@
 ---
 name: vibe-coding-hub
 description: |
-  Vibe-Coding Skill 全家桶 L1 总目录 — 三层渐进式披露入口。
+  Vibe-Coding Skill 全家桶 L1 总目录 — 四层组织路由入口。
   当用户提到 vibe coding、快速开发 MVP、迭代式写代码、skill 全家桶、
-  或需要"这个开发任务该用哪个 skill"时，先加载本 skill 做三层路由。
-  本层只列 L2 分类目录，不罗列具体 skill。
-version: 1.0.0
+  或需要"这个开发任务该用哪个 skill"时，先加载本 skill。
+  四层路由：L1 组织形态(团队/企业) → L2 开发模式(助手/全盘) → L3 四格场景 → L4 执行 skill。
+version: 1.2.0
 author: Hermes Agent (基于真实 GitHub 项目 + 本地 skill 库整合)
 license: MIT
 metadata:
@@ -14,24 +14,34 @@ metadata:
     related_skills: [dev-core-hub, dev-stack-hub, dev-infra-hub, dev-agent-hub, dev-ai-hub, vibe-coding, dev-team, snapshot-notes, project-scaffold, plan-workflow, agent-workspace, agent-loop, agent-collab, agent-permissions, rollback-backup, release-management, project-tracker-dashboard, global-experience, china-env-adapt, fallback-general-dev]
 ---
 
-# Vibe-Coding Skill 全家桶（L1 总目录 v1.0.0 — 三层渐进式披露）
+# Vibe-Coding Skill 全家桶（L1 总目录 v1.2.0 — 四层组织路由）
 
-你是全家桶的**总目录页**。三层结构：
+你是全家桶的**总目录页**。四层组织路由结构（v1.2 重构 — 组织形态驱动，替代旧三层）：
 
 ```
-L1  vibe-coding-hub（本目录）      → 选 L2 分类
-L2  dev-core-hub / dev-stack-hub / dev-infra-hub / dev-agent-hub / dev-ai-hub  → 选 L3 skill
-L3  具体 skill（编码/调试/测试/语言/部署/AI/治理…）
+L1  组织形态   团队(轻量项目)              企业(大型项目)
+              ┌──────────────┐           ┌──────────────┐
+L2  开发模式   │ 助手 │ 全盘  │            │ 助手 │ 全盘  │
+              └──────────────┘           └──────────────┘
+L3  细分场景   场景模板表（四格场景，见下方四格场景表）
+L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
+      ↕ 技术分类 hub 下移为二级索引（dev-core/stack/infra/agent/ai，按需进入）
 ```
 
-**本层只路由到 L2，不重复 L3 细节。**
+**路由优先级**：先问"什么规模的活"(L1 组织形态)，再问"谁主导"(L2 开发模式)，
+然后落场景(L3)，最后才是具体 skill(L4)和技术索引。
 
-## 🗂 L2 分类目录
+**本层只路由，不罗列 L3/L4 细节。**
 
-| L2 目录 | 管什么 | 加载时机 |
+## 🗂 技术分类索引（v1.2 下移 — 二级索引，非路由主层）
+
+> 旧三层结构中的 L2 分类目录，v1.2 起**下移为二级索引**：先走组织路由（L1→L2→L3），
+> 落到具体场景后，再按技术类型进对应分类目录找 skill。
+
+| 技术索引 | 管什么 | 进入时机 |
 |---------|--------|----------|
-| `dev-core-hub` | 主流程（vibe-coding/dev-team）+ 编码纪律 + 调试 + 测试 + 版本控制 | 开发主链路：开工→编码→调试→测试→提交 |
-| `dev-stack-hub` | 编程语言 + 前端/UI + 数据库 + 移动端 + 游戏引擎 + Web3 | 项目确定技术栈后 |
+| `dev-core-hub` | 主流程四选一 + 编码纪律 + 调试 + 测试 + 版本控制 | 落到场景后需要编码/调试/测试/提交时 |
+| `dev-stack-hub` | 编程语言 + 前端/UI + 数据库 + 移动端 + 游戏引擎 + Web3 | 技术栈已确定 |
 | `dev-infra-hub` | 终端安全 + 容器 + MCP 生态 + 部署/DevOps + 安全 | 跑命令/容器/MCP/部署上线/安全审查 |
 | `dev-agent-hub` | Agent 编排 + AI 编码器委派 + 代码搜索 + skill 治理 | 多Agent协作/委派外部编码器/大项目检索/治理 |
 | `dev-ai-hub` | 模型训练/微调 + 推理部署 + 提示词/RAG + 多模态 | 项目涉及 AI/ML 功能时 |
@@ -47,30 +57,32 @@ L3  具体 skill（编码/调试/测试/语言/部署/AI/治理…）
 | `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
 | `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
 
-> 22 个自建 L3 全量标注：tool 9 个 / workflow 6 个 / policy 5 个 / meta 2 个。
+> 25 个自建 L3 全量标注：tool 9 个 / workflow 9 个 / policy 5 个 / meta 2 个。
 
-## 🚀 三层路由流程
+## 🚀 四层路由流程（v1.2 — 组织形态驱动）
 
 ```
 用户需求
   │
   ▼
-L1 加载 vibe-coding-hub ──────────────── 看 L2 五个分类
-  │
-  ├─ 开工/编码/调试/测试/提交 ──────────→ dev-core-hub
-  ├─ 定了技术栈（语言/前端/DB/游戏） ───→ dev-stack-hub
-  ├─ 跑命令/容器/MCP/部署/安全 ─────────→ dev-infra-hub
-  ├─ 多Agent/委派外部AI/搜索/治理 ─────→ dev-agent-hub
-  └─ AI/ML（训练/推理/RAG/多模态） ────→ dev-ai-hub
+L1 组织形态判定：团队 or 企业？
+  │  判定三维：模块数(1-2=团队,3+=企业) / 专业角色需求 / 交付周期(天级=团队,周月级=企业)
+  │  辅助：Triage 复杂度清单（Step 0）—— L0 裸奔（快进快出）、L1 团队、L2 企业
+  ▼
+L2 开发模式判定：助手 or 全盘？
+  │  助手：用户是司机（主导方向）→ dev-assistant
+  │  全盘：用户是老板（给方向、看进度）→ 看组织形态
+  ▼
+L3 四格场景（见下方四格场景表）→ 落具体工作形态
   │
   ▼
-L2 加载对应分类目录 → 定位 L3 具体 skill（skill_view）
+L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
   │
   ▼
-L3 执行具体 skill 细节
+技术二级索引（dev-core/stack/infra/agent/ai，按需进入找具体语言/工具 skill）
 ```
 
-## 🧭 L1 决策树 + 复杂度分层（v3.3 — 先判复杂度，再判类型）
+## 🧭 复杂度分层（v3.3 — 先判复杂度，再走组织路由）
 
 ### Step 0：复杂度评估（Triage，v3.4 升级 — 判定清单替代主观判断）
 
@@ -130,30 +142,41 @@ L3 执行具体 skill 细节
 - 策略推荐：成本提示时按任务类型主动推荐（UI 调整 → `/simple-no-design`；纯文案 → `/simple`）
 - `/focus 30m` 免打扰窗口对通知型确认自动生效
 
-### Step 1：类型判定（决策树）
+### Step 1：组织形态判定（L1 — 团队 or 企业）
 
 ```
-任务来了
-  │
-  ├─ 涉及模型训练/推理/RAG/多模态？ ──────→ dev-ai-hub
-  ├─ 涉及多Agent协作/委派外部AI/治理？ ──→ dev-agent-hub
-  ├─ 涉及环境/容器/MCP/部署/安全？ ──────→ dev-infra-hub
-  ├─ 技术栈已确定（语言/前端/DB）？ ────→ dev-stack-hub
-  └─ 主链路：开工/编码/调试/测试/提交 ──→ dev-core-hub
+判定三维（不必全满足，多数满足即定）：
+  1. 模块数：1-2 个 = 团队；3+ 个 = 企业
+  2. 专业角色：只需通用开发 = 团队；要专门架构/运维/安全 = 企业
+  3. 交付周期：天级 = 团队；周/月级 = 企业
+辅助：Triage 复杂度清单（Step 0）—— L0 裸奔（快进快出）、L1 团队、L2 企业
 ```
 
-> 判断顺序即优先级：AI 功能 > 多Agent > 基础设施 > 技术栈 > 主链路。
-> 命中多个条件时走优先级最高的分支；拿不准就走 dev-core-hub（主链路兜底）。
+### Step 2：开发模式判定（L2 — 助手 or 全盘）
 
-## 🚀 场景模板（v3.2 新增 — 常用组合一键直达）
+```
+谁主导？
+  ├─ 用户主导（司机）→ 助手模式 → dev-assistant（团队·轻 / 企业·重 双参数）
+  └─ 用户给方向、看进度（老板）→ 全盘模式 → 按组织形态选：
+       ├─ 团队·全盘 → quick-dev（随手做）或 vibe-coding（单人 MVP 项目）
+       └─ 企业·全盘 → dev-team（完整多Agent流水线）
+```
 
-> 场景模板 = 预设 skill 组合 + 入口指令。与三层结构是"使用手册 vs 技能库"的关系，两者不冲突：
-> 三层结构管"技能怎么组织"，场景模板管"常见需求怎么一步到位"。
+## 🚀 四格场景表（v1.2 — L3 细分场景）
+
+> 场景 = 预设 skill 组合 + 入口指令。先定组织形态(团队/企业)与开发模式(助手/全盘)，
+> 再落四格中的场景。L3 是**路由表**，不新增独立文档；具体执行看 L4 skill。
+
+| | 🧑💻 助手(用户=司机) | 🧑💼 全盘(用户=老板) |
+|---|---|---|
+| **🏠 团队**<br>(轻量项目) | `dev-assistant`(轻参数)<br>局部实现·Bug定位·审查·答疑·小重构·写草稿<br>入口:"帮我看看"/"帮我review"/"帮我实现XX" | `quick-dev`(随手做) / `vibe-coding`(单人MVP)<br>小工具·脚本·迷你交付·一次性任务<br>入口:"随手做个"/"写个脚本";"做个MVP" |
+| **🏢 企业**<br>(大型项目) | `dev-assistant`(重参数)<br>模块开发·系统重构·架构建议·跨模块审查·性能优化<br>入口:"帮我重构"/"帮我优化" | `dev-team`(完整流水线)<br>Phase 0-5·乙方交付·验收驱动<br>入口:"组队开发"/"自动开发"/"dev-team" |
+
+**通用场景**(跨四格，按需加载)：
 
 | 场景 | 加载的 skill 组合 | 入口指令 |
 |------|------------------|----------|
-| 中小型 MVP | `project-scaffold` + `vibe-coding` + `snapshot-notes` | "做个 MVP" / "快速开发" |
-| 中大型组队开发 | `dev-team` + `plan-workflow` + `agent-workspace` | "组队开发" / "dev-team" |
+| 需求澄清/方向对齐(全盘模式前置) | `requirement-clarify` + `plan-workflow` | "先问清楚" / "grill me" / 模糊需求 |
 | 疑难 Bug | `systematic-debugging` + `vibe-code-search` | "有 Bug" / "调试" |
 | 新建项目/初始化 | `project-scaffold` + `plan-workflow` | "新建项目" / "脚手架" |
 | 跨对话恢复进度 | `snapshot-notes` | "继续上次" / "别丢上下文" |
@@ -168,6 +191,9 @@ L3 执行具体 skill 细节
 | 跑 build/test | `dev-infra-hub` → `vibe-terminal-safe` |
 | 大项目定位代码 | `dev-agent-hub` → `vibe-code-search` |
 | 拆分任务/做计划 | `dev-core-hub` → `plan-workflow` |
+| 需求澄清/先问清楚 | `dev-core-hub` → `requirement-clarify` |
+| 副驾驶/帮我看看 | `dev-core-hub` → `dev-assistant`（助手模式） |
+| 随手做/写脚本 | `dev-core-hub` → `quick-dev`（团队·全盘） |
 | 项目可视化/看板 | `dev-core-hub` → `project-tracker-dashboard` |
 | 跨项目经验沉淀 | `dev-agent-hub` → `global-experience` |
 | 多Agent工位工作区 | `dev-agent-hub` → `agent-workspace` |
@@ -193,7 +219,7 @@ L3 执行具体 skill 细节
 
 > 全家桶是"增强"不是"依赖"：路由失效也能继续干活。
 
-## 🎯 触发词治理（v1.0.0 新增 — 28 个 skill 的信号仲裁）
+## 🎯 触发词治理（v3.6 新增 — 31 个 skill 的信号仲裁）
 
 **目的**：多个 skill 抢同一个关键词（"继续"→snapshot？"复盘"→knowledge？），
 没有仲裁机制会全加载（上下文爆炸）或随机选（行为不可预测）。
@@ -215,7 +241,7 @@ L3 执行具体 skill 细节
 - **触发词+上下文绑定**：knowledge-extraction"复盘"仅"任务完成且 git diff 非空"时生效；cost-agent"成本"仅"会话 token > 3K"时生效
 - **负向触发词**：security-audit 遇"草稿/测试/临时"不触发；任何 skill 定义 negative_trigger 防误触发
 
-## 📦 懒加载与契约层规范（v1.0.0 新增 — 防上下文挤占）
+## 📦 懒加载与契约层规范（v3.6 新增 — 防上下文挤占）
 
 **原则**：description 是**契约层**（≤10 行，常驻可见）；正文是**细节层**（按需读取，用完即释放）。
 
@@ -236,7 +262,7 @@ key_rule: 一条必须记住的核心规则
 > 新 skill 必须带契约层；存量 skill 逐步补齐（优先核心 workflow）。
 > 这也是"少即是多"的落地：上下文窗口里永远只放契约，不放全文。
 
-## 📉 执行走样日志（v1.0.0 新增 — 文档被遵循的证据）
+## 📉 执行走样日志（v3.6 新增 — 文档被遵循的证据）
 
 **目的**：全家桶设计了很多精巧机制（熔断器/冲突四分类/信任链），但没有任何机制知道 Agent 实际执行时走了多少样。没有执行数据，文档迭代只能靠"作者想象"。
 
@@ -277,7 +303,7 @@ key_rule: 一条必须记住的核心规则
 
 > 原则：阻塞型守住数据安全底线，通知型保效率，批量型防疲劳。
 
-## 🌱 新手梯度 v2.0（v1.0.0 升级 — 连续梯度，不是阶梯跳跃）
+## 🌱 新手梯度 v2.0（v3.6 升级 — 连续梯度，不是阶梯跳跃）
 
 **目的**：v1.0 按"对话次数"切换会出"第 11 次悬崖"（突然面对 28 个 skill 全量复杂度）。
 v2.0 改按**已掌握概念数**，且每层都有缓冲。
@@ -299,9 +325,9 @@ v2.0 改按**已掌握概念数**，且每层都有缓冲。
 - 覆盖后记住偏好，不再自动切换
 - 概念首次出现仍必须附带"为什么我需要知道这个"（认知保护原则不变）
 
-## 🔗 兼容性声明（v1.0.0 新增 — 防文档间语义断裂）
+## 🔗 兼容性声明（v3.6 新增 — 防文档间语义断裂）
 
-**目的**：hub v1.0.0 可能引用 agent-loop v1.4 的"信任令牌"，但用户若还是 v1.3（无该概念），
+**目的**：hub v1.2 可能引用 agent-loop v1.4 的"信任令牌"，但用户若还是 v1.3（无该概念），
 引用即悬空。版本不匹配 = Agent 读到"请按信任链验证"但 skill 里没有，直接懵掉。
 
 **契约**：
@@ -319,7 +345,7 @@ v2.0 改按**已掌握概念数**，且每层都有缓冲。
 
 ## 全局底线（所有层通用）
 
-1. **主流程唯一**：一次只走 `vibe-coding`（单人）或 `dev-team`（团队），不叠加。
+1. **主流程唯一**：一次只走 `dev-assistant` / `quick-dev` / `vibe-coding` / `dev-team` 之一，不叠加。
 2. **改前看 git，改后 diff，重要改动 commit**。
 3. **终端过白名单**：禁 `rm -rf`/`sudo`/`mkfs`/`dd`（除非用户明确要求）。
 4. **报错不臆测**，跑命令拿真实错误；小步迭代，不一次性大规模重写。
