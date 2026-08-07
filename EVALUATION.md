@@ -220,9 +220,49 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / dev-team / vibe-coding
 
 | 版本 | 内容 | 优先级 |
 |------|------|--------|
-| v1.3.0 | stack-detect 技术栈自动检测 / 输出分级(Output Token Shaper)/ 社区 skill 安装前扫描 | P2 |
+| v1.3.0 | ✅ **已完成(大道至简)**:见下方第五部分 | — |
 | v1.4.0 | Greenfield/Brownfield 双模式声明 / 设计澄清管道(轻量版) | P3 |
 | 远期 | Skill 市场生态协议(skill.yaml 标准化 + 沙箱 + 社区验证) | 需平台支撑 |
+
+---
+
+## 第五部分 v1.3.0 升级记录(大道至简)
+
+> 主题:token × 质量乘积最优。**不是取舍,是减法**——机制越少,token 越省且质量越高。
+
+### 5.1 合并执行(核心瘦身,净减 3)
+
+| 合并 | 产物 | 吸收的增量价值 |
+|------|------|----------------|
+| project-scaffold + plan-workflow | **project-init** | + 技术栈背景嗅探(stack-detect 无感化 → .vibe/stack.yaml) |
+| agent-workspace + agent-collab | **agent-ops** | 工位三件套 + 协作三步闭环一份管 |
+| release-management + rollback-backup | **release-ops** | 发布+回滚同一流程两面(先备份再发布) |
+
+- 6 个被合并 skill:description 加 ⚠️ deprecated,文件保留防交叉引用
+- L3:25 → **22**(tool 7 / workflow 8 / policy 5 / meta 2);路由内 skill:31 → **28**
+- 契约层压缩:≤10 行 → **≤5 行**(31×5≈155 行常驻,较原减半)
+
+### 5.2 路由压缩与默认路径
+
+- **一句话画像**【组织】【主导】【类型】【技术】:15 秒锁定 L1+L2,反驳只更新画像不重走路由
+- **默认路径化**:5 个常见场景免判断直走(帮我看看→dev-assistant L3 / 随手做→quick-dev L1 / 新建项目→project-init / 发布回滚→release-ops / 组队→dev-team)
+
+### 5.3 机制边界修正(评审建议落地)
+
+| 改动 | 来源 | 内容 |
+|------|------|------|
+| dev-assistant v1.1 | qwen+kimi | 介入深度 L0-L4(答疑→指路→草稿→副驾驶→代驾)+ 扩范围三色判定 + 跨文件变更阻塞型确认 |
+| quick-dev v1.1 | kimi | 收编 Triage 执行器:5 项量化指标(文件≤3/无依赖/无DB/无跨模块/≤30min)→ L0 极速/L1 标准 + 转正钩子 |
+| fallback v1.2 | kimi | 升降天花板:升级 ≤6 步硬限、第 3 步提示、第 6 步人工介入;循环检测(5 分钟加载≥2 次→中止) |
+| cost-agent v1.2 | kimi | 证据消费:周报"一句话洞察"(走样 Top + Triage 误判 + 行动建议)+ 月报强制决策三问 |
+| vibe-skills-gov-patterns v1.5 | kimi | 合并审查机制:触发词重叠>50%/30 天未加载/一方总引用 → 合并候选;新增 skill 7 天冷静期门槛 |
+| 设计哲学 | 用户 | "少即是多"升级为**大道至简**:token×质量乘积最优 |
+
+### 5.4 验证与仓库状态
+
+- ✅ 宿主技能库 34 个 skill 目录(28 路由内 + 6 deprecated)全部健康
+- ✅ 引用一致性:类型计数 22、触发词 28、四格场景/单点直达/技术索引同步
+- ✅ 本地 commit:`59d997b`(v1.3.0)未推送上游
 
 ---
 
