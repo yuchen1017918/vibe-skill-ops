@@ -107,14 +107,26 @@ L3 skills 的 frontmatter `metadata.hermes.type` 标签定义调用方式:
 
 ## Quick Start
 
+### 方式一：快捷提示词（推荐，Agent 自动安装）
+
+把下面这句**发给你的 AI Agent**（Hermes Agent / Claude Code / Codex…），它会自动读取教程并完成安装：
+
+> 💬 `https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md，帮我下载安装这个 vibe-coding skill 全家桶。`
+
+### 方式二：手动安装
+
 ```bash
 # 1. Clone
-git clone https://github.com/yuchen1017918/vibe-skill-ops.git
+git clone https://github.com/yuchen1017918/vibe-skill-ops.git /tmp/vibe-skill-ops
 
 # 2. Install: copy the family into Hermes skills dir (default profile)
-cp -r vibe-skill-ops/vibe-coding-family ~/.hermes/skills/
+mkdir -p ~/.hermes/skills
+cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/
 
-# 3. Use: just start a dev task — the agent auto-routes via vibe-coding-hub
+# 3. Verify
+find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 34 (28 active + 6 deprecated)
+
+# 4. Use: just start a dev task — the agent auto-routes via vibe-coding-hub
 #    (or say "按全家桶流程来" / "make an MVP" / "继续上次")
 ```
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vibe-Skill-Ops — 自治理的 Vibe Coding Skill 体系</title>
-<meta name="description" content="Vibe-Skill-Ops: 运行在 Hermes Agent 上的自治理 Vibe Coding skill 全家桶(28 个 skill)。三层路由、确认 SLA、知识萃取、成本治理。">
+<meta name="description" content="Vibe-Skill-Ops v1.1.0: 运行在 Hermes Agent 上的自治理 Vibe Coding skill 全家桶(28 个路由内 skill)。四层组织路由、大道至简、确认 SLA、知识萃取、成本治理。">
 <style>
   :root {
     --bg: #0d1117; --card: #161b22; --border: #30363d;
@@ -20,6 +20,7 @@
   .tagline { color:var(--dim); margin-top:8px; font-size:1rem; }
   .badges { margin-top:14px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
   .badge { background:rgba(88,166,255,.1); color:var(--blue); border:1px solid rgba(88,166,255,.3); border-radius:20px; padding:3px 12px; font-size:.78rem; }
+  .badge-green { background:rgba(63,185,80,.1); color:var(--green); border-color:rgba(63,185,80,.3); }
   h2 { font-size:1.2rem; margin:36px 0 14px; color:var(--blue); border-bottom:1px solid var(--border); padding-bottom:8px; }
   h3 { font-size:1rem; margin:20px 0 8px; }
   p { color:var(--text); margin:8px 0; }
@@ -66,28 +67,34 @@
   <div class="logo">Vibe-<span>Skill-Ops</span></div>
   <div class="tagline">运行在 Hermes Agent 上的自治理 Vibe Coding Skill 体系</div>
   <div class="badges">
-    <span class="badge">v1.0.0</span>
+    <span class="badge badge-green">v1.1.0</span>
     <span class="badge">28 skills</span>
     <span class="badge">MIT License</span>
-    <span class="badge">三层路由</span>
+    <span class="badge">四层组织路由</span>
+    <span class="badge badge-green">大道至简</span>
     <span class="badge">确认 SLA</span>
-    <span class="badge">知识萃取</span>
   </div>
 </header>
 
-<h2>📦 这是什么</h2>
-<p>Vibe-Skill-Ops 把 28 个开发技能组织成一套 <b>三层渐进式目录</b>，让 Agent 报个需求就能按路由走到成熟流程：先判复杂度（Triage 判定清单），再按类型路由（5 个 L2 分类），最后落到具体 skill（22 个 L3）。</p>
-<p class="dim">它是 <b>文档体系，不是软件</b>——所有"自动"都是 Agent 按文档约定执行。增强，不依赖。</p>
+<h2>🌱 大道至简（设计核心）</h2>
+<p><b>token × 质量 = 乘积最优，不是取舍。</b>机制越多 → 加载越贵（token ↑）且走样越多（质量 ↓）= 双输；机制越少 → 加载便宜（token ↓）且执行越准（质量 ↑）= 双赢。</p>
+<p class="dim">落地动作：合并 3 组重叠 skill（6→3）、契约层 ≤5 行（常驻减半）、一句话画像 + 默认路径化（15 秒锁定路由）、30 天未加载 → deprecated、证据消费（月报强制决策）。</p>
+
+<h2>🏗️ 四层组织路由（v1.1.0 结构整改）</h2>
+<p>从"按技术类型路由"改为<b>按组织形态 + 开发模式路由</b>——需求的第一性属性是"规模 + 谁主导"，不是语言：</p>
+<pre><code>L1 组织形态(团队/企业) → L2 开发模式(助手/全盘) → L3 四格场景 → L4 执行 skill
+      ↕ 技术分类 hub 下移为二级索引（dev-core / dev-stack / dev-infra / dev-agent / dev-ai）</code></pre>
+<p class="dim">主流程四选一：dev-assistant（助手）/ quick-dev（团队·随手做）/ vibe-coding（单人 MVP）/ dev-team（企业·全盘）。</p>
 
 <div class="grid">
-  <div class="card"><h3>🧭 复杂度 Triage</h3><p>5 题是/否判定清单，L0/L1/L2 分级，避免杀鸡用牛刀。</p></div>
+  <div class="card"><h3>🗺️ 一句话画像</h3><p>【组织】【主导】【类型】【技术】15 秒锁定 L1+L2；反驳只更新画像，不重走路由。</p></div>
+  <div class="card"><h3>🎚️ 介入深度 L0-L4</h3><p>dev-assistant 分档：答疑→指路→草稿→副驾驶→代驾；跨文件变更阻塞型确认。</p></div>
+  <div class="card"><h3>🧭 复杂度 Triage</h3><p>5 题是/否清单 L0/L1/L2；quick-dev 收编为执行器（5 项量化指标 + 转正钩子）。</p></div>
   <div class="card"><h3>📋 确认交互契约</h3><p>阻塞/通知/批量三种确认，超时策略 + /focus 免打扰，根治确认疲劳。</p></div>
-  <div class="card"><h3>💓 心跳熔断器</h3><p>CLOSED/OPEN/HALF-OPEN 状态机，子 Agent 失控自动兜底。</p></div>
-  <div class="card"><h3>📡 经验召回</h3><p>三维评分 + 过滤，只注入有效经验，防上下文污染。</p></div>
-  <div class="card"><h3>🧠 知识萃取</h3><p>任务/异常后自动 5 Whys 复盘，经验自动生长、越用越聪明。</p></div>
-  <div class="card"><h3>💰 成本治理</h3><p>token 周报 / 实时告警 / ROI 看板，观测者豁免防递归。</p></div>
-  <div class="card"><h3>🔐 安全审计</h3><p>提交前六维扫描，规则分级 + 误报反馈，防"狼来了"效应。</p></div>
-  <div class="card"><h3>🪞 元治理</h3><p>事件驱动的治理审查：冲突矩阵、fallback 环路检测、权限递归审计。</p></div>
+  <div class="card"><h3>⛔ 升降天花板</h3><p>fallback 升级 ≤6 步硬限，第 3 步提示、第 6 步人工介入；5 分钟循环检测。</p></div>
+  <div class="card"><h3>📡 证据消费</h3><p>cost-agent 周报一句话洞察（走样 Top + Triage 误判）+ 月报强制决策三问。</p></div>
+  <div class="card"><h3>🔗 合并审查</h3><p>触发词重叠 >50% / 30 天未加载 / 一方总引用 → 合并候选；新增 skill 7 天冷静期。</p></div>
+  <div class="card"><h3>💰 成本治理 + 知识萃取</h3><p>token 周报 / ROI 看板；任务后自动 5 Whys 复盘，经验越用越聪明。</p></div>
 </div>
 
 <h2>🚀 下载安装</h2>
@@ -104,42 +111,43 @@
 <pre><code>mkdir -p ~/.hermes/skills
 cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/</code></pre></div></div>
 <div class="step"><div class="snum">3</div><div class="sbody"><b>验证</b>
-<pre><code>find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 应为 28</code></pre></div></div>
+<pre><code>find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 应为 34（28 路由内 + 6 deprecated）</code></pre></div></div>
 <p class="dim">国内网络慢？git clone 加 ghproxy 前缀：<code>git clone https://ghproxy.net/https://github.com/yuchen1017918/vibe-skill-ops.git /tmp/vibe-skill-ops</code></p>
 
-<h2>🧩 28 个 skill 一览</h2>
+<h2>🧩 28 个路由内 skill 一览</h2>
 <div class="card">
 <div class="skill-cols">
-  <div><b>vibe-coding-hub</b> — L1 总目录 v1.0.0</div>
-  <div><b>dev-core-hub</b> — L2 开发核心</div>
-  <div><b>dev-stack-hub</b> — L2 技术栈</div>
-  <div><b>dev-infra-hub</b> — L2 基础设施</div>
-  <div><b>dev-agent-hub</b> — L2 智能体治理</div>
-  <div><b>dev-ai-hub</b> — L2 AI/ML</div>
+  <div><b>vibe-coding-hub</b> — L1 总目录 v1.1.0</div>
+  <div><b>dev-core-hub</b> — 技术索引·开发核心</div>
+  <div><b>dev-stack-hub</b> — 技术索引·技术栈</div>
+  <div><b>dev-infra-hub</b> — 技术索引·基础设施</div>
+  <div><b>dev-agent-hub</b> — 技术索引·智能体治理</div>
+  <div><b>dev-ai-hub</b> — 技术索引·AI/ML</div>
+  <div><b>dev-assistant</b> — 副驾驶协议（介入深度 L0-L4）</div>
+  <div><b>quick-dev</b> — 轻量全包（Triage 执行器）</div>
+  <div><b>requirement-clarify</b> — 需求澄清访谈</div>
+  <div><b>project-init</b> — 项目初始化+规划+嗅探</div>
+  <div><b>agent-ops</b> — 多Agent 工位+协作</div>
+  <div><b>release-ops</b> — 发布+回滚一体化</div>
   <div><b>snapshot-notes</b> — 跨对话快照</div>
-  <div><b>plan-workflow</b> — 任务拆解计划</div>
-  <div><b>project-scaffold</b> — 项目脚手架</div>
   <div><b>project-tracker-dashboard</b> — 可视化看板</div>
-  <div><b>release-management</b> — 发布版本管理</div>
-  <div><b>rollback-backup</b> — 回滚备份</div>
   <div><b>global-experience</b> — 跨项目经验库</div>
-  <div><b>agent-workspace</b> — 多 Agent 工位</div>
   <div><b>agent-loop</b> — 自动指挥循环</div>
-  <div><b>agent-collab</b> — 平级协作协议</div>
   <div><b>agent-permissions</b> — 权限矩阵</div>
   <div><b>china-env-adapt</b> — 国内环境适配</div>
-  <div><b>fallback-general-dev</b> — 降级兜底</div>
+  <div><b>fallback-general-dev</b> — 降级兜底（升降双链）</div>
   <div><b>vibe-terminal-safe</b> — 终端安全</div>
   <div><b>vibe-code-search</b> — 代码检索召回</div>
   <div><b>vibe-mcp-connect</b> — MCP 接入</div>
-  <div><b>vibe-skills-gov-patterns</b> — skill 治理</div>
+  <div><b>vibe-skills-gov-patterns</b> — skill 治理（合并审查）</div>
   <div><b>karpathy-coding-dscpln</b> — 编码纪律</div>
   <div><b>security-audit</b> — 安全审计</div>
   <div><b>frontend-design-policy</b> — 设计约束</div>
   <div><b>knowledge-extraction</b> — 知识萃取</div>
-  <div><b>cost-agent</b> — 成本智能体</div>
+  <div><b>cost-agent</b> — 成本智能体（证据消费）</div>
 </div>
 </div>
+<p class="dim">另有 6 个 deprecated 保留文件（project-scaffold / plan-workflow / agent-workspace / agent-collab / release-management / rollback-backup，已合并入 project-init / agent-ops / release-ops，文件保留防交叉引用，不进路由）。</p>
 
 <h2>🗺️ 版本演进</h2>
 <ul class="tl">
@@ -149,6 +157,7 @@ cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/</code></pre></div
   <li><span class="ver">v3.4</span><span class="what">约束与边界：冲突四分类+人工确认、判定清单、熔断器状态机、成本意识</span></li>
   <li><span class="ver">v3.5</span><span class="what">认知增强：knowledge-extraction、确认 SLA、项目画像、cost-agent、元治理</span></li>
   <li><span class="ver">v1.0.0</span><span class="what">可验证一致：触发词治理、懒加载契约层、执行走样日志、新手梯度 v2.0</span></li>
+  <li><span class="ver">v1.1.0</span><span class="what">大道至简 + 结构整改：四层组织路由、合并 3 组 skill（6→3）、一句话画像、介入深度 L0-L4、升降天花板、证据消费</span></li>
 </ul>
 
 <h2>⚠️ 边界声明（读完不误解）</h2>
@@ -159,7 +168,7 @@ cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/</code></pre></div
 <footer>
   <a href="https://github.com/yuchen1017918/vibe-skill-ops">GitHub 仓库</a> ·
   <a href="Tutorial.md">Agent 安装教程</a> ·
-  MIT License · © 2026 yuchen1017918 · v1.0.0
+  MIT License · © 2026 yuchen1017918 · v1.1.0
 </footer>
 
 </div>
