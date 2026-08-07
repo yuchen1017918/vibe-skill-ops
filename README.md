@@ -1,8 +1,8 @@
 # Vibe-Skill-Ops
 
-A self-governing skill system for Vibe Coding on [Hermes Agent](https://github.com/NousResearch/hermes-agent) — a three-layer routing framework with complexity Triage, confirmation SLAs, knowledge extraction, and cost-aware governance.
+A self-governing skill system for Vibe Coding on [Hermes Agent](https://github.com/NousResearch/hermes-agent) — a four-layer organization routing framework (team/enterprise × assistant/owner) with complexity Triage, confirmation SLAs, knowledge extraction, and cost-aware governance.
 
-> **Vibe-Coding Skill 全家桶** — Hermes Agent 上自治理的 Vibe Coding skill 体系:三层路由、确认 SLA、知识萃取、成本感知治理。
+> **Vibe-Coding Skill 全家桶** — Hermes Agent 上自治理的 Vibe Coding skill 体系:四层组织路由、确认 SLA、知识萃取、成本感知治理。
 
 ---
 
@@ -50,7 +50,7 @@ All L3 skills carry a `metadata.hermes.type` tag defining how they are invoked:
 | **Complexity Triage** | v1.0.0 | 5-question yes/no checklist → L0/L1/L2; project-context weighting; dynamic calibration from actual cost/retry data |
 | **Cost awareness** | v1.0.0 | Token estimate per workflow task; `/simple` family of degradation policies; cost-agent weekly report + ROI dashboard; observer-exemption accounting |
 | **Confirmation SLA** | v1.0.0 | Blocking / Notify / Batch confirmation tiers with timeouts; `/focus 30m` do-not-disturb; per-user preference learning |
-| **Trigger governance** | v1.0.0 | Namespace rules + conflict arbitration for 28 skills; context-bound triggers & negative triggers |
+| **Trigger governance** | v1.0.0 | Namespace rules + conflict arbitration for 31 skills; context-bound triggers & negative triggers |
 | **Snapshot health check** | v1.5 | Conflict classification 🟢🟡🟠🔴 vs git (source of truth); manual-confirm alignment; cross-device sync (optional) |
 | **Circuit breaker** | v1.4 | CLOSED/OPEN/HALF-OPEN state machine; timeout tiers; error-type disposition matrix; agent trust chain |
 | **Knowledge extraction** | v1.1 | Post-incident 5-Whys review; 4-element quality gate; human review hook; verification loop |
@@ -87,6 +87,8 @@ Requires a Hermes Agent installation with the skills/ plugin layout.
 | v3.4 | Constraints & boundaries | Triage checklist, conflict-classified alignment, circuit breaker state machine, cost awareness |
 | v3.5 | Cognitive enhancement | knowledge-extraction, confirmation SLA, project-context weighting, smart /simple, meta-governance |
 | v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, progressive-disclosure v2, compatibility contract |
+| v1.1.0 | Local beta | requirement-clarify (proactive interview → DECISIONS.md), fallback escalation chain (upgrade-then-degrade) |
+| v1.2.0 | Local beta | Four-layer organization routing (team/enterprise × assistant/owner), dev-assistant copilot protocol, quick-dev lightweight flow (31 skills) |
 
 ---
 
