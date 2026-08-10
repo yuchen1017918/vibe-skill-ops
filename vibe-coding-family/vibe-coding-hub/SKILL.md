@@ -60,7 +60,7 @@ L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
 | `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
 | `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
 
-> 23 个自建 L3 全量标注：tool 8 个 / workflow 8 个 / policy 5 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security）。
+> 23 个自建 L3 全量标注：tool 7 个 / workflow 8 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.2 起 code-security 为 policy 类型——纪律默认注入）。
 > 已合并 deprecated（文件保留防交叉引用）：project-scaffold+plan-workflow → project-init；
 > agent-workspace+agent-collab → agent-ops；release-management+rollback-backup → release-ops。
 

@@ -5,7 +5,7 @@ description: |
   证据消费(v1.2:走样/Triage 误判一句话洞察,月报强制决策)。
   当用户问"token 花了多少/哪个skill最费/本周消耗"时加载。
   触发词:成本、token消耗、周报、ROI、用量。
-version: 1.2.0
+version: 1.3.0
 author: Hermes Agent
 license: MIT
 metadata:
@@ -54,6 +54,7 @@ v1.2 起,周报/月报主动消费这些日志,驱动删减决策。
 【一句话洞察】
 - 走样 Top 偏差：agent-loop 验证步骤被跳过 3 次（本周）→ 建议简化该步骤或改检查点
 - Triage 误判：2 次 L0 判定实际消耗超 L1 均值 → 建议提升"脚本处理数据"类任务级别
+- 安全走样（v1.3）：N 次提交未过安全审计（commit 前未跑 code-security 纪律/扫描）→ 建议安装 pre-commit hook 兜底（见 code-security references/pre-commit.yaml）
 - 行动建议：下月删除/合并候选 [skill 名]（30 天未加载）
 ```
 
@@ -63,6 +64,7 @@ v1.2 起,周报/月报主动消费这些日志,驱动删减决策。
 1. 哪些 skill 30 天未加载 → 标记 deprecated（vibe-skills-gov-patterns 执行）
 2. 哪些机制步骤总被跳过 → 简化或删除（执行走样数据支撑）
 3. 哪些合并候选 → 执行/否决（触发词重叠数据支撑）
+4. 安全走样趋势（v1.3）：跳过审计次数上升？→ 默认纪律是否失效/hook 未装 → 落实 code-security 第一层或装 hook
 ```
 
 **证据可消费性标准**：每条洞察必须 = 一句话发现 + 数据来源 + 行动建议；
