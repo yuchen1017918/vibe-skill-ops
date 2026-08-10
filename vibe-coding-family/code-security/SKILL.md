@@ -75,11 +75,15 @@ codeql database create /tmp/db --language=python --source-root .
 codeql database analyze /tmp/db --format=sarif-latest --output=out.sarif
 ```
 
-**闭环流程（不留安全债）：**
+**闭环流程（不留安全债 + 不重复踩坑）：**
 
 ```
 深度扫描 → 报告（位置 + CWE + 可达性验证） → 返工修复 → 重扫验证 → 干净才提交
+→ 沉淀 vuln-memory（修复后自动记入漏洞记忆库，下次生成避坑）
 ```
+
+> v1.2 起：扫描/审查发现的高危漏洞，修复后 **fold-in 进 `vuln-memory`**（按 CWE 分类，
+> 反例→正例+教训）。闭环 = 扫→修→记→防。详见 `vuln-memory` skill。
 
 ## 触发方式
 
