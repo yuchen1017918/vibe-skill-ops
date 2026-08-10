@@ -5,7 +5,7 @@ description: |
   从权限验证、状态加密、网络验证、密钥泄露等维度排查隐患，输出分类报告。
   当准备 git commit / PR、或完成一段业务代码需要上线前自检时加载。
   触发词：安全审计、security、防漏洞、提交前检查、上线检查。
-version: 1.1.0
+version: 1.2.0
 author: Hermes Agent
 license: MIT
 metadata:
@@ -90,6 +90,31 @@ metadata:
 4. 通过后 → 才允许 git commit（配合 git-workflow）
 5. 高风险项记录到 .snapshots/ + global-experience（沉淀为经验）
 ```
+
+## 🛠️ 工具化扫描（v1.2 — 清单 + 工具双轨）
+
+> v1.2 起,六维清单之外**强制跑工具扫描**兜底(AI 自查自己的代码不可靠)。
+> 工具命令与 `code-security` skill 联动——code-security 管"扫描+修复",本 skill 管"闸门+汇总"。
+
+```bash
+# 提交前一键四扫（核心,必跑）
+semgrep scan --config auto .            # SAST: SQLi/XSS/命令注入/路径穿越等(CWE 标注)
+gitleaks detect --source . --redact     # git 历史密钥泄露
+pip-audit / npm audit                   # 依赖 CVE(按项目语言)
+git diff | semgrep scan --config auto --json -   # 增量扫描:只审本次改动
+
+# 依赖 CVE 详情
+pip-audit --requirement requirements.txt   # Python
+npm audit --json                            # Node
+```
+
+扫描结果并入下方分类报告:
+- 🔴 高危(密钥硬编码/SQLi 等)→ **禁止提交**,修完重扫
+- 🟠 需处理 → 修复后提交
+- 🟢 干净 → 通过,进入 commit
+
+> 排障:semgrep 装不上用国内镜像(`pip install semgrep -i https://pypi.tuna.tsinghua.edu.cn/simple`);
+> 误报多 → `.semgrepignore` 排除生成目录。完整命令/规则见 `code-security`。
 
 ## 🎯 误报反馈与规则分级（v1.1 新增 — 防"狼来了"效应）
 

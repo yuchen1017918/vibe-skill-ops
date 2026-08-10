@@ -43,7 +43,8 @@ metadata:
 |-------|------|----------|
 | `code` | 通用编码工作流（规划→实现→验证→测试） | 结构化编码 |
 | `code-review` | 系统性代码审查（安全/性能/可维护性） | 提交前、PR 时 |
-| `security-audit` | 提交前安全审计：权限/加密/密钥/依赖六维扫描 | commit/PR 前（v3.3 新增） |
+| `security-audit` | 提交前安全审计：权限/加密/密钥/依赖六维扫描（v1.2 工具化：semgrep+gitleaks） | commit/PR 前（v3.3 新增，v1.2 **强制前置闸门**） |
+| `code-security` | AI 编码安全：写码纪律 + Semgrep 漏洞扫描 + 增量 diff 审查（融合官方 semgrep/skills） | 写完代码防漏洞/安全扫描（v1.2 新增） |
 | `karpathy-coding-dscpln` | Karpathy 四原则：防过度设计、diff 蔓延 | refactor 前、迭代失控时 |
 | `simplify-code` | 并行 4-Agent 清理近期代码改动 | 代码变复杂时 |
 | `structured-code-remediation` | 多阶段代码整改运动 | 大规模修整时 |
