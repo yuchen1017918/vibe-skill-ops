@@ -113,6 +113,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 | "新建项目"/"做个计划" | project-init | L1/L2 判定省略 |
 | "发布"/"回滚" | release-ops | L1/L2 判定省略 |
 | "组队开发"/"自动开发" | dev-team | 仅确认规模(企业级) |
+| "用codex干活"/"让claude code写" | dev-agent-hub → codex-agent / claude-code | 仅外部编码器委派;验证纪律照常 |
 
 > 边界感:默认路径只在**无歧义**时生效;触发词打架 → 走触发词治理仲裁。
 

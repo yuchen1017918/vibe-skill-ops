@@ -45,7 +45,7 @@ metadata:
 | Skill | 作用 | 加载时机 |
 |-------|------|----------|
 | `claude-code` | 委派编码给 Claude Code CLI | 用 Claude Code |
-| `codex` | 委派编码给 Codex CLI | 用 Codex |
+| `codex-agent` | 委派编码给 OpenAI Codex CLI（本机 DeepSeek 后端实测：功能开发/重构/PR审查/批量修bug/并行 worktree） | 用 Codex、"用codex干活"、"委派编码给codex" |
 | `opencode` | 委派编码给 OpenCode CLI | 用 OpenCode |
 
 ### 代码搜索与上下文
