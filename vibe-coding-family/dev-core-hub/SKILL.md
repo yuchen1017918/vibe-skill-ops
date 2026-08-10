@@ -42,7 +42,8 @@ metadata:
 | Skill | 作用 | 加载时机 |
 |-------|------|----------|
 | `code` | 通用编码工作流（规划→实现→验证→测试） | 结构化编码 |
-| `code-review` | 系统性代码审查（安全/性能/可维护性） | 提交前、PR 时 |
+| `code-review` | 系统性代码审查（安全/性能/可维护性）——方法论 | 提交前、PR 时 |
+| `open-code-review` | AI 审查执行引擎（阿里 ocr CLI，DeepSeek 实测）：行级 bug/质量审查 | "审查代码"/"review"/"审查PR"（v1.3 新增，质量闸门执行器） |
 | `security-audit` | 提交前安全审计：权限/加密/密钥/依赖六维扫描（v1.2 工具化：semgrep+gitleaks） | commit/PR 前（v3.3 新增，v1.2 **强制前置闸门**） |
 | `code-security` | AI 编码安全三层防线（Qoder 架构）：①静默纪律(policy 默认注入) ②轻量扫描(增量 diff 建议) ③深度扫描(按需全量+闭环重扫) | 写完代码防漏洞/安全扫描/深度扫描（v1.2 新增） |
 | `karpathy-coding-dscpln` | Karpathy 四原则：防过度设计、diff 蔓延 | refactor 前、迭代失控时 |
