@@ -47,6 +47,10 @@ metadata:
 | `code-security` | AI 编码安全三层防线（Qoder 架构）：①静默纪律(policy 默认注入) ②轻量扫描(增量 diff 建议) ③深度扫描(按需全量+闭环重扫) | 写完代码防漏洞/安全扫描/深度扫描（v1.2 新增） |
 | `karpathy-coding-dscpln` | Karpathy 四原则：防过度设计、diff 蔓延 | refactor 前、迭代失控时 |
 | `simplify-code` | 并行 4-Agent 清理近期代码改动 | 代码变复杂时 |
+
+**提交闸门记录（v1.3 — 度量闭环，三足鼎立地基）**：每次 commit 前，
+未过 `security-audit` 六维/`code-security` 纪律 → **追加一行 `~/.vibe/metrics/security-drift.log`**（时间/原因），
+cost-agent 周报消费——让"跳过安全"有可见成本；usage.log（token 角）/ triage-accuracy.log（质量角）同理由 hub Step 0.5、snapshot-notes 写入。
 | `structured-code-remediation` | 多阶段代码整改运动 | 大规模修整时 |
 | `python-project-refactoring` | 单体 Python 拆分层级架构 | Python 项目重构 |
 | `api-development` | API 全生命周期开发编排 | 做 API 项目 |

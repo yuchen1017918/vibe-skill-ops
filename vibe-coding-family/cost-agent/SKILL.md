@@ -23,6 +23,7 @@ metadata:
 
 - `~/.vibe/metrics/usage.log`：skill 名/调用次数/预估 token（由 vibe-coding-hub Step 0.5 写入）
 - `~/.vibe/metrics/triage-accuracy.log`：Triage 判定 vs 实际消耗（由 snapshot-notes 写入）
+- `~/.vibe/metrics/security-drift.log`：安全走样（commit 前未过审计，由 hub Step 0.5/dev-core-hub 提交闸门写入，v1.3 新增）
 
 ## 📬 自动周报（每周一推送）
 

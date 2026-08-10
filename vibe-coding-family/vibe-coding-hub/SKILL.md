@@ -161,6 +161,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 【成本提示】workflow 型任务开始时评估：本次预计触发几个 skill，预估 token 消耗范围。
 - 判定 L0/L1 → 不加载 plan-workflow / agent-loop 全套
 - 记录 ~/.vibe/metrics/usage.log（skill 名/调用次数/预估 token），月度复盘
+- 提交动作时：未过 security-audit/code-security 纪律 → 追加 ~/.vibe/metrics/security-drift.log（时间/原因），cost-agent 周报消费（v1.3 度量闭环）
 ```
 
 **/simple 智能降级**（v3.5 — 从"一刀切"到"可配置策略"）：
