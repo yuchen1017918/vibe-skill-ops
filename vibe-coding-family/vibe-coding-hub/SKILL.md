@@ -60,7 +60,7 @@ L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
 | `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
 | `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
 
-> 28 个自建 L3 全量标注：tool 14 个 / workflow 6 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发；v1.4 融合 addyosmani/agent-skills：doubt-driven-development 对抗审查 + context-engineering 上下文分层；v2.0 token 优化：knowledge-extraction 并入 snapshot-notes + agent-loop 并入 agent-ops，净减 2）。
+> 29 个自建 L3 全量标注：tool 14 个 / workflow 7 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发；v1.4 融合 addyosmani/agent-skills：doubt-driven-development 对抗审查 + context-engineering 上下文分层；v2.0 token 优化：knowledge-extraction 并入 snapshot-notes + agent-loop 并入 agent-ops，净减 2；v2.1 新增 workflow-distillation 用户工作流蒸馏层）。
 > 已合并 deprecated（文件保留防交叉引用）：project-scaffold+plan-workflow → project-init；
 > agent-workspace+agent-collab → agent-ops；release-management+rollback-backup → release-ops。
 
@@ -225,6 +225,8 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 | 怀疑/对抗审查 | `doubt-driven-development`（飞行中交叉质询，防长会话假设变事实） | "怀疑" / "对抗审查" / "总觉得哪里不对" |
 | 上下文/token优化 | `context-engineering`（5层上下文层级+信任分级，大项目token核心） | "上下文" / "token优化" / "喂上下文" |
 | 建知识库/研究笔记 | `llm-wiki`（编译型知识库：raw源+知识页+质量信号，非RAG） | "知识库" / "wiki" / "研究笔记" / "整理资料" |
+| 用户自定义工作流 | `workflow-distillation`（用户流程→skill，叠加层优先于标准，全家桶零改动） | "把我的流程做成skill" / "记住我干活的方式" / "自定义工作流" |
+| 用户已沉淀流程 | `user-workflows/<name>`（用户层，优先于标准流程） | 用户自定义触发词 |
 
 > addyosmani/agent-skills 其余精华（Hyrum's Law/Performance Budget/Pre-Launch Checklist/6条行为准则等）见 `references/addyosmani-essence.md`，涉及对应主题时按需加载。
 | 审查代码/Review | `open-code-review`（执行引擎）+ `code-review`（方法论） | "审查代码" / "review" / "审查PR" |
@@ -260,7 +262,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 降级记录 .snapshots/;最多降级 2 层仍失败 → 保存状态等用户。
 ```
 
-## 🎯 触发词治理（v3.6 新增 — 34 个 skill 的信号仲裁）
+## 🎯 触发词治理（v3.6 新增 — 35 个 skill 的信号仲裁）
 
 **目的**：多个 skill 抢同一个关键词（"继续"→snapshot？"复盘"→knowledge？），
 没有仲裁机制会全加载（上下文爆炸）或随机选（行为不可预测）。
