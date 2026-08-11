@@ -53,7 +53,8 @@ metadata:
 | Skill | 作用 | 加载时机 |
 |-------|------|----------|
 | `mlops/prompt-engineering` | 结构化提示词/少样本/思维链/RAG 技术 | LLM 应用（主） |
-| `mlops/offline-rag-pipeline` | 离线 RAG：本地 embedding + 向量库 | 本地知识库 |
+| `mlops/offline-rag-pipeline` | 离线 RAG：本地 embedding + 向量库 | 本地知识库 | 
+| `research/llm-wiki` | Karpathy LLM Wiki：编译型知识库（raw 源+知识页+SCHEMA/index/log 导航，非 RAG） | 研究知识库/领域笔记（主） |
 | `mlops/instructor` | Pydantic 校验的 LLM 结构化抽取 | 数据抽取 |
 | `mlops/research/dspy` | DSPy 声明式 LM 程序 + 自动优化 | 复杂 LM 流程 |
 | `mlops/ollama-project-dev` | Ollama 项目开发/调试/审计/重构 | Ollama 应用 |

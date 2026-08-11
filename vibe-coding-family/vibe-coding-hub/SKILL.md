@@ -224,6 +224,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 | 并行开发/多分支 | `git-worktree`（多工作区隔离，多Agent/外部编码器并行） | "并行开发" / "worktree" / "多分支同时干" |
 | 怀疑/对抗审查 | `doubt-driven-development`（飞行中交叉质询，防长会话假设变事实） | "怀疑" / "对抗审查" / "总觉得哪里不对" |
 | 上下文/token优化 | `context-engineering`（5层上下文层级+信任分级，大项目token核心） | "上下文" / "token优化" / "喂上下文" |
+| 建知识库/研究笔记 | `llm-wiki`（编译型知识库：raw源+知识页+质量信号，非RAG） | "知识库" / "wiki" / "研究笔记" / "整理资料" |
 
 > addyosmani/agent-skills 其余精华（Hyrum's Law/Performance Budget/Pre-Launch Checklist/6条行为准则等）见 `references/addyosmani-essence.md`，涉及对应主题时按需加载。
 | 审查代码/Review | `open-code-review`（执行引擎）+ `code-review`（方法论） | "审查代码" / "review" / "审查PR" |
