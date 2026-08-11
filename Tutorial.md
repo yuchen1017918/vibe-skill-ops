@@ -40,8 +40,8 @@ mkdir -p ~/.hermes/skills
 cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/
 
 # 3. 验证
-ls ~/.hermes/skills/vibe-coding-family/                          # 34 个 skill 目录（28 路由内 + 6 deprecated）
-find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 应为 34
+ls ~/.hermes/skills/vibe-coding-family/                          # 42 个 skill 目录（29 路由内 + 6 hub + 7 deprecated）
+find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 应为 42
 ```
 
 ### 方式 B：下载 zip（无 git 环境）
@@ -57,9 +57,9 @@ cp -r /tmp/vibe-skill-ops-main/vibe-coding-family ~/.hermes/skills/
 
 ## 四、验证安装（必须做）
 
-1. **目录完整**：34 个 `SKILL.md`（上一步 wc -l 应为 34；其中 28 个在路由内，6 个 deprecated 描述带 ⚠️ 标注）
+1. **目录完整**：42 个 `SKILL.md`（上一步 wc -l 应为 42；其中 29 个在路由内，7 个 deprecated 描述带 ⚠️ 标注，6 个 hub 目录）
 2. **frontmatter 合法**：每个 SKILL.md 开头有 `---` 包裹的 YAML（name / description / version / metadata.hermes.type）
-3. **Agent 识别**：重启会话后，技能列表出现 `vibe-coding-hub` 及 28 个路由内 skill（Hermes 用 `skills_list` 查看）
+3. **Agent 识别**：重启会话后，技能列表出现 `vibe-coding-hub` 及 29 个路由内 skill（Hermes 用 `skills_list` 查看）
 4. **自检**：加载 `vibe-coding-hub`，应看到「L1 总目录 v1.1.0 — 四层组织路由」
 
 **未通过验证 → 不要声称安装成功**，先看 §六 排障。
