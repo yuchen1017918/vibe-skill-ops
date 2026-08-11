@@ -1,11 +1,10 @@
 ---
 name: agent-loop
 description: |
-  自动开发指挥循环 skill：子Agent工作结束汇报→主Agent根据项目情况
-  指挥继续→循环推进实现无人自动开发。内置用户路由逻辑：
-  项目进度定期汇报用户，重大难点和决策询问用户。
-  当启用 dev-team 组队开发、说"自动开发"、"无人值守"、
-  "auto"、"继续开发"、或需要主Agent自动指挥子Agent循环时加载。
+  ⚠️ v2.0 deprecated — 由 agent-ops 合并（多Agent运行全栈：循环指挥章节）。
+  文件保留防交叉引用。原功能：自动开发指挥循环（子Agent汇报→主Agent
+  指挥决策→无人自动开发模式→心跳检测→信任链）。
+  触发词已并入 agent-ops。
 version: 1.4.0
 author: Hermes Agent
 license: MIT

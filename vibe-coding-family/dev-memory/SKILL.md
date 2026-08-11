@@ -14,7 +14,7 @@ metadata:
   hermes:
     type: tool
     tags: [vibe-coding, memory, dev, experience, tencentdb, learning]
-    related_skills: [vuln-memory, global-experience, knowledge-extraction, snapshot-notes, vibe-code-search]
+    related_skills: [vuln-memory, global-experience, snapshot-notes, snapshot-notes, vibe-code-search]
 ---
 
 # Dev Memory（开发级记忆库）
@@ -97,7 +97,7 @@ grep -rn "WebTerminal" ~/.vibe/dev-memory/          # 按项目
 | `vuln-memory` | 安全漏洞（反例→正例） | "SQL 拼接注入 CWE-089" |
 | `global-experience` | 跨项目模式/方法论（架构级） | "先验证后落地,最小改动优先" |
 | `snapshot-notes` | 项目进行状态（在哪） | "v1.3 已合并,待发布" |
-| `knowledge-extraction` | 通用萃取闭环 → global-experience | 任务完成自动萃取 |
+| `snapshot-notes` | 通用萃取闭环 → global-experience | 任务完成自动萃取 |
 
 > 判定口诀：**安全 → vuln-memory;API/细节坑 → dev-memory;架构/模式 → global-experience;项目状态 → snapshot-notes。**
 

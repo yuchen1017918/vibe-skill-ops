@@ -31,7 +31,7 @@ metadata:
 | Skill | 作用 | 加载时机 |
 |-------|------|----------|
 | `multi-agent-config-manager` | 多代理编排引擎：任务分解/分支执行/验证审核/返工 | 深度研究、项目协作、多Agent（主） |
-| `agent-loop` | 自动开发指挥循环：子Agent汇报→主Agent指挥→无人值守，定期汇报/重大决策询问 | 自动开发、无人值守（主） |
+| `agent-ops` | 自动开发指挥循环：子Agent汇报→主Agent指挥→无人值守，定期汇报/重大决策询问 | 自动开发、无人值守（主） |
 | `agent-ops` | 多Agent基础设施：工位工作区 + 平级协作协议（v1.3 合并自 workspace+collab） | 多Agent协作/工位/子Agent直接配合时（主） |
 | `agent-permissions` | 权限规范：职责边界/文件权限矩阵/命令分级/安全红线 | 多Agent任务启动时（自动） |
 | `subagent-driven-development` | 用 delegate_task 子代理执行计划（2 阶段审查） | 委派子任务 |
@@ -56,7 +56,7 @@ metadata:
 | `global-experience` | 跨项目经验库：踩坑/模式全局共享（~/.hermes/experience/） | 项目沉淀/跨项目复用（主） |
 | `agent-project-manager` | 集中式项目状态管理（STATUS.md/甘特图） | 多项目集中管理 |
 | `code-wiki` | 生成 wiki + Mermaid 图 | 代码文档化 |
-| `knowledge-extraction` | 知识萃取：任务/异常后自动复盘（5 Whys）+ 模式沉淀 | 任务完成/异常后（v3.5 新增，自动触发） |
+| `snapshot-notes` | 知识萃取：任务/异常后自动复盘（5 Whys）+ 模式沉淀 | 任务完成/异常后（v3.5 新增，自动触发） |
 
 > 注：`github/codebase-inspection`（LOC 统计）与 `vibe-code-search` 重叠，已废弃引用。
 

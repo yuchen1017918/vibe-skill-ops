@@ -1,11 +1,10 @@
 ---
 name: knowledge-extraction
 description: |
-  知识萃取 skill：任务完成后自动从代码变更/报错/解决路径中识别可复用模式，
-  转化为 global-experience 结构化条目，并驱动"萃取→验证→优化"闭环。
-  与异常复盘联动：心跳熔断/故障后 24h 内自动执行 5 Whys 根因分析并萃取经验。
-  当任务完成、异常发生、或需要"从这次经历学到什么"时加载。
-  触发词：知识萃取、复盘、经验沉淀、post-incident、5 whys。
+  ⚠️ v2.0 deprecated — 由 snapshot-notes 合并（任务后沉淀统一入口）。
+  文件保留防交叉引用。原功能：任务完成后自动从代码变更/报错/解决路径
+  识别可复用模式 → global-experience 结构化，含复盘/5 Whys 根因分析。
+  触发词已并入 snapshot-notes。
 version: 1.1.0
 author: Hermes Agent
 license: MIT

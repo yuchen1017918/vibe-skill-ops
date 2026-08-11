@@ -29,7 +29,7 @@ metadata:
 
 ```
 上周全家桶消耗：X token（≈$Y）
-Top 3 开销：snapshot-notes (30%) / vibe-code-search (25%) / agent-loop (20%)
+Top 3 开销：snapshot-notes (30%) / vibe-code-search (25%) / agent-ops (20%)
 异常：周三某次 L0 任务实际消耗 12K token（超 L1 均值），建议检查 Triage 判定
 建议：/simple 本周可节省预估 Z token，输入 /simple-once 试用
 ```
@@ -53,7 +53,7 @@ v1.2 起,周报/月报主动消费这些日志,驱动删减决策。
 **周报加"一句话洞察"**（每周一推送,末尾固定段）：
 ```
 【一句话洞察】
-- 走样 Top 偏差：agent-loop 验证步骤被跳过 3 次（本周）→ 建议简化该步骤或改检查点
+- 走样 Top 偏差：agent-ops 验证步骤被跳过 3 次（本周）→ 建议简化该步骤或改检查点
 - Triage 误判：2 次 L0 判定实际消耗超 L1 均值 → 建议提升"脚本处理数据"类任务级别
 - 安全走样（v1.3）：N 次提交未过安全审计（commit 前未跑 code-security 纪律/扫描）→ 建议安装 pre-commit hook 兜底（见 code-security references/pre-commit.yaml）
 - 行动建议：下月删除/合并候选 [skill 名]（30 天未加载）
@@ -79,12 +79,12 @@ v1.2 起,周报/月报主动消费这些日志,驱动删减决策。
 **豁免列表（不计入开发成本）**：
 - cost-agent 自身的运行消耗
 - vibe-skills-gov-patterns 的元治理审查消耗
-- knowledge-extraction 的"复盘"类操作（属治理成本）
+- snapshot-notes 的"复盘"类操作（属治理成本）
 
 **分层记账**：
 ```
 【开发成本】直接服务任务的 skill（project-init/vibe-coding/snapshot 等）
-【治理成本】维持全家桶运转的 skill（cost-agent/governance/knowledge-extraction 复盘）
+【治理成本】维持全家桶运转的 skill（cost-agent/governance/snapshot-notes 复盘）
 【总成本】开发 + 治理
 周报默认展示"开发成本"，展开后显示"治理成本占比"
 ```

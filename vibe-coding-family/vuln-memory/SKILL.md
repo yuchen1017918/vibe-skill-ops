@@ -14,7 +14,7 @@ metadata:
   hermes:
     type: tool
     tags: [vibe-coding, security, memory, learning, CWE, book-to-skill]
-    related_skills: [code-security, open-code-review, security-audit, global-experience, knowledge-extraction]
+    related_skills: [code-security, open-code-review, security-audit, global-experience, snapshot-notes]
 ---
 
 # Vulnerability Memory（漏洞学习记忆库）
@@ -98,7 +98,7 @@ grep -l "来源: code-security" ~/.vibe/vuln-memory/cwes/*.md | head
 | `open-code-review` | 质量审查（发现源，security 类沉淀到本库） |
 | `security-audit` | 六维审计（发现源） |
 | `global-experience` | 通用经验 vs 本库安全专项：bug/架构经验 → global-experience；安全漏洞 → vuln-memory |
-| `knowledge-extraction` | 通用萃取闭环；本库是安全维度的结构化版 |
+| `snapshot-notes` | 通用萃取闭环；本库是安全维度的结构化版 |
 
 ## 5️⃣ 快速排障
 

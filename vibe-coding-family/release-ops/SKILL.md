@@ -132,7 +132,7 @@ X.Y.Z  │ patch=修Bug(兼容) │ minor=新功能(兼容) │ major=破坏性�
 | `security-audit` | 生产变更发布前强制扫描 |
 | `snapshot-notes` | 发布/回滚事件记录 |
 | `dev-core-hub` | 测试通过才允许发布 |
-| `agent-loop` | 自动开发模式下发布是最后一环,验证通过才打 tag |
+| `agent-ops` | 自动开发模式下发布是最后一环,验证通过才打 tag |
 
 ## 快速排障
 

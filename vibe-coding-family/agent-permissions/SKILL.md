@@ -13,7 +13,7 @@ metadata:
   hermes:
     type: policy
     tags: [vibe-coding, multi-agent, permissions, roles, security, rbac]
-    related_skills: [vibe-coding-hub, dev-team, agent-collab, agent-workspace, agent-loop, snapshot-notes]
+    related_skills: [vibe-coding-hub, dev-team, agent-collab, agent-workspace, agent-ops, snapshot-notes]
 ---
 
 # 多Agent权限规范（Agent Permissions）
@@ -135,7 +135,7 @@ metadata:
 | `dev-team` | 4 子Agent 的职责边界在委派时按本 skill 权限矩阵执行 |
 | `agent-collab` | 协作协议中的"角色边界"表引用本 skill 的权限定义 |
 | `agent-workspace` | 工位访问权限（自己的可写、别人的禁入）由本 skill 定义 |
-| `agent-loop` | 自动循环中任何越权请求 → 暂停 + 走询问路由 |
+| `agent-ops` | 自动循环中任何越权请求 → 暂停 + 走询问路由 |
 | `vibe-terminal-safe` | 命令白名单是本 skill 命令分级的具体执行层 |
 | `snapshot-notes` | 快照只读权限（子Agent）由本 skill 定义 |
 | `security-scanner` | 上线前安全扫描配合本 skill 的密钥检查 |
