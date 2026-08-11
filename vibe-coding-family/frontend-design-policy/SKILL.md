@@ -28,6 +28,11 @@ metadata:
 - 彩虹色按钮、无意义重阴影
 - 花哨装饰动画（>500ms 或非交互触发）
 - 圆角/间距无统一规范（必须走 token）
+- 假浏览器/手机/IDE 边框（re-drawn chrome：URL 胶囊+红绿灯点、手机壳、代码窗口标题栏）
+- 斜体标题（heading/display 必须 roman，强调用字重/颜色/下划线）
+- 编造指标（"+47% 转化率"、"50,000+ 用户"——无真实数据就占位符）
+- 多余 section 编号标签（"01 · THE TOUR" eyebrow，除非用户明确要求章节编号）
+- 连续页面/组件复用同一结构（同 hero→3 特性→CTA→footer 节奏=模板换皮，须轮换宏结构/配色/导航形态）
 
 ## ✅ 必须坚持
 
@@ -50,6 +55,10 @@ metadata:
 - project-scaffold 初始化时同步建立 UI 规范文件
 - 颜色/间距/圆角/字号全部走 token（CSS variables / Tailwind config）
 - 禁止组件内硬编码颜色值
+
+### 5. 组件状态完整（8 态纪律）
+- 交互组件必须覆盖 8 态：default / hover / :focus-visible / :active / disabled / loading / error / success
+- 交付时附 8 态 demo 页（.preview.html 竖排渲染各状态）验证，确认后删除
 
 ## 🔄 检查时机（自动）
 
@@ -103,6 +112,7 @@ metadata:
 | Skill | 协作 |
 |-------|------|
 | `frontend-design` | 设计原则管"怎么做好看"，本 policy 管"别犯 AI 味" |
+| `hallmark` | 反模板完整工作流（21 主题+21 宏结构+58 slop 门禁+多样化轮换），本 policy 是持续注入的轻量约束，hallmark 是重型按需执行器 |
 | `project-scaffold` | 初始化时注入 Design Token 规范 |
 | `popular-web-designs` | 参考真实设计系统（Stripe/Linear），不凭空造 |
 | `dev-stack-hub` | 前端相关任务路由入口 |
