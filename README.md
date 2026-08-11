@@ -59,8 +59,19 @@ vibe-coding-family/
 ├── dev-infra-hub/              # L2 索引: infra (终端/容器/MCP/部署/安全)
 ├── dev-agent-hub/              # L2 索引: agent 编排与治理
 ├── dev-ai-hub/                 # L2 索引: AI/ML (训练/推理/RAG/多模态)
-└── 22 个路由内 L3 skills        # tool ×7 / workflow ×8 / policy ×5 / meta ×2
+└── 30 个路由内 L3 skills        # tool ×14 / workflow ×8 / policy ×6 / meta ×2
     └── 另有 6 个 deprecated 保留文件(文件保留防交叉引用,不进路由)
+
+external/                       # 被全家桶引用的外部 skill 副本(related_skills 依赖)
+    ├── code-review/            #   code-review 方法论(五轴审查)
+    ├── codex-agent/            #   外部编码器委派(DeepSeek 实测)
+    ├── git-workflow/           #   Git 提交/分支工作流
+    ├── systematic-debugging/   #   系统化调试(四阶段)
+    ├── test-driven-development #   TDD 纪律
+    ├── dev-team/               #   企业级多Agent流水线
+    ├── vibe-coding/            #   单人 MVP 流程
+    └── 19 个其他外部引用(语言/平台/工具 skill)
+    # 注意: 副本仅供仓库完整性/分发, 不参与路由; 宿主真实源在 ~/.hermes/skills/<分类>/
 ```
 
 L3 skills 的 frontmatter `metadata.hermes.type` 标签定义调用方式:
