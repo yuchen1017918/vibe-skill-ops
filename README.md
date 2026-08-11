@@ -59,8 +59,8 @@ vibe-coding-family/
 ├── dev-infra-hub/              # L2 索引: infra (终端/容器/MCP/部署/安全)
 ├── dev-agent-hub/              # L2 索引: agent 编排与治理
 ├── dev-ai-hub/                 # L2 索引: AI/ML (训练/推理/RAG/多模态)
-└── 30 个路由内 L3 skills        # tool ×14 / workflow ×8 / policy ×6 / meta ×2
-    └── 另有 6 个 deprecated 保留文件(文件保留防交叉引用,不进路由)
+└── 28 个路由内 L3 skills        # tool ×14 / workflow ×6 / policy ×6 / meta ×2
+    └── 另有 8 个 deprecated 保留文件(文件保留防交叉引用,不进路由)
 
 external/                       # 被全家桶引用的外部 skill 副本(related_skills 依赖)
     ├── code-review/            #   code-review 方法论(五轴审查)
