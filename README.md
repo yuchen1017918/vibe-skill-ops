@@ -2,7 +2,7 @@
 
 A self-governing skill system for Vibe Coding on [Hermes Agent](https://github.com/NousResearch/hermes-agent) — a four-layer organization routing framework (team/enterprise × assistant/owner), slimmed down by the **大道至简 (Great Simplicity)** philosophy: token × quality is a product, not a trade-off.
 
-> **Vibe-Coding Skill 全家桶 v1.1.0** — Hermes Agent 上自治理的 Vibe Coding skill 体系:四层组织路由、大道至简、确认 SLA、知识萃取、成本感知治理。
+> **Vibe-Coding Skill 全家桶 v1.2.0** — Hermes Agent 上自治理的 Vibe Coding skill 体系:四层组织路由、大道至简、安全三层防线、双层记忆、质量闸门、并行开发。
 
 ---
 
@@ -155,7 +155,8 @@ Requires a Hermes Agent installation with the skills/ plugin layout.
 | v3.4 | Constraints & boundaries | Triage checklist, conflict-classified alignment, circuit breaker, cost awareness |
 | v3.5 | Cognitive enhancement | knowledge-extraction, confirmation SLA, project-context weighting, smart /simple, meta-governance |
 | v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, compatibility contract |
-| **v1.1.0** | **Official release (current)** | **大道至简 + 结构整改。整合内部迭代 v1.1–v1.3:requirement-clarify 澄清访谈;四层组织路由(团队/企业 × 助手/全盘);dev-assistant 副驾驶协议(介入深度 L0-L4);quick-dev 轻量全包(Triage 执行器);合并 3 组 skill(project-init / agent-ops / release-ops,28 路由内 skill);一句话画像 + 默认路径化;升降天花板;证据消费;契约层 ≤5 行** |
+| **v1.1.0** | **Official release** | **大道至简 + 结构整改。整合内部迭代 v1.1–v1.3:requirement-clarify 澄清访谈;四层组织路由(团队/企业 × 助手/全盘);dev-assistant 副驾驶协议(介入深度 L0-L4);quick-dev 轻量全包(Triage 执行器);合并 3 组 skill(project-init / agent-ops / release-ops,28 路由内 skill);一句话画像 + 默认路径化;升降天花板;证据消费;契约层 ≤5 行** |
+| **v1.2.0** | **Official release (current)** | **安全 × 质量 × 记忆 × 并行 四线增强,22→30 路由内 skill。安全:code-security 三层防线(Qoder 参考,pre-commit hook 实测拦 SQLi)+ security-audit 工具双轨 + Threat Model First;质量:open-code-review 审查引擎(ocr/DeepSeek 实测)+ 五轴审查 + Stop-the-Line;记忆:vuln-memory(漏洞 CWE 沉淀)+ dev-memory(开发教训)+ 度量闭环三日志;并行:git-worktree 多工作区 + reverse-ops 逆向路由(授权闸门);方法论:doubt-driven-development 对抗审查 + context-engineering 上下文分层;融合:codex-agent 委派、addyosmani 精华(2 新 + 6 并入 + references 25 条)、external/ 26 外部引用入仓;全链路实战验证(CachePilot 裁判全 10 分)** |
 
 ---
 
