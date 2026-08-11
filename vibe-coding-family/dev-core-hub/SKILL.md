@@ -83,6 +83,7 @@ cost-agent 周报消费——让"跳过安全"有可见成本；usage.log（toke
 | Skill | 作用 | 加载时机 |
 |-------|------|----------|
 | `git-workflow` | diff/commit/push/多仓库管理 | 每轮迭代后 |
+| `git-worktree` | 多工作区并行开发(多分支同时干/多Agent隔离) | "并行开发"/"worktree"(v1.3 新增) |
 | `github/github-auth` | HTTPS token / SSH / gh CLI 登录 | 首次连 GitHub |
 | `github/github-pr-workflow` | 分支→PR→CI→合并全流程 | 提 PR |
 | `github/github-issues` | issue 创建/分诊/标签 | 管理 issue |

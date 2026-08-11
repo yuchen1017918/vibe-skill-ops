@@ -60,7 +60,7 @@ L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
 | `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
 | `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
 
-> 27 个自建 L3 全量标注：tool 11 个 / workflow 8 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由）。
+> 28 个自建 L3 全量标注：tool 12 个 / workflow 8 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发）。
 > 已合并 deprecated（文件保留防交叉引用）：project-scaffold+plan-workflow → project-init；
 > agent-workspace+agent-collab → agent-ops；release-management+rollback-backup → release-ops。
 
@@ -221,6 +221,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 | 漏洞记忆/防重复踩坑 | `vuln-memory`（漏洞沉淀→生成避坑） | "记住这个漏洞" / "踩坑记录" / 扫描后自动 |
 | 开发记忆/开发坑 | `dev-memory`（开发细节教训沉淀→按需召回） | "记住这个开发坑" / "API怎么用" / "之前怎么解决的" |
 | 逆向/渗透/安全研究 | `reverse-ops`（授权闸门+任务路由，轻量版借鉴 reverse-skill） | "逆向" / "反编译" / "渗透" / "CTF" / "抓包" |
+| 并行开发/多分支 | `git-worktree`（多工作区隔离，多Agent/外部编码器并行） | "并行开发" / "worktree" / "多分支同时干" |
 | 审查代码/Review | `open-code-review`（执行引擎）+ `code-review`（方法论） | "审查代码" / "review" / "审查PR" |
 | 国内环境适配 | `china-env-adapt` + `project-scaffold` | "换源" / "国内环境" |
 | 路由失败/兜底 | `fallback-general-dev`（自动触发） | 无需指令 |
@@ -259,7 +260,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 
 > 全家桶是"增强"不是"依赖"：路由失效也能继续干活。
 
-## 🎯 触发词治理（v3.6 新增 — 33 个 skill 的信号仲裁）
+## 🎯 触发词治理（v3.6 新增 — 34 个 skill 的信号仲裁）
 
 **目的**：多个 skill 抢同一个关键词（"继续"→snapshot？"复盘"→knowledge？），
 没有仲裁机制会全加载（上下文爆炸）或随机选（行为不可预测）。
