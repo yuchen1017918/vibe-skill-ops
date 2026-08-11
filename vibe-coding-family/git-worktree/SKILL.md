@@ -66,7 +66,8 @@ for issue in 78 99; do git worktree remove /tmp/issue-$issue; done
 
 | 陷阱 | 后果 | 解法 |
 |------|------|------|
-| **同一分支被两个 worktree 检出** | 报错 `already checked out` | 并行任务必须用**不同分支**(-b 新建) |
+| 同一分支被两个 worktree 检出 | 报错 `already checked out` | 并行任务必须用**不同分支**(-b 新建) |
+| **`add -b` 中途失败(如基线分支名错)** | **留下孤儿分支**(分支已建、worktree 没建) | 先 `git branch -D <分支>` 清理,再重试(实测 2026-08-10) |
 | worktree 有未提交改动就 remove | 报错,删不掉 | 先 commit/stash,或 `remove --force`(丢改动) |
 | 删除分支前没移除 worktree | 分支删不掉 | 先 `git worktree remove`,再 `git branch -D` |
 | 主工作区想 remove | 删不掉(初始工作区) | 不能删;只删附加的 worktree |
