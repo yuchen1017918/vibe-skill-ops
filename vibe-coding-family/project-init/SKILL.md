@@ -42,6 +42,23 @@ metadata:
 └── README.md
 ```
 
+### ADR 决策记录模板（v1.1 新增 — 参考 addyosmani/agent-skills，写入 .snapshots/DECISIONS.md）
+
+每个**非平凡架构决策**留一条 ADR（决策留痕，防"为什么这么设计"失忆）：
+
+```markdown
+## ADR-<序号>: <决策标题>
+- 状态: Proposed | Accepted | Deprecated    # 决策生命周期
+- 日期: YYYY-MM-DD
+- 背景 (Context):   为什么需要这个决策？问题/约束是什么？
+- 决策 (Decision):  选了什么方案？
+- 备选 (Alternatives): 没选什么？为什么？
+- 影响 (Consequences): 这带来什么代价/收益？(含迁移成本)
+```
+
+> 规则：**Match existing convention first**——新决策先查项目已有惯例，没有才创新；
+> ADR 不是所有决策都写，只写影响架构/接口/数据格式的非平凡决策（联动 doubt-driven-development 判定）。
+
 ### 初始化流程(10 步)
 
 ```

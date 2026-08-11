@@ -51,6 +51,13 @@ metadata:
 - refactor -> 前后验证不变
 - feature -> 定义成功标准与检查方式
 
+## 五、增量实现纪律（v1.1 新增 — 参考 addyosmani/agent-skills）
+
+1. **垂直切片优先**：按"用户可见功能"纵切（UI→逻辑→存储），不按水平层横切（先全部 Controller 再全部 Service）
+2. **Contract-First Slicing**：每片先定接口契约（输入/输出/错误语义），再实现——契约即切片边界
+3. **未完成功能用 Feature Flags 藏**：不半成品上主分支；Flag 关闭 = 对用户不可见
+4. **Rule 3 兜底**：切不完的片宁可不交付，不交付半成品
+
 ## Hermes 化约束
 
 - 默认吸收为行为 discipline，不必安装任何插件或外部 skill runtime
