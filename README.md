@@ -1,35 +1,47 @@
+<div align="center">
+
 # Vibe-Skill-Ops
 
-**给 [Hermes Agent](https://github.com/NousResearch/hermes-agent) 的可插拔增强技能包** —— 42 个经过实战验证的 skill,装完你的 Agent 立刻会:自动路由干活、写码自带安全纪律、跨会话记住上下文、质量审查把关。
+**A pluggable skill pack for [Hermes Agent](https://github.com/NousResearch/hermes-agent)** — 42 battle-tested skills that give your agent: automatic workflow routing, built-in security discipline, cross-session memory, and AI code review.
 
-> 兼容: Hermes Agent ✅ · Claude Code ✅ · Codex ✅ · OpenClaw ✅
-> 版本: **v1.2.0** · 协议: MIT · 生态: Vibe Coding / AI 开发
+[![Lang](https://img.shields.io/badge/LANG-English-blue.svg)](README.md) [![Lang](https://img.shields.io/badge/LANG-中文-red.svg)](README.zh-CN.md) [![Version](https://img.shields.io/badge/version-v1.2.0-green.svg)](https://github.com/yuchen1017918/vibe-skill-ops/releases) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
----
+</div>
 
-## 🎯 它解决你的什么麻烦？
+<div align="center">
 
-| 不用全家桶的麻烦 | 装完之后 |
-|-----------------|---------|
-| 😩 每次开新项目都要重新教 agent"按我的流程来",它总在问"接下来干嘛" | **一句话触发**:说"按全家桶流程来"或"做个 MVP",agent 自动路由到对应 skill,15 秒锁定开工 |
-| 😰 写代码靠自觉,密钥硬编码、SQL 注入、危险命令,上线前才发现 | **8 条静默纪律 + 提交闸门**:写码默认安全,commit 前自动扫描,实测拦截 SQLi |
-| 😵 换新会话/换平台,项目上下文全丢,重新解释一遍 | **快照 + 双层记忆**:说"继续上次"秒级恢复;踩过的坑自动沉淀,下次不重踩 |
-| 🤯 代码质量没人把关,review 靠肉眼 | **AI 审查引擎**:一个命令行级审查,12 秒发现 2 个高危 bug(DeepSeek 实测) |
-| 💸 token 越花越多,不知道花在哪 | **成本看板 + 渐进式披露**:机制按需加载,常驻上下文最小化,周报告诉你钱去哪了 |
+| | |
+|---|---|
+| <span style="color:#58a6ff">**Runtime**</span><br/>Hermes Agent | <span style="color:#3fb950">**Install**</span><br/>3 seconds | <span style="color:#d29922">**Language**</span><br/>Markdown only | <span style="color:#f85149">**License**</span><br/>MIT |
+| <span style="color:#8b949e">**Skills**</span><br/>42 (29 active) | <span style="color:#bc8cff">**Degradation**</span><br/>Graceful → plain mode | <span style="color:#ff7b72">**Lock-in**</span><br/>Zero | <span style="color:#7ee787">**Proven**</span><br/>Field-tested end-to-end |
 
-> 三句话: **装完即用,不装也不亏**(全家桶是增强不是依赖,失效时自动退回普通模式);**机制按需加载**(不是全部塞进上下文);**每删一个 skill 系统都不会崩**(大道至简)。
+</div>
 
 ---
 
-## ⚡ 3 秒安装
+## 🎯 What Problem Does It Solve?
 
-### 方式一:快捷提示词(推荐)
+| Without it, you… | After installing |
+|------------------|------------------|
+| 😩 Re-teach your agent *"my workflow"* on every new project; it keeps asking *"what next?"* | **One phrase triggers it**: say *"use the family workflow"* or *"build an MVP"* — the agent routes itself to the right skill, locked in within 15 seconds |
+| 😰 Rely on coding discipline by vibes: hardcoded secrets, SQL injection, dangerous shell commands — discovered in production | **8 silent disciplines + commit gate**: secure-by-default writing, automatic pre-commit scan, SQLi interception verified in real tests |
+| 😵 Switch sessions/platforms and lose all project context; re-explain everything | **Snapshot + dual-layer memory**: say *"continue where we left off"* — instant resume; lessons learned auto-persist, never re-trip the same pit |
+| 🤯 No one reviews code quality; eyeballing PRs | **AI review engine**: one-command line-level review, found 2 critical bugs in 12s (DeepSeek-backed, field-tested) |
+| 💸 Token spend grows with no idea where it goes | **Cost dashboard + progressive disclosure**: mechanisms load on demand, resident context minimized, weekly report shows where tokens went |
 
-把下面这句**发给你的 AI Agent**(Hermes Agent / Claude Code / Codex…),它会自动读取教程并完成安装:
+> Three sentences: **Install-and-use now, no loss if you don't** (enhancement, not dependency — degrades gracefully to plain mode); **mechanisms load on demand** (never stuff the whole family into context); **delete any skill and the system still works** (Great Simplicity).
 
-> 💬 `https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md，帮我下载安装这个 vibe-coding skill 全家桶。`
+---
 
-### 方式二:手动安装
+## ⚡ 3-Second Install
+
+### Option 1: One-shot prompt (recommended)
+
+Send this line to your AI agent (Hermes Agent / Claude Code / Codex…), it reads the tutorial and installs itself:
+
+> 💬 `https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md, please download and install this vibe-coding skill family for me.`
+
+### Option 2: Manual
 
 ```bash
 # 1. Clone
@@ -42,63 +54,64 @@ cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/
 # 3. Verify
 find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 42 (29 active + 6 hub + 7 deprecated)
 
-# 4. Use: 直接开始开发任务 —— agent 自动通过 vibe-coding-hub 路由
-#    (或说 "按全家桶流程来" / "make an MVP" / "继续上次")
+# 4. Use: just start a dev task — the agent auto-routes via vibe-coding-hub
+#    (or say "按全家桶流程来" / "make an MVP" / "继续上次")
 ```
 
-**装完后你的 Agent 多长这样**: 你说"帮我写个脚本" → 走 quick-dev;说"组队开发" → 走 dev-team 流水线;说"发布" → 走 release-ops(自动备份+回滚预案);说"继续上次" → 快照恢复上下文。
+**What your agent becomes after install**: say *"write me a script"* → quick-dev; *"team development"* → dev-team pipeline; *"release"* → release-ops (auto-backup + rollback plan); *"continue where we left off"* → instant snapshot resume.
 
 ---
 
-## 🖼 长什么样?(装前 vs 装后)
+## 🖼 Before vs After
 
 ```
-  装前(原生 Hermes Agent)              装后(+ 全家桶 42 个 skill)
+  Before (plain Hermes Agent)              After (+ 42 skills)
   ┌─────────────────────────┐        ┌──────────────────────────────┐
-  │ 用户: "做个 XX"           │        │ 用户: "做个 XX"                │
-  │ Agent: "好的,从哪里开始?" │  ───▶  │ Agent: 自动路由 15 秒锁定方案    │
-  │ 你:  (手动教流程...)      │        │   ├ 需求模糊? → 澄清访谈        │
-  │                         │        │   ├ 写码 → 8 条纪律自动生效       │
-  │ 每次项目重复劳动          │        │   ├ 写完 → 审查引擎把关          │
-  │ 换会话 = 全部重来         │        │   ├ 发布 → 备份+回滚预案         │
-  │ 密钥靠自觉,坑靠回忆       │        │   └ 收尾 → 经验自动沉淀          │
-  │                         │        │ 用户: "继续上次" → 秒级恢复       │
+  │ User: "build an X"       │        │ User: "build an X"            │
+  │ Agent: "ok, where do we  │  ───▶  │ Agent: auto-routes in 15s    │
+  │  start?"                 │        │   ├ unclear? → clarify       │
+  │ You: (manually teach…)   │        │   ├ coding → 8 disciplines   │
+  │                         │        │   ├ done → AI review          │
+  │ Same grind every project │        │   ├ release → backup+rollback│
+  │ New session = start over │        │   └ wrap-up → auto learn     │
+  │ Secrets by vibes, pits   │        │ User: "continue" → instant   │
+  │  by memory               │        │  resume                      │
   └─────────────────────────┘        └──────────────────────────────┘
 ```
 
 ---
 
-## 📦 它是什么?(30 秒版)
+## 📦 What Is It? (30-second version)
 
-**Vibe-Skill-Ops 是一组 Markdown skill 文档 + 路由体系**,装在 Hermes Agent 的 skills 目录后,把你的 Agent 从"每句话都要教的工具"升级成"自己知道该用什么方法干活"的工程助手。
+**Vibe-Skill-Ops is a set of Markdown skill documents plus a routing framework.** Installed into Hermes Agent's skills directory, it upgrades your agent from *"a tool that needs instructions for every sentence"* to *"an engineering assistant that knows which method to use."*
 
-- **四层路由**: 组织形态(团队/企业)→ 开发模式(助手/全盘)→ 场景 → 执行 skill —— 不再按"技术类型"猜,按"规模+谁主导"路由
-- **五大能力线**: 主流程(vibe-coding/dev-team) · 安全三层防线 · 双层记忆(开发/漏洞) · 质量闸门(AI 审查) · 并行与路由
-- **优雅降级**: 全家桶出任何问题,Agent 退回原生模式照常工作 —— 它是增强,不是依赖
-- **可扩展**: 支持把自己的工作流蒸馏成用户自定义 skill,与全家桶融合共存(见 `workflow-distillation`)
+- **Four-layer routing**: organization form (team/enterprise) → dev mode (assistant/full-control) → scenario → execution skill — routes by *scale + who's driving*, not by tech type
+- **Five capability lines**: main flows (vibe-coding/dev-team) · security three-layer defense · dual-layer memory (dev/vuln) · quality gate (AI review) · parallel & routing
+- **Graceful degradation**: if anything breaks, the agent falls back to native mode — enhancement, not dependency
+- **Extensible**: distill your own workflows into user-custom skills that coexist with the family (see `workflow-distillation`)
 
-> ⚠️ 边界声明:这是 **Markdown 文档(skill)**,不是可执行软件。没有后台进程。"自动触发"指 Agent 加载 skill 后按约定执行,可靠性上限 = Agent 的指令遵循能力。
+> ⚠️ Honest boundary: this is **Markdown documentation (skills)**, not executable software. No background processes. "Auto-trigger" means the agent loads a skill and follows its conventions; reliability ceiling = the agent's instruction-following ability.
 
 ---
 
-## 🗺 架构一览
+## 🗺 Architecture at a Glance
 
 ```
 vibe-coding-family/
-├── vibe-coding-hub/            # L1: entry hub — 四层组织路由 + 一句话画像 + 全局机制
-├── dev-core-hub/               # L2 索引: core dev (主流程四选一/编码/调试/测试/提交)
-├── dev-stack-hub/              # L2 索引: tech stack (语言/前端/DB/游戏引擎)
-├── dev-infra-hub/              # L2 索引: infra (终端/容器/MCP/部署/安全)
-├── dev-agent-hub/              # L2 索引: agent 编排与治理
-├── dev-ai-hub/                 # L2 索引: AI/ML (训练/推理/RAG/多模态)
-└── 29 个路由内 L3 skills        # tool ×14 / workflow ×7 / policy ×6 / meta ×2
-    └── 另有 7 个 deprecated 保留文件(文件保留防交叉引用,不进路由)
+├── vibe-coding-hub/            # L1: entry hub — four-layer routing + one-line profile + global mechanisms
+├── dev-core-hub/               # L2 index: core dev (main flows / coding / debug / test / commit)
+├── dev-stack-hub/              # L2 index: tech stack (languages / frontend / DB / game engines)
+├── dev-infra-hub/              # L2 index: infra (terminal / containers / MCP / deploy / security)
+├── dev-agent-hub/              # L2 index: agent orchestration & governance
+├── dev-ai-hub/                 # L2 index: AI/ML (training / inference / RAG / multimodal)
+└── 29 routable L3 skills        # tool ×14 / workflow ×7 / policy ×6 / meta ×2
+    └── plus 7 deprecated files kept for cross-reference safety (not routed)
 
-external/                       # 被全家桶引用的外部 skill 副本(related_skills 依赖)
-    └── 27 个(语言/平台/工具 skill;仅供仓库完整性/分发,不参与路由)
+external/                       # Copies of external skills referenced by the family (related_skills deps)
+    └── 27 (language/platform/tool skills; for repo completeness/distribution only, not routed)
 ```
 
-L3 skills 的 frontmatter `metadata.hermes.type` 标签定义调用方式:
+L3 skills use the `metadata.hermes.type` frontmatter tag to define invocation style:
 
 | Type | Meaning | Example |
 |------|---------|---------|
@@ -107,43 +120,43 @@ L3 skills 的 frontmatter `metadata.hermes.type` 标签定义调用方式:
 | `policy` | Standing discipline, injected when relevant | karpathy-coding-dscpln, frontend-design-policy, cost-agent |
 | `meta` | Governs other skills | fallback-general-dev, vibe-skills-gov-patterns |
 
-**四层路由**:
+**Four-layer routing**:
 
 ```
-L1  组织形态   团队(轻量项目)              企业(大型项目)
-              ┌──────────────┐           ┌──────────────┐
-L2  开发模式   │ 助手 │ 全盘  │            │ 助手 │ 全盘  │
-              └──────────────┘           └──────────────┘
-L3  细分场景   四格场景表(路由表,不新增文档)
-L4  执行 skill 具体 skill(dev-assistant / quick-dev / vibe-coding / dev-team)
-      ↕ 技术分类 hub 下移为二级索引(dev-core / dev-stack / dev-infra / dev-agent / dev-ai)
+L1  Org form      Team (lightweight)          Enterprise (large)
+                 ┌──────────────┐           ┌──────────────┐
+L2  Dev mode     │ Assistant │ Full │        │ Assistant │ Full │
+                 └──────────────┘           └──────────────┘
+L3  Scenario     four-quadrant scenario table (routing table, no extra docs)
+L4  Exec skill   concrete skills (dev-assistant / quick-dev / vibe-coding / dev-team)
+      ↕ tech hubs demoted to L2 indexes (dev-core / dev-stack / dev-infra / dev-agent / dev-ai)
 ```
 
 ---
 
-## ⚙️ Core Mechanisms(机制表)
+## ⚙️ Core Mechanisms
 
 | Mechanism | Version | What it does |
 |-----------|---------|--------------|
 | **Complexity Triage** | v1.0.0 | 5-question yes/no checklist → L0/L1/L2; dynamic calibration from actual cost/retry data |
-| **One-line profile routing** | v1.1.0 | 【组织】【主导】【类型】【技术】15s 锁定 L1+L2;反驳只更新画像不重走路由 |
-| **Default-path execution** | v1.1.0 | 5 常见场景免判断直走;触发词打架 → 走仲裁 |
-| **Intervention depth L0-L4** | v1.1.0 | dev-assistant 分档:答疑→指路→草稿→副驾驶→代驾;跨文件变更阻塞型确认 |
-| **Escalation ceiling** | v1.1.0 | fallback 升级 ≤6 步硬限;第 3 步提示;第 6 步人工介入;5 分钟循环检测 |
-| **Evidence consumption** | v1.1.0 | cost-agent 周报一句话洞察 + 月报强制决策三问 |
-| **Merge review** | v1.1.0 | 触发词重叠 >50% / 30 天未加载 / 一方总引用 → 合并候选;新增 skill 7 天冷静期 |
-| **Cost awareness** | v1.0.0 | Token estimate per workflow task; `/simple` degradation; cost-agent weekly report + ROI dashboard |
-| **Confirmation SLA** | v1.0.0 | Blocking / Notify / Batch confirmation tiers with timeouts; `/focus 30m` do-not-disturb |
-| **Trigger governance** | v1.0.0 | Namespace rules + conflict arbitration; context-bound triggers & negative triggers |
-| **Snapshot health check** | v1.5 | Conflict classification 🟢🟡🟠🔴 vs git (source of truth); manual-confirm alignment |
+| **One-line profile routing** | v1.1.0 | 【org】【driver】【type】【tech】locks L1+L2 in 15s; rebuttals update the profile, not re-route |
+| **Default-path execution** | v1.1.0 | 5 common scenarios skip judgment; conflicting triggers → arbitration |
+| **Intervention depth L0-L4** | v1.1.0 | dev-assistant tiers: Q&A → guidance → draft → co-pilot → full drive; blocking confirm on cross-file changes |
+| **Escalation ceiling** | v1.1.0 | fallback upgrade ≤6 steps hard cap; prompt at step 3; human at step 6; 5-min loop detection |
+| **Evidence consumption** | v1.1.0 | cost-agent weekly one-line insight + monthly forced decision |
+| **Merge review** | v1.1.0 | trigger overlap >50% / 30-day unused / one-sided references → merge candidates; 7-day cooling for new skills |
+| **Cost awareness** | v1.0.0 | token estimate per workflow task; `/simple` degradation; weekly report + ROI dashboard |
+| **Confirmation SLA** | v1.0.0 | Blocking / Notify / Batch confirmation tiers with timeouts; `/focus 30m` DND |
+| **Trigger governance** | v1.0.0 | namespace rules + conflict arbitration; context-bound & negative triggers |
+| **Snapshot health check** | v1.5 | conflict classification 🟢🟡🟠🔴 vs git (source of truth); manual-confirm alignment |
 | **Circuit breaker** | v1.4 | CLOSED/OPEN/HALF-OPEN state machine; timeout tiers; error-type disposition matrix |
-| **Knowledge extraction** | v2.0 | 已并入 snapshot-notes:post-incident 5-Whys review + 经验结构化 |
+| **Knowledge extraction** | v2.0 | merged into snapshot-notes: post-incident 5-Whys + structured experience |
 | **Security audit** | v1.1 | 6-dimension pre-commit scan; rule tiers (🔴 never degrade); false-positive feedback loop |
-| **Meta-governance** | v1.4 | Event-driven audits; 30-day deprecation cooling period |
-| **Lazy-load contract layer** | v1.1.0 | Description = contract (≤5 lines); body = detail (load on demand); prevents context crowding |
-| **User workflow layer** | v1.0 | 用户自定义工作流蒸馏 → 叠加优先于标准流程(workflow-distillation) |
+| **Meta-governance** | v1.4 | event-driven audits; 30-day deprecation cooling period |
+| **Lazy-load contract layer** | v1.1.0 | description = contract (≤5 lines); body = detail (on demand); prevents context crowding |
+| **User workflow layer** | v1.0 | distill user workflows → user-custom skills that override standard (workflow-distillation) |
 
-> 术语太硬?一句话版:路由决定用哪个 skill(15 秒),纪律保证写码安全(零成本),记忆防止重复踩坑(自动沉淀),审查兜底质量(一个命令),机制按需加载(省 token)。
+> Plain-language version: routing picks the right skill (15s), discipline keeps code safe (zero cost), memory prevents re-tripping pits (auto), review backs quality (one command), mechanisms load on demand (saves tokens).
 
 ---
 
@@ -157,27 +170,27 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / vibe-coding / dev-team
 | v3.4 | Constraints & boundaries | Triage checklist, conflict-classified alignment, circuit breaker, cost awareness |
 | v3.5 | Cognitive enhancement | knowledge-extraction, confirmation SLA, project-context weighting, smart /simple, meta-governance |
 | v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, compatibility contract |
-| **v1.1.0** | **Official release** | **大道至简 + 结构整改。四层组织路由;dev-assistant 副驾驶协议;quick-dev 轻量全包;合并 3 组 skill;一句话画像;契约层 ≤5 行** |
-| **v1.2.0** | **Official release (current)** | **安全×质量×记忆×并行四线增强。安全三层防线(hook 实测拦 SQLi);AI 审查引擎(12s 发现 2 高危 bug);双层记忆(vuln/dev)+ 度量闭环;git-worktree 并行 + reverse-ops 授权闸门;doubt-driven + context-engineering 方法论;工作流蒸馏(用户自定义层);全链路实战验证(CachePilot 裁判全 10 分)** |
+| **v1.1.0** | **Official release** | **Great Simplicity + structure rework. Four-layer routing; dev-assistant co-pilot protocol; quick-dev all-in-one; 3 merged skill groups; one-line profile; contract layer ≤5 lines** |
+| **v1.2.0** | **Official release (current)** | **Security × quality × memory × parallel. Security three-layer defense (SQLi hook verified); AI review engine (2 critical bugs in 12s); dual-layer memory + metrics loop; git-worktree + reverse-ops auth gate; doubt-driven + context-engineering; workflow distillation (user layer); end-to-end field validation** |
 
 ---
 
 ## 🧭 Design Philosophy
 
-1. **大道至简 (Great Simplicity)** — token × 质量是乘积不是取舍;机制越少,加载越便宜且执行越准。删掉一个 skill 试试系统会不会崩溃。
+1. **Great Simplicity** — token × quality is a product, not a trade-off; fewer mechanisms = cheaper to load and more accurate to execute. Delete a skill and see if the system crashes.
 2. **Enhancement, not dependency** — losing the family degrades the agent to plain mode; work continues.
 3. **Automation, not impunity** — every auto action has a human-confirmation threshold; the final say belongs to the user.
-4. **Evidence over imagination** — execution-drift logs, triage-accuracy logs, and ROI dashboards drive documentation iteration instead of author intuition.
+4. **Evidence over imagination** — execution-drift logs, triage-accuracy logs, and ROI dashboards drive iteration instead of author intuition.
 
 ---
 
 ## 🤝 Contributing
 
-- New skills must carry the contract layer (trigger / negative_trigger / type / deps / key_rule), ≤5 lines.
-- New skills need a 7-day cooling period and must prove they cannot be composed from existing skills (see `vibe-skills-gov-patterns`).
-- Every rule change needs a Changelog entry: why it exists, which pain point it solves.
-- Run scenario conflict simulation before promoting a new rule.
-- Keep it honest: document what is convention vs. what is enforced.
+See [CONTRIBUTING.md](CONTRIBUTING.md) — new skills must carry a ≤5-line contract layer, pass a 7-day cooling period, and prove they can't be composed from existing skills.
+
+## 🔒 Security
+
+See [SECURITY.md](SECURITY.md) — security architecture, vulnerability reporting, and the three-layer defense model.
 
 ## License
 
