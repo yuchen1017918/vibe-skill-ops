@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="500" viewBox="0 0 820 500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="820" height="500" fill="url(#bg)" rx="12"/>
+
+  <!-- title bar -->
+  <rect x="20" y="14" width="780" height="40" fill="#21262d" rx="8"/>
+  <circle cx="38" cy="34" r="5" fill="#f85149"/>
+  <circle cx="52" cy="34" r="5" fill="#d29922"/>
+  <circle cx="66" cy="34" r="5" fill="#3fb950"/>
+  <text x="86" y="39" fill="#8b949e" font-family="monospace" font-size="13">hermes — vibe-skill-ops demo session</text>
+
+  <!-- chat: user -->
+  <rect x="20" y="70" width="760" height="44" fill="#1f2937" rx="8"/>
+  <text x="36" y="90" fill="#58a6ff" font-family="monospace" font-size="13" font-weight="bold">user</text>
+  <text x="36" y="108" fill="#c9d1d9" font-family="monospace" font-size="13">帮我写个缓存清理脚本(Windows)</text>
+
+  <!-- chat: agent route -->
+  <rect x="20" y="126" width="760" height="120" fill="#21262d" rx="8"/>
+  <text x="36" y="146" fill="#3fb950" font-family="monospace" font-size="13" font-weight="bold">agent</text>
+  <text x="36" y="166" fill="#c9d1d9" font-family="monospace" font-size="12">→ hub 路由: 随手做/一次性 → quick-dev (L1 标准, 15s 锁定) ✅</text>
+  <text x="36" y="186" fill="#c9d1d9" font-family="monospace" font-size="12">→ 8 条纪律自动生效: 路径白名单 + 清理前 Y/N 确认 + 锁文件跳过</text>
+  <text x="36" y="206" fill="#c9d1d9" font-family="monospace" font-size="12">→ 写完 → AI 审查引擎把关 (open-code-review)</text>
+  <text x="36" y="226" fill="#c9d1d9" font-family="monospace" font-size="12">→ 收尾 → 经验自动沉淀 (dev-memory) ✅</text>
+
+  <!-- separator -->
+  <text x="20" y="268" fill="#8b949e" font-family="monospace" font-size="12">───── cost-agent weekly report ─────</text>
+
+  <!-- cost report table -->
+  <rect x="20" y="282" width="760" height="120" fill="#0d1117" stroke="#30363d" rx="8"/>
+  <text x="36" y="304" fill="#7ee787" font-family="monospace" font-size="12" font-weight="bold">Token 周报 (2026-08-09 ~ 08-15)</text>
+  <text x="36" y="326" fill="#c9d1d9" font-family="monospace" font-size="12">机制          tokens   占比   洞察</text>
+  <text x="36" y="346" fill="#c9d1d9" font-family="monospace" font-size="12">hub 全文      14.8K    65%    → 渐进披露瘦身 -23%</text>
+  <text x="36" y="366" fill="#c9d1d9" font-family="monospace" font-size="12">42 skill 契约 7.9K     35%    全部 ≤5 行 ✅</text>
+  <text x="36" y="386" fill="#c9d1d9" font-family="monospace" font-size="12">总常驻        22.7K    -      → 下月目标 &lt; 18K</text>
+
+  <!-- footer -->
+  <text x="20" y="470" fill="#8b949e" font-family="monospace" font-size="11">Demo illustration — actual output varies by task &amp; agent. See docs for real behavior.</text>
+</svg>
