@@ -33,6 +33,13 @@
 
 ![效果示意: agent 自动路由 + 成本周报](assets/demo-conversation.png)
 
+**真实运行** —— CachePilot,一个 Windows 缓存清理助手,用全家桶全链路完成(自动路由 → 8 纪律 → AI 审查 → 交付):
+
+<p align="center">
+  <img src="assets/demo-cachepilot-route.png" width="48%" alt="Agent 自动路由到 quick-dev"/>
+  <img src="assets/demo-cachepilot-done.png" width="48%" alt="交付:安全清理,实测可回收约 4.8GB"/>
+</p>
+
 ---
 
 ## ⚡ 3 秒安装

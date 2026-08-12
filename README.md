@@ -33,6 +33,13 @@
 
 ![Demo: agent auto-routing + cost report](assets/demo-conversation.png)
 
+**Real run** — CachePilot, a Windows cache-cleaner built end-to-end with this family (auto-routed → 8 disciplines → AI review → delivered):
+
+<p align="center">
+  <img src="assets/demo-cachepilot-route.png" width="48%" alt="Agent auto-routes to quick-dev"/>
+  <img src="assets/demo-cachepilot-done.png" width="48%" alt="Delivered: safe cleanup, ~4.8GB recoverable"/>
+</p>
+
 ---
 
 ## ⚡ 3-Second Install
