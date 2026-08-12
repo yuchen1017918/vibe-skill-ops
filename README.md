@@ -31,7 +31,7 @@
 
 > Three sentences: **Install-and-use now, no loss if you don't** (enhancement, not dependency — degrades gracefully to plain mode); **mechanisms load on demand** (never stuff the whole family into context); **delete any skill and the system still works** (Great Simplicity).
 
-![Demo: agent auto-routing + cost report](assets/demo-conversation.svg)
+![Demo: agent auto-routing + cost report](assets/demo-conversation.png)
 
 ---
 

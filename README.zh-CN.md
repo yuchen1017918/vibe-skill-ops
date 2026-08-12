@@ -31,7 +31,7 @@
 
 > 三句话:**装完即用,不装也不亏**(增强不是依赖,失效自动退回普通模式);**机制按需加载**(不全塞上下文);**每删一个 skill 系统都不会崩**(大道至简)。
 
-![效果示意: agent 自动路由 + 成本周报](assets/demo-conversation.svg)
+![效果示意: agent 自动路由 + 成本周报](assets/demo-conversation.png)
 
 ---
 
