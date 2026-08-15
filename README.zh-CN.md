@@ -48,7 +48,7 @@
 
 把下面这句**发给你的 AI Agent**(Hermes Agent / Claude Code / Codex…),它会自动读取教程并完成安装:
 
-> 💬 `https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md，帮我下载安装这个 vibe-coding skill 全家桶。`
+> 💬 `请参考 https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md,帮我下载并安装这个 vibe-coding skill 全家桶。`
 
 ### 方式二:手动安装
 

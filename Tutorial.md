@@ -1,10 +1,10 @@
 # Vibe-Skill-Ops 全家桶安装教程（Agent 版）
 
 > 本教程写给 **AI Agent**（Hermes Agent / Claude Code / Codex / 其他支持 skill 目录的 Agent）。
-> 目标：把 vibe-coding skill 全家桶（**v1.1.0 正式版,28 个路由内 skill**）安装到目标 Agent 的 skill 目录。
+> 目标：把 vibe-coding skill 全家桶（**v1.3.0,36 个活跃 skill**）安装到目标 Agent 的 skill 目录。
 >
 > 用户可以直接把下面的提示词发给 Agent，Agent 会按本教程执行：
-> `https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md，帮我下载安装这个 vibe-coding skill 全家桶。`
+> `请参考 https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md，帮我下载并安装这个 vibe-coding skill 全家桶。`
 > （GitHub Pages 未启用前，用 raw 地址：`https://raw.githubusercontent.com/yuchen1017918/vibe-skill-ops/main/Tutorial.md`）
 
 ---

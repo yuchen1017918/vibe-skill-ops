@@ -48,7 +48,7 @@
 
 Send this line to your AI agent (Hermes Agent / Claude Code / Codex…), it reads the tutorial and installs itself:
 
-> 💬 `https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md, please download and install this vibe-coding skill family for me.`
+> 💬 `Please follow https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md, and download & install the vibe-coding skill family for me.`
 
 ### Option 2: Manual
 

@@ -43,7 +43,7 @@ Docs: https://yuchen1017918.github.io/vibe-skill-ops/
 
 特性:纯 Markdown、零依赖、优雅降级(卸载即回原生,零锁定)、MIT。
 一键安装提示词:
-`https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md，帮我下载安装这个 vibe-coding skill 全家桶。`
+`请参考 https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md，帮我下载并安装这个 vibe-coding skill 全家桶。`
 
 仓库:https://github.com/yuchen1017918/vibe-skill-ops
 ```
