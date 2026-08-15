@@ -1,0 +1,36 @@
+# Pre-commit 安全钩子模板（code-security 第一层静默兜底）
+# 用法：复制为 .pre-commit-config.yaml（项目根），然后：
+#   pip install pre-commit -i https://pypi.tuna.tsinghua.edu.cn/simple
+#   pre-commit install
+# 效果：每次 git commit 自动跑，高危 ERROR 挡下提交——零 token，与用户说不说无关
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.0
+    hooks:
+      - id: gitleaks
+        stages: [pre-commit]          # 密钥泄露，阻止提交
+
+  - repo: https://github.com/returntocorp/semgrep
+    rev: v1.80.0
+    hooks:
+      - id: semgrep
+        args: ['--config', 'auto', '--error', '--severity', 'ERROR']
+        files: '\.(py|js|ts|jsx|tsx|go|java|php|rb|cs)$'   # 只扫代码文件，快
+        stages: [pre-commit]
+
+  # 可选：依赖 CVE（按项目语言启用一个）
+  # - repo: https://github.com/pypa/pip-audit
+  #   rev: v2.7.0
+  #   hooks:
+  #     - id: pip-audit
+  #       args: ['--disable-pip']
+  # - repo: https://github.com/quantumblacklabs/bandit
+  #   rev: 1.7.6
+  #   hooks:
+  #     - id: bandit
+  #       args: ['-r', '-q', '--severity-level', 'high']
+
+# 说明：
+# - 只扫 ERROR（高危）避免误报轰炸；WARNING 靠第二层轻量扫描看
+# - 生成目录/第三方代码加 .semgrepignore 排除
+# - 不想装框架：用裸 hook（code-security §5）
