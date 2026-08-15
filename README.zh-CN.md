@@ -196,6 +196,16 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / vibe-coding / dev-team
 
 见 [CONTRIBUTING.md](CONTRIBUTING.md) — 新 skill 必须有 ≤5 行契约层、7 天冷静期、并证明无法由现有 skill 组合而成。
 
+## 🐋 DeepSeek Harness 适配版
+
+用 DeepSeek Harness (dsh)?全家桶有官方格式适配版(`deepseek-harness/`,36 skills,description ≤500 字符,由 `scripts/convert-dsh.py` 自动生成):
+
+```bash
+mkdir -p ~/.agents/skills && cp -r deepseek-harness/vibe-coding-family/* ~/.agents/skills/
+```
+
+详见 [deepseek-harness/README.md](deepseek-harness/README.md)。
+
 ## 🔒 Security
 
 见 [SECURITY.md](SECURITY.md) — 安全架构、漏洞报告方式、三层防线模型。

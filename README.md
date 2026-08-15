@@ -197,6 +197,16 @@ L4  Exec skill   concrete skills (dev-assistant / quick-dev / vibe-coding / dev-
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) — new skills must carry a ≤5-line contract layer, pass a 7-day cooling period, and prove they can't be composed from existing skills.
 
+## 🐋 DeepSeek Harness 适配版
+
+使用 DeepSeek Harness (dsh)?全家桶有官方格式适配版(`deepseek-harness/`,36 skills,description ≤500 字符,由 `scripts/convert-dsh.py` 自动生成):
+
+```bash
+mkdir -p ~/.agents/skills && cp -r deepseek-harness/vibe-coding-family/* ~/.agents/skills/
+```
+
+详见 [deepseek-harness/README.md](deepseek-harness/README.md)。
+
 ## 🔒 Security
 
 See [SECURITY.md](SECURITY.md) — security architecture, vulnerability reporting, and the three-layer defense model.
