@@ -2,9 +2,9 @@
 
 # Vibe-Skill-Ops
 
-**给 [Hermes Agent](https://github.com/NousResearch/hermes-agent) 的可插拔增强技能包** —— 42 个经过实战验证的 skill,装完你的 Agent 立刻会:自动路由干活、写码自带安全纪律、跨会话记住上下文、AI 审查把关质量。
+**给 [Hermes Agent](https://github.com/NousResearch/hermes-agent) 的可插拔增强技能包** —— 36 个经过实战验证的 skill,装完你的 Agent 立刻会:自动路由干活、写码自带安全纪律、跨会话记住上下文、AI 审查把关质量。
 
-[![Lang](https://img.shields.io/badge/LANG-English-blue.svg)](README.md) [![Lang](https://img.shields.io/badge/LANG-中文-red.svg)](README.zh-CN.md) [![Version](https://img.shields.io/badge/version-v1.2.0-green.svg)](https://github.com/yuchen1017918/vibe-skill-ops/releases) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Lang](https://img.shields.io/badge/LANG-English-blue.svg)](README.md) [![Lang](https://img.shields.io/badge/LANG-中文-red.svg)](README.zh-CN.md) [![Version](https://img.shields.io/badge/version-v1.3.0-green.svg)](https://github.com/yuchen1017918/vibe-skill-ops/releases) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![DeepSeek Harness](https://img.shields.io/badge/DSH-适配-purple.svg)](deepseek-harness/README.md)
 
 </div>
 
@@ -13,7 +13,7 @@
 | | |
 |---|---|
 | <span style="color:#58a6ff">**运行环境**</span><br/>Hermes Agent | <span style="color:#3fb950">**安装耗时**</span><br/>3 秒 | <span style="color:#d29922">**实现语言**</span><br/>纯 Markdown | <span style="color:#f85149">**协议**</span><br/>MIT |
-| <span style="color:#8b949e">**Skill 数量**</span><br/>42(29 路由内) | <span style="color:#bc8cff">**降级**</span><br/>优雅 → 原生模式 | <span style="color:#ff7b72">**锁定**</span><br/>零 | <span style="color:#7ee787">**验证**</span><br/>全链路实测 |
+| <span style="color:#8b949e">**Skill 数量**</span><br/>44 个 SKILL.md(36 活跃) | <span style="color:#bc8cff">**降级**</span><br/>优雅 → 原生模式 | <span style="color:#ff7b72">**锁定**</span><br/>零 | <span style="color:#7ee787">**验证**</span><br/>全链路实测 |
 
 </div>
 
@@ -61,7 +61,7 @@ mkdir -p ~/.hermes/skills
 cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/
 
 # 3. Verify
-find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 42 (29 active + 6 hub + 7 deprecated)
+find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 44 (36 活跃 = 30 路由内 + 6 hub,8 deprecated)
 
 # 4. Use: 直接开始开发任务 —— agent 自动通过 vibe-coding-hub 路由
 #    (或说 "按全家桶流程来" / "make an MVP" / "继续上次")
@@ -74,7 +74,7 @@ find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 42 (29 activ
 ## 🖼 长什么样?(装前 vs 装后)
 
 ```
-  装前(原生 Hermes Agent)              装后(+ 全家桶 42 个 skill)
+  装前(原生 Hermes Agent)              装后(+ 全家桶 36 个 skill)
   ┌─────────────────────────┐        ┌──────────────────────────────┐
   │ 用户: "做个 XX"           │        │ 用户: "做个 XX"                │
   │ Agent: "好的,从哪里开始?" │  ───▶  │ Agent: 自动路由 15 秒锁定方案    │
@@ -112,8 +112,8 @@ vibe-coding-family/
 ├── dev-infra-hub/              # L2 索引: infra (终端/容器/MCP/部署/安全)
 ├── dev-agent-hub/              # L2 索引: agent 编排与治理
 ├── dev-ai-hub/                 # L2 索引: AI/ML (训练/推理/RAG/多模态)
-└── 29 个路由内 L3 skills        # tool ×14 / workflow ×7 / policy ×6 / meta ×2
-    └── 另有 7 个 deprecated 保留文件(文件保留防交叉引用,不进路由)
+└── 30 个路由内 L3 skills        # tool ×15 / workflow ×7 / policy ×6 / meta ×2
+    └── 另有 8 个 deprecated 保留文件(文件保留防交叉引用,不进路由)
 
 external/                       # 被全家桶引用的外部 skill 副本(related_skills 依赖)
     └── 27 个(语言/平台/工具 skill;仅供仓库完整性/分发,不参与路由)
@@ -179,7 +179,8 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / vibe-coding / dev-team
 | v3.5 | Cognitive enhancement | knowledge-extraction, confirmation SLA, project-context weighting, smart /simple, meta-governance |
 | v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, compatibility contract |
 | **v1.1.0** | **Official release** | **大道至简 + 结构整改。四层组织路由;dev-assistant 副驾驶协议;quick-dev 轻量全包;合并 3 组 skill;一句话画像;契约层 ≤5 行** |
-| **v1.2.0** | **Official release (current)** | **安全×质量×记忆×并行四线增强。安全三层防线(hook 实测拦 SQLi);AI 审查引擎(12s 发现 2 高危 bug);双层记忆(vuln/dev)+ 度量闭环;git-worktree 并行 + reverse-ops 授权闸门;doubt-driven + context-engineering 方法论;工作流蒸馏(用户自定义层);全链路实战验证(CachePilot 裁判全 10 分)** |
+| **v1.2.0** | **Official release** | **安全×质量×记忆×并行四线增强。安全三层防线(hook 实测拦 SQLi);AI 审查引擎(12s 发现 2 高危 bug);双层记忆(vuln/dev)+ 度量闭环;git-worktree 并行 + reverse-ops 授权闸门;doubt-driven + context-engineering 方法论;工作流蒸馏(用户自定义层);全链路实战验证(CachePilot 裁判全 10 分)** |
+| **v1.3.0** | **文档国际化 + DeepSeek Harness(即将发布)** | **双语文档(英文默认 + 中文 + LANG 切换);CONTRIBUTING/SECURITY 双语;DeepSeek Harness 适配版(36 skills、description ≤500、convert-dsh.py);真实运行截图;About + Topics 优化;token 瘦身 v2.0(hub -23%、两组合并)** |
 
 ---
 
@@ -194,7 +195,7 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / vibe-coding / dev-team
 
 ## 🤝 Contributing
 
-见 [CONTRIBUTING.md](CONTRIBUTING.md) — 新 skill 必须有 ≤5 行契约层、7 天冷静期、并证明无法由现有 skill 组合而成。
+见 [CONTRIBUTING.md](CONTRIBUTING.md)(英文)/ [CONTRIBUTING.zh-CN.md](CONTRIBUTING.zh-CN.md)(中文)— 新 skill 必须有 ≤5 行契约层、7 天冷静期、并证明无法由现有 skill 组合而成。
 
 ## 🐋 DeepSeek Harness 适配版
 
@@ -208,7 +209,7 @@ mkdir -p ~/.agents/skills && cp -r deepseek-harness/vibe-coding-family/* ~/.agen
 
 ## 🔒 Security
 
-见 [SECURITY.md](SECURITY.md) — 安全架构、漏洞报告方式、三层防线模型。
+见 [SECURITY.md](SECURITY.md)(英文)/ [SECURITY.zh-CN.md](SECURITY.zh-CN.md)(中文)— 安全架构、漏洞报告方式、三层防线模型。
 
 ## License
 

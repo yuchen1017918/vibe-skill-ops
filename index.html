@@ -1,29 +1,39 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vibe-Skill-Ops — 自治理的 Vibe Coding Skill 体系</title>
-<meta name="description" content="Vibe-Skill-Ops v1.2.0: 运行在 Hermes Agent 上的自治理 Vibe Coding skill 全家桶(30 个路由内 skill)。四层组织路由、大道至简、安全三层防线、双层记忆、质量闸门、并行开发。">
+<title>Vibe-Skill-Ops — Pluggable Skill Pack for Hermes Agent</title>
+<meta name="description" content="Vibe-Skill-Ops v1.3.0: pluggable skill pack (36 skills) for Hermes Agent — auto-routing workflows, security discipline, cross-session memory, AI code review. 3-second install, graceful degradation. Also adapted for DeepSeek Harness.">
 <style>
-  :root {
-    --bg: #0d1117; --card: #161b22; --border: #30363d;
-    --text: #e6edf3; --dim: #8b949e;
-    --green: #3fb950; --yellow: #d29922; --red: #f85149; --blue: #58a6ff; --purple: #bc8cff;
+  :root, :root[data-theme="dark"] {
+    --bg:#0d1117; --card:#161b22; --border:#30363d;
+    --text:#e6edf3; --dim:#8b949e; --code-bg:#21262d; --pre-bg:#161b22;
+    --green:#3fb950; --yellow:#d29922; --red:#f85149; --blue:#58a6ff; --purple:#bc8cff;
+    --btn-fg:#0d1117; --shadow:rgba(0,0,0,.4);
+  }
+  :root[data-theme="light"] {
+    --bg:#ffffff; --card:#f6f8fa; --border:#d0d7de;
+    --text:#1f2328; --dim:#59636e; --code-bg:#eff2f5; --pre-bg:#f6f8fa;
+    --green:#1a7f37; --yellow:#9a6700; --red:#cf222e; --blue:#0969da; --purple:#8250df;
+    --btn-fg:#ffffff; --shadow:rgba(31,35,40,.08);
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; padding:24px 16px 48px; }
+  body { background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; padding:24px 16px 48px; transition:background .25s,color .25s; }
   .wrap { max-width:960px; margin:0 auto; }
-  header { text-align:center; padding:40px 0 24px; }
+  .topbar { display:flex; justify-content:flex-end; gap:8px; padding-bottom:16px; }
+  .topbar button { background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:20px; padding:4px 14px; font-size:.8rem; cursor:pointer; }
+  .topbar button:hover { border-color:var(--blue); color:var(--blue); }
+  header { text-align:center; padding:24px 0 24px; }
   .logo { font-size:2rem; font-weight:700; letter-spacing:-.5px; }
   .logo span { color:var(--blue); }
   .tagline { color:var(--dim); margin-top:8px; font-size:1rem; }
   .badges { margin-top:14px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
   .badge { background:rgba(88,166,255,.1); color:var(--blue); border:1px solid rgba(88,166,255,.3); border-radius:20px; padding:3px 12px; font-size:.78rem; }
-  .badge-green { background:rgba(63,185,80,.1); color:var(--green); border-color:rgba(63,185,80,.3); }
+  .badge-green { background:rgba(63,185,80,.12); color:var(--green); border-color:rgba(63,185,80,.35); }
   h2 { font-size:1.2rem; margin:36px 0 14px; color:var(--blue); border-bottom:1px solid var(--border); padding-bottom:8px; }
   h3 { font-size:1rem; margin:20px 0 8px; }
-  p { color:var(--text); margin:8px 0; }
+  p { margin:8px 0; }
   .dim { color:var(--dim); font-size:.88rem; }
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; margin-top:8px; }
   .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; }
@@ -31,168 +41,221 @@
   .card p { font-size:.85rem; color:var(--dim); margin:0; }
   .num { color:var(--green); font-weight:700; margin-right:6px; }
   code, pre { font-family:"SF Mono",Consolas,Menlo,monospace; }
-  code { background:#21262d; padding:2px 6px; border-radius:4px; font-size:.85em; }
-  pre { background:#161b22; border:1px solid var(--border); border-radius:8px; padding:14px; overflow-x:auto; font-size:.82rem; margin:10px 0; }
+  code { background:var(--code-bg); padding:2px 6px; border-radius:4px; font-size:.85em; }
+  pre { background:var(--pre-bg); border:1px solid var(--border); border-radius:8px; padding:14px; overflow-x:auto; font-size:.82rem; margin:10px 0; }
   pre code { background:none; padding:0; }
-  .prompt-box { position:relative; background:#0a0f16; border:1px dashed var(--blue); border-radius:8px; padding:14px 14px 14px 46px; font-size:.85rem; color:var(--text); margin:10px 0; }
+  .prompt-box { position:relative; background:var(--pre-bg); border:1px dashed var(--blue); border-radius:8px; padding:14px 14px 14px 46px; font-size:.85rem; margin:10px 0; }
   .prompt-box::before { content:"💬"; position:absolute; left:14px; top:12px; font-size:1rem; }
-  .btn { display:inline-block; background:var(--green); color:#0d1117; border:none; border-radius:6px; padding:8px 16px; font-size:.85rem; font-weight:600; cursor:pointer; margin-top:8px; }
+  .btn { display:inline-block; background:var(--green); color:var(--btn-fg); border:none; border-radius:6px; padding:8px 16px; font-size:.85rem; font-weight:600; cursor:pointer; margin-top:8px; text-decoration:none; }
   .btn:hover { opacity:.88; }
-  .btn-blue { background:var(--blue); color:#0d1117; }
-  .btn-copied { background:var(--yellow); }
+  .btn-blue { background:var(--blue); }
   table { width:100%; border-collapse:collapse; font-size:.85rem; margin:10px 0; }
   th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }
   th { color:var(--dim); font-weight:500; }
   .tl { list-style:none; }
-  .tl li { padding:8px 0; border-bottom:1px solid #21262d; font-size:.88rem; }
+  .tl li { padding:8px 0; border-bottom:1px solid var(--border); font-size:.88rem; }
   .tl .ver { display:inline-block; min-width:52px; color:var(--green); font-weight:600; }
   .tl .what { color:var(--dim); }
   .warning { background:rgba(210,153,34,.08); border:1px solid rgba(210,153,34,.3); border-radius:8px; padding:12px 14px; font-size:.85rem; color:var(--yellow); margin:12px 0; }
   footer { text-align:center; color:var(--dim); font-size:.75rem; margin-top:48px; border-top:1px solid var(--border); padding-top:20px; }
-  .skill-cols { columns:2; column-gap:24px; font-size:.82rem; }
-  .skill-cols div { break-inside:avoid; padding:3px 0; color:var(--dim); }
-  .skill-cols b { color:var(--text); font-weight:500; }
-  .step { display:flex; gap:12px; margin:10px 0; }
-  .step .snum { flex-shrink:0; width:26px; height:26px; border-radius:50%; background:var(--blue); color:#0d1117; font-weight:700; display:flex; align-items:center; justify-content:center; font-size:.85rem; }
-  .step .sbody { flex:1; }
   a { color:var(--blue); }
   a:hover { text-decoration:none; }
-  @media (max-width:600px) { .skill-cols { columns:1; } .logo { font-size:1.6rem; } }
+  .tag { display:inline-block; background:rgba(188,140,255,.12); color:var(--purple); border:1px solid rgba(188,140,255,.3); border-radius:20px; padding:2px 10px; font-size:.72rem; margin-left:6px; vertical-align:middle; }
+  @media (max-width:600px) { .logo { font-size:1.6rem; } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+<div class="topbar">
+  <button id="btnLang" title="Switch language / 切换语言">中</button>
+  <button id="btnTheme" title="Toggle theme / 切换主题">🌙</button>
+</div>
+
 <header>
   <div class="logo">Vibe-<span>Skill-Ops</span></div>
-  <div class="tagline">运行在 Hermes Agent 上的自治理 Vibe Coding Skill 体系</div>
+  <div class="tagline" data-i18n="tagline">Pluggable skill pack for Hermes Agent — auto-route, secure, remember, review.</div>
   <div class="badges">
-    <span class="badge badge-green">v1.2.0</span>
-    <span class="badge">30 skills</span>
+    <span class="badge badge-green">v1.3.0</span>
+    <span class="badge" data-i18n="b1">36 skills</span>
     <span class="badge">MIT License</span>
-    <span class="badge">四层组织路由</span>
-    <span class="badge badge-green">大道至简</span>
-    <span class="badge">确认 SLA</span>
+    <span class="badge" data-i18n="b2">Graceful degradation</span>
+    <span class="badge badge-green" data-i18n="b3">3-second install</span>
+    <span class="badge" data-i18n="b4">DeepSeek Harness ready</span>
   </div>
 </header>
 
-<h2>🌱 大道至简（设计核心）</h2>
-<p><b>token × 质量 = 乘积最优，不是取舍。</b>机制越多 → 加载越贵（token ↑）且走样越多（质量 ↓）= 双输；机制越少 → 加载便宜（token ↓）且执行越准（质量 ↑）= 双赢。</p>
-<p class="dim">落地动作：合并 3 组重叠 skill（6→3）、契约层 ≤5 行（常驻减半）、一句话画像 + 默认路径化（15 秒锁定路由）、30 天未加载 → deprecated、证据消费（月报强制决策）。</p>
+<h2 data-i18n="h1">🎯 What problem does it solve?</h2>
+<table>
+  <tr><th data-i18n="th1">Native Hermes Agent pain</th><th data-i18n="th2">After installing the family</th></tr>
+  <tr><td data-i18n="r1p">You re-teach workflows every session; context swells with redundant instructions.</td><td data-i18n="r1g">Hub auto-routes to the right skill in seconds; mechanisms load on demand.</td></tr>
+  <tr><td data-i18n="r2p">No security baseline — SQL injection, hardcoded secrets slip through.</td><td data-i18n="r2g">Three-layer defense: silent disciplines + commit gate + on-demand deep scan.</td></tr>
+  <tr><td data-i18n="r3p">Cross-session context loss — "we did this before" forgotten.</td><td data-i18n="r3g">Dual-layer memory: project snapshots + experience/vulnerability libraries.</td></tr>
+  <tr><td data-i18n="r4p">Quality depends on mood — no review, no gate.</td><td data-i18n="r4g">AI code review engine + dual-gate before commit.</td></tr>
+  <tr><td data-i18n="r5p">Token waste — huge skill bodies always loaded.</td><td data-i18n="r5g">Progressive disclosure: ≤5-line contracts in context, full body on demand.</td></tr>
+</table>
 
-<h2>🏗️ 四层组织路由（v1.1.0 结构整改）</h2>
-<p>从"按技术类型路由"改为<b>按组织形态 + 开发模式路由</b>——需求的第一性属性是"规模 + 谁主导"，不是语言：</p>
-<pre><code>L1 组织形态(团队/企业) → L2 开发模式(助手/全盘) → L3 四格场景 → L4 执行 skill
-      ↕ 技术分类 hub 下移为二级索引（dev-core / dev-stack / dev-infra / dev-agent / dev-ai）</code></pre>
-<p class="dim">主流程四选一：dev-assistant（助手）/ quick-dev（团队·随手做）/ vibe-coding（单人 MVP）/ dev-team（企业·全盘）。</p>
+<div class="warning" data-i18n="w1">Non-intrusive: it is an enhancement, not a dependency. Uninstall or route-failure → falls back to plain Hermes Agent. No lock-in.</div>
 
+<h2 data-i18n="h2">⚡ 3-Second Install</h2>
+<p data-i18n="p2a">Paste this one line to your agent:</p>
+<div class="prompt-box" data-i18n="install">Please download the Vibe-Skill-Ops skill family from https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md and install it for me.</div>
+<p data-i18n="p2b">Or manually:</p>
+<pre><code data-i18n="install2">mkdir -p ~/.hermes/skills/vibe-coding-family
+git clone --depth 1 https://github.com/yuchen1017918/vibe-skill-ops /tmp/vso
+cp -r /tmp/vso/vibe-coding-family ~/.hermes/skills/</code></pre>
+
+<h2 data-i18n="h3">🧭 Four-Layer Routing</h2>
+<p data-i18n="p3">L1 organization form → L2 dev mode → L3 scenario grid → L4 executing skill. Hub loads on trigger words; policies inject silently; memories persist across sessions.</p>
+
+<h2 data-i18n="h4">📦 What's inside</h2>
 <div class="grid">
-  <div class="card"><h3>🗺️ 一句话画像</h3><p>【组织】【主导】【类型】【技术】15 秒锁定 L1+L2；反驳只更新画像，不重走路由。</p></div>
-  <div class="card"><h3>🎚️ 介入深度 L0-L4</h3><p>dev-assistant 分档：答疑→指路→草稿→副驾驶→代驾；跨文件变更阻塞型确认。</p></div>
-  <div class="card"><h3>🧭 复杂度 Triage</h3><p>5 题是/否清单 L0/L1/L2；quick-dev 收编为执行器（5 项量化指标 + 转正钩子）。</p></div>
-  <div class="card"><h3>📋 确认交互契约</h3><p>阻塞/通知/批量三种确认，超时策略 + /focus 免打扰，根治确认疲劳。</p></div>
-  <div class="card"><h3>⛔ 升降天花板</h3><p>fallback 升级 ≤6 步硬限，第 3 步提示、第 6 步人工介入；5 分钟循环检测。</p></div>
-  <div class="card"><h3>📡 证据消费</h3><p>cost-agent 周报一句话洞察（走样 Top + Triage 误判）+ 月报强制决策三问。</p></div>
-  <div class="card"><h3>🔗 合并审查</h3><p>触发词重叠 >50% / 30 天未加载 / 一方总引用 → 合并候选；新增 skill 7 天冷静期。</p></div>
-  <div class="card"><h3>💰 成本治理 + 知识萃取</h3><p>token 周报 / ROI 看板；任务后自动 5 Whys 复盘，经验越用越聪明。</p></div>
+  <div class="card"><h3><span class="num">36</span><span data-i18n="c1t">Active skills</span></h3><p data-i18n="c1p">30 routing skills (tool×15 / workflow×7 / policy×6 / meta×2) + 6 hubs. 8 deprecated archived (files kept, no routing).</p></div>
+  <div class="card"><h3><span class="num">🔒</span><span data-i18n="c2t">Security</span></h3><p data-i18n="c2p">Three-layer defense + 4 non-negotiable red lines + vulnerability memory (CWE-classified). Real SQLi interception tested.</p></div>
+  <div class="card"><h3><span class="num">🧠</span><span data-i18n="c3t">Memory</span></h3><p data-i18n="c3p">snapshot-notes v2.0 (project state + experience extraction) + dev-memory + vuln-memory. Cross-session continuity.</p></div>
+  <div class="card"><h3><span class="num">🐋</span><span data-i18n="c4t">DeepSeek Harness</span></h3><p data-i18n="c4p">Official-format adaptation: 36 skills, description ≤500 chars, auto-generated by convert-dsh.py. Install to ~/.agents/skills/.</p></div>
+  <div class="card"><h3><span class="num">🌐</span><span data-i18n="c5t">Bilingual docs</span></h3><p data-i18n="c5p">README / CONTRIBUTING / SECURITY all bilingual (EN default + zh-CN), LANG switch links at top.</p></div>
+  <div class="card"><h3><span class="num">👤</span><span data-i18n="c6t">Your workflows</span></h3><p data-i18n="c6p">workflow-distillation turns your described workflow into a skill; user layer overrides standard layer.</p></div>
 </div>
 
-<h2>🚀 下载安装</h2>
-<h3>方式一：快捷提示词（推荐给用户使用）</h3>
-<p class="dim">把下面这段提示词复制发给你的 AI Agent，它会自动读取教程并完成安装：</p>
-<div class="prompt-box" id="quick-prompt">https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md，帮我下载安装这个 vibe-coding skill 全家桶。</div>
-<button class="btn btn-blue" onclick="copyPrompt()" id="copy-btn">📋 复制提示词</button>
-<p class="dim" style="margin-top:6px">GitHub Pages 未启用时可用：<code>https://raw.githubusercontent.com/yuchen1017918/vibe-skill-ops/main/Tutorial.md，帮我下载安装这个 vibe-coding skill 全家桶。</code></p>
-
-<h3>方式二：手动安装（3 步）</h3>
-<div class="step"><div class="snum">1</div><div class="sbody"><b>下载仓库</b>
-<pre><code>git clone https://github.com/yuchen1017918/vibe-skill-ops.git /tmp/vibe-skill-ops</code></pre></div></div>
-<div class="step"><div class="snum">2</div><div class="sbody"><b>复制到 skills 目录</b>
-<pre><code>mkdir -p ~/.hermes/skills
-cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/</code></pre></div></div>
-<div class="step"><div class="snum">3</div><div class="sbody"><b>验证</b>
-<pre><code>find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 应为 34（28 路由内 + 6 deprecated）</code></pre></div></div>
-<p class="dim">国内网络慢？git clone 加 ghproxy 前缀：<code>git clone https://ghproxy.net/https://github.com/yuchen1017918/vibe-skill-ops.git /tmp/vibe-skill-ops</code></p>
-
-<h2>🧩 28 个路由内 skill 一览</h2>
-<div class="card">
-<div class="skill-cols">
-  <div><b>vibe-coding-hub</b> — L1 总目录 v1.1.0</div>
-  <div><b>dev-core-hub</b> — 技术索引·开发核心</div>
-  <div><b>dev-stack-hub</b> — 技术索引·技术栈</div>
-  <div><b>dev-infra-hub</b> — 技术索引·基础设施</div>
-  <div><b>dev-agent-hub</b> — 技术索引·智能体治理</div>
-  <div><b>dev-ai-hub</b> — 技术索引·AI/ML</div>
-  <div><b>dev-assistant</b> — 副驾驶协议（介入深度 L0-L4）</div>
-  <div><b>quick-dev</b> — 轻量全包（Triage 执行器）</div>
-  <div><b>requirement-clarify</b> — 需求澄清访谈</div>
-  <div><b>project-init</b> — 项目初始化+规划+嗅探</div>
-  <div><b>agent-ops</b> — 多Agent 工位+协作</div>
-  <div><b>release-ops</b> — 发布+回滚一体化</div>
-  <div><b>snapshot-notes</b> — 跨对话快照</div>
-  <div><b>project-tracker-dashboard</b> — 可视化看板</div>
-  <div><b>global-experience</b> — 跨项目经验库</div>
-  <div><b>agent-loop</b> — 自动指挥循环</div>
-  <div><b>agent-permissions</b> — 权限矩阵</div>
-  <div><b>china-env-adapt</b> — 国内环境适配</div>
-  <div><b>fallback-general-dev</b> — 降级兜底（升降双链）</div>
-  <div><b>vibe-terminal-safe</b> — 终端安全</div>
-  <div><b>vibe-code-search</b> — 代码检索召回</div>
-  <div><b>vibe-mcp-connect</b> — MCP 接入</div>
-  <div><b>vibe-skills-gov-patterns</b> — skill 治理（合并审查）</div>
-  <div><b>karpathy-coding-dscpln</b> — 编码纪律</div>
-  <div><b>security-audit</b> — 安全审计</div>
-  <div><b>frontend-design-policy</b> — 设计约束</div>
-  <div><b>knowledge-extraction</b> — 知识萃取</div>
-  <div><b>cost-agent</b> — 成本智能体（证据消费）</div>
-</div>
-</div>
-<p class="dim">另有 6 个 deprecated 保留文件（project-scaffold / plan-workflow / agent-workspace / agent-collab / release-management / rollback-backup，已合并入 project-init / agent-ops / release-ops，文件保留防交叉引用，不进路由）。</p>
-
-<h2>🗺️ 版本演进</h2>
+<h2 data-i18n="h5">🗺 Version history</h2>
 <ul class="tl">
-  <li><span class="ver">v3.1</span><span class="what">三层目录成型：L1 hub + 5 个 L2 + 首批 L3</span></li>
-  <li><span class="ver">v3.2</span><span class="what">场景模板、类型标签、宪法代码化（.vibe-rules.md）</span></li>
-  <li><span class="ver">v3.3</span><span class="what">复杂度 Triage、快照健康度、安全审计、审美约束、心跳补强</span></li>
-  <li><span class="ver">v3.4</span><span class="what">约束与边界：冲突四分类+人工确认、判定清单、熔断器状态机、成本意识</span></li>
-  <li><span class="ver">v3.5</span><span class="what">认知增强：knowledge-extraction、确认 SLA、项目画像、cost-agent、元治理</span></li>
-  <li><span class="ver">v1.0.0</span><span class="what">可验证一致：触发词治理、懒加载契约层、执行走样日志、新手梯度 v2.0</span></li>
-  <li><span class="ver">v1.1.0</span><span class="what">大道至简 + 结构整改：四层组织路由、合并 3 组 skill（6→3）、一句话画像、介入深度 L0-L4、升降天花板、证据消费</span></li>
-  <li><span class="ver">v1.2.0</span><span class="what">安全×质量×记忆×并行四线增强（22→30 skill）：code-security 三层防线（hook 实测拦 SQLi）、open-code-review 审查引擎、vuln-memory/dev-memory 双层记忆、git-worktree 并行、reverse-ops 授权闸门、doubt-driven-development/context-engineering 方法论、addyosmani 精华融合、全链路实战验证</span></li>
+  <li><span class="ver">v1.3.0</span> <span data-i18n="v3"></span><span class="tag" data-i18n="soon">upcoming</span></li>
+  <li><span class="ver">v1.2.0</span> <span data-i18n="v2">Security × Quality × Memory × Parallel: three-layer defense, AI review, dual memory, git-worktree, reverse-ops gate.</span></li>
+  <li><span class="ver">v1.1.0</span> <span data-i18n="v1">First official release: hub routing + policy injection + snapshot memory.</span></li>
+  <li><span class="ver">v1.0.0</span> <span data-i18n="v0">Initial family: three-layer hub structure, simplicity-first philosophy.</span></li>
 </ul>
 
-<h2>⚠️ 边界声明（读完不误解）</h2>
-<div class="warning">
-  Vibe-Skill-Ops 是 <b>一组 Markdown 文档（SKILL.md）</b>，不是可执行软件。没有后台进程、没有自带运行时。所有"自动触发""自愈"均指 <b>Agent 加载 skill 后按文档约定执行</b>；可靠性上限 = Agent 的指令遵循能力。它增强 Agent，但不依赖它 Agent 也能工作。
+<h2 data-i18n="h6">🔗 Links</h2>
+<p>
+  <a href="https://github.com/yuchen1017918/vibe-skill-ops">GitHub</a> ·
+  <a href="https://github.com/yuchen1017918/vibe-skill-ops/blob/main/README.md">README (EN)</a> ·
+  <a href="https://github.com/yuchen1017918/vibe-skill-ops/blob/main/README.zh-CN.md">README (中文)</a> ·
+  <a href="Tutorial.md">Tutorial</a> ·
+  <a href="https://github.com/yuchen1017918/vibe-skill-ops/blob/main/CONTRIBUTING.md">Contributing</a> ·
+  <a href="https://github.com/yuchen1017918/vibe-skill-ops/blob/main/SECURITY.md">Security</a> ·
+  <a href="https://github.com/yuchen1017918/vibe-skill-ops/tree/main/deepseek-harness">DeepSeek Harness</a>
+</p>
+
+<footer data-i18n="footer">Vibe-Skill-Ops · MIT License · Built for Hermes Agent · Also adapted for DeepSeek Harness</footer>
+
 </div>
 
-<footer>
-  <a href="https://github.com/yuchen1017918/vibe-skill-ops">GitHub 仓库</a> ·
-  <a href="Tutorial.md">Agent 安装教程</a> ·
-  MIT License · © 2026 yuchen1017918 · v1.2.0
-</footer>
-
-</div>
 <script>
-function copyPrompt() {
-  const text = document.getElementById('quick-prompt').textContent.trim();
-  const btn = document.getElementById('copy-btn');
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => done(btn)).catch(() => fallbackCopy(text, btn));
-  } else {
-    fallbackCopy(text, btn);
+const I18N = {
+  en: {
+    tagline: "Pluggable skill pack for Hermes Agent — auto-route, secure, remember, review.",
+    b1: "36 skills", b2: "Graceful degradation", b3: "3-second install", b4: "DeepSeek Harness ready",
+    h1: "🎯 What problem does it solve?",
+    th1: "Native Hermes Agent pain", th2: "After installing the family",
+    r1p: "You re-teach workflows every session; context swells with redundant instructions.", r1g: "Hub auto-routes to the right skill in seconds; mechanisms load on demand.",
+    r2p: "No security baseline — SQL injection, hardcoded secrets slip through.", r2g: "Three-layer defense: silent disciplines + commit gate + on-demand deep scan.",
+    r3p: "Cross-session context loss — \"we did this before\" forgotten.", r3g: "Dual-layer memory: project snapshots + experience/vulnerability libraries.",
+    r4p: "Quality depends on mood — no review, no gate.", r4g: "AI code review engine + dual-gate before commit.",
+    r5p: "Token waste — huge skill bodies always loaded.", r5g: "Progressive disclosure: ≤5-line contracts in context, full body on demand.",
+    w1: "Non-intrusive: it is an enhancement, not a dependency. Uninstall or route-failure → falls back to plain Hermes Agent. No lock-in.",
+    h2: "⚡ 3-Second Install",
+    p2a: "Paste this one line to your agent:",
+    install: "Please download the Vibe-Skill-Ops skill family from https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md and install it for me.",
+    p2b: "Or manually:",
+    install2: "mkdir -p ~/.hermes/skills/vibe-coding-family\ngit clone --depth 1 https://github.com/yuchen1017918/vibe-skill-ops /tmp/vso\ncp -r /tmp/vso/vibe-coding-family ~/.hermes/skills/",
+    h3: "🧭 Four-Layer Routing",
+    p3: "L1 organization form → L2 dev mode → L3 scenario grid → L4 executing skill. Hub loads on trigger words; policies inject silently; memories persist across sessions.",
+    h4: "📦 What's inside",
+    c1t: "Active skills", c1p: "30 routing skills (tool×15 / workflow×7 / policy×6 / meta×2) + 6 hubs. 8 deprecated archived (files kept, no routing).",
+    c2t: "Security", c2p: "Three-layer defense + 4 non-negotiable red lines + vulnerability memory (CWE-classified). Real SQLi interception tested.",
+    c3t: "Memory", c3p: "snapshot-notes v2.0 (project state + experience extraction) + dev-memory + vuln-memory. Cross-session continuity.",
+    c4t: "DeepSeek Harness", c4p: "Official-format adaptation: 36 skills, description ≤500 chars, auto-generated by convert-dsh.py. Install to ~/.agents/skills/.",
+    c5t: "Bilingual docs", c5p: "README / CONTRIBUTING / SECURITY all bilingual (EN default + zh-CN), LANG switch links at top.",
+    c6t: "Your workflows", c6p: "workflow-distillation turns your described workflow into a skill; user layer overrides standard layer.",
+    h5: "🗺 Version history",
+    v3: "Docs internationalization (EN default + zh-CN + LANG switch), bilingual CONTRIBUTING/SECURITY, DeepSeek Harness adaptation (36 skills + converter), real-run screenshots, About optimized.",
+    soon: "upcoming",
+    v2: "Security × Quality × Memory × Parallel: three-layer defense, AI review, dual memory, git-worktree, reverse-ops gate.",
+    v1: "First official release: hub routing + policy injection + snapshot memory.",
+    v0: "Initial family: three-layer hub structure, simplicity-first philosophy.",
+    h6: "🔗 Links",
+    footer: "Vibe-Skill-Ops · MIT License · Built for Hermes Agent · Also adapted for DeepSeek Harness"
+  },
+  zh: {
+    tagline: "给 Hermes Agent 的可插拔增强技能包 —— 自动路由、安全纪律、跨会话记忆、AI 审查。",
+    b1: "36 skills", b2: "优雅降级", b3: "3 秒安装", b4: "DeepSeek Harness 适配",
+    h1: "🎯 解决什么问题?",
+    th1: "原生 Hermes Agent 的痛点", th2: "装完全家桶之后",
+    r1p: "每个会话重新教流程;上下文塞满重复指令。", r1g: "Hub 秒级自动路由到正确 skill;机制按需加载。",
+    r2p: "没有安全底线 —— SQL 注入、硬编码密钥随便过。", r2g: "三层防线:静默纪律 + 提交闸门 + 按需深度扫描。",
+    r3p: "跨会话上下文丢失 —— \"上次做过\"被遗忘。", r3g: "双层记忆:项目快照 + 经验/漏洞知识库。",
+    r4p: "质量看心情 —— 没人审查、没有闸门。", r4g: "AI 代码审查引擎 + 提交前双闸门。",
+    r5p: "Token 浪费 —— 大块 skill 正文常驻加载。", r5g: "渐进式披露:≤5 行契约常驻,正文按需加载。",
+    w1: "非侵入:它是增强不是依赖。卸载或路由失败 → 自动回退原生 Hermes Agent,零锁定。",
+    h2: "⚡ 3 秒安装",
+    p2a: "把这一行发给你的 agent:",
+    install: "请从 https://yuchen1017918.github.io/vibe-skill-ops/Tutorial.md 下载 Vibe-Skill-Ops skill 全家桶并为我安装。",
+    p2b: "或手动安装:",
+    install2: "mkdir -p ~/.hermes/skills/vibe-coding-family\ngit clone --depth 1 https://github.com/yuchen1017918/vibe-skill-ops /tmp/vso\ncp -r /tmp/vso/vibe-coding-family ~/.hermes/skills/",
+    h3: "🧭 四层组织路由",
+    p3: "L1 组织形态 → L2 开发模式 → L3 四格场景 → L4 执行 skill。Hub 按触发词加载;policy 静默注入;记忆跨会话持久。",
+    h4: "📦 里面有什么",
+    c1t: "活跃 skill", c1p: "30 个路由内(tool×15 / workflow×7 / policy×6 / meta×2)+ 6 个 hub。8 个 deprecated 存档(文件保留、不进路由)。",
+    c2t: "安全", c2p: "三层防线 + 4 条不可降级红线 + 漏洞记忆库(CWE 分类)。SQLi 拦截实测通过。",
+    c3t: "记忆", c3p: "snapshot-notes v2.0(项目状态 + 经验萃取)+ dev-memory + vuln-memory。跨会话连续。",
+    c4t: "DeepSeek Harness", c4p: "官方格式适配版:36 skills、description ≤500 字符、convert-dsh.py 自动生成。装到 ~/.agents/skills/。",
+    c5t: "双语文档", c5p: "README / CONTRIBUTING / SECURITY 全部双语(英文默认 + 中文),顶部 LANG 互链。",
+    c6t: "你的工作流", c6p: "workflow-distillation 把你描述的工作流程蒸馏成 skill;用户层优先于标准层。",
+    h5: "🗺 版本历史",
+    v3: "文档国际化(英文默认 + 中文 + LANG 切换)、CONTRIBUTING/SECURITY 双语、DeepSeek Harness 适配版(36 skills + 转换脚本)、真实运行截图、About 优化。",
+    soon: "即将发布",
+    v2: "安全×质量×记忆×并行四线:三层防线、AI 审查、双层记忆、git-worktree、reverse-ops 授权闸门。",
+    v1: "首个正式版:hub 路由 + policy 注入 + 快照记忆。",
+    v0: "初始全家桶:三层 hub 结构、大道至简哲学。",
+    h6: "🔗 链接",
+    footer: "Vibe-Skill-Ops · MIT License · 为 Hermes Agent 打造 · 同时适配 DeepSeek Harness"
   }
+};
+
+// ---------- 语言(默认跟随系统) ----------
+const langBtn = document.getElementById('btnLang');
+function systemLang() {
+  const l = (navigator.language || navigator.languages[0] || 'en').toLowerCase();
+  return l.startsWith('zh') ? 'zh' : 'en';
 }
-function fallbackCopy(text, btn) {
-  const ta = document.createElement('textarea');
-  ta.value = text; document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); done(btn); } catch (e) { alert('复制失败，请手动复制'); }
-  document.body.removeChild(ta);
+let lang = localStorage.getItem('vso-lang') || systemLang();
+function applyLang() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (I18N[lang][k] !== undefined) el.textContent = I18N[lang][k];
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh' : 'en';
+  document.title = lang === 'zh' ? 'Vibe-Skill-Ops — Hermes Agent 可插拔技能全家桶' : 'Vibe-Skill-Ops — Pluggable Skill Pack for Hermes Agent';
+  langBtn.textContent = lang === 'zh' ? 'EN' : '中';
 }
-function done(btn) {
-  btn.textContent = '✅ 已复制'; btn.classList.add('btn-copied');
-  setTimeout(() => { btn.textContent = '📋 复制提示词'; btn.classList.remove('btn-copied'); }, 2000);
+langBtn.addEventListener('click', () => {
+  lang = lang === 'zh' ? 'en' : 'zh';
+  localStorage.setItem('vso-lang', lang);
+  applyLang();
+});
+
+// ---------- 主题(默认跟随系统, 三态循环: system → light → dark) ----------
+const themeBtn = document.getElementById('btnTheme');
+const media = window.matchMedia('(prefers-color-scheme: dark)');
+let theme = localStorage.getItem('vso-theme') || 'system';
+function sysTheme() { return media.matches ? 'dark' : 'light'; }
+function applyTheme() {
+  const t = theme === 'system' ? sysTheme() : theme;
+  document.documentElement.setAttribute('data-theme', t);
+  themeBtn.textContent = theme === 'system' ? '🖥' : (theme === 'dark' ? '🌙' : '☀️');
+  themeBtn.title = theme === 'system' ? 'Theme: follow system / 主题: 跟随系统' : (theme === 'dark' ? 'Theme: dark / 主题: 深色' : 'Theme: light / 主题: 浅色');
 }
+themeBtn.addEventListener('click', () => {
+  theme = theme === 'system' ? 'light' : (theme === 'light' ? 'dark' : 'system');
+  localStorage.setItem('vso-theme', theme);
+  applyTheme();
+});
+media.addEventListener('change', () => { if (theme === 'system') applyTheme(); });
+
+// ---------- 初始化 ----------
+applyLang();
+applyTheme();
 </script>
 </body>
 </html>

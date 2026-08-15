@@ -2,9 +2,9 @@
 
 # Vibe-Skill-Ops
 
-**A pluggable skill pack for [Hermes Agent](https://github.com/NousResearch/hermes-agent)** — 42 battle-tested skills that give your agent: automatic workflow routing, built-in security discipline, cross-session memory, and AI code review.
+**A pluggable skill pack for [Hermes Agent](https://github.com/NousResearch/hermes-agent)** — 36 battle-tested skills that give your agent: automatic workflow routing, built-in security discipline, cross-session memory, and AI code review.
 
-[![Lang](https://img.shields.io/badge/LANG-English-blue.svg)](README.md) [![Lang](https://img.shields.io/badge/LANG-中文-red.svg)](README.zh-CN.md) [![Version](https://img.shields.io/badge/version-v1.2.0-green.svg)](https://github.com/yuchen1017918/vibe-skill-ops/releases) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Lang](https://img.shields.io/badge/LANG-English-blue.svg)](README.md) [![Lang](https://img.shields.io/badge/LANG-中文-red.svg)](README.zh-CN.md) [![Version](https://img.shields.io/badge/version-v1.3.0-green.svg)](https://github.com/yuchen1017918/vibe-skill-ops/releases) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![DeepSeek Harness](https://img.shields.io/badge/DSH-adapted-purple.svg)](deepseek-harness/README.md)
 
 </div>
 
@@ -13,7 +13,7 @@
 | | |
 |---|---|
 | <span style="color:#58a6ff">**Runtime**</span><br/>Hermes Agent | <span style="color:#3fb950">**Install**</span><br/>3 seconds | <span style="color:#d29922">**Language**</span><br/>Markdown only | <span style="color:#f85149">**License**</span><br/>MIT |
-| <span style="color:#8b949e">**Skills**</span><br/>42 (29 active) | <span style="color:#bc8cff">**Degradation**</span><br/>Graceful → plain mode | <span style="color:#ff7b72">**Lock-in**</span><br/>Zero | <span style="color:#7ee787">**Proven**</span><br/>Field-tested end-to-end |
+| <span style="color:#8b949e">**Skills**</span><br/>44 SKILL.md (36 active) | <span style="color:#bc8cff">**Degradation**</span><br/>Graceful → plain mode | <span style="color:#ff7b72">**Lock-in**</span><br/>Zero | <span style="color:#7ee787">**Proven**</span><br/>Field-tested end-to-end |
 
 </div>
 
@@ -61,7 +61,7 @@ mkdir -p ~/.hermes/skills
 cp -r /tmp/vibe-skill-ops/vibe-coding-family ~/.hermes/skills/
 
 # 3. Verify
-find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 42 (29 active + 6 hub + 7 deprecated)
+find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 44 (36 active = 30 routing + 6 hub, 8 deprecated)
 
 # 4. Use: just start a dev task — the agent auto-routes via vibe-coding-hub
 #    (or say "按全家桶流程来" / "make an MVP" / "继续上次")
@@ -74,7 +74,7 @@ find ~/.hermes/skills/vibe-coding-family -name SKILL.md | wc -l   # 42 (29 activ
 ## 🖼 Before vs After
 
 ```
-  Before (plain Hermes Agent)              After (+ 42 skills)
+  Before (plain Hermes Agent)              After (+ 36 skills)
   ┌─────────────────────────┐        ┌──────────────────────────────┐
   │ User: "build an X"       │        │ User: "build an X"            │
   │ Agent: "ok, where do we  │  ───▶  │ Agent: auto-routes in 15s    │
@@ -113,8 +113,8 @@ vibe-coding-family/
 ├── dev-infra-hub/              # L2 index: infra (terminal / containers / MCP / deploy / security)
 ├── dev-agent-hub/              # L2 index: agent orchestration & governance
 ├── dev-ai-hub/                 # L2 index: AI/ML (training / inference / RAG / multimodal)
-└── 29 routable L3 skills        # tool ×14 / workflow ×7 / policy ×6 / meta ×2
-    └── plus 7 deprecated files kept for cross-reference safety (not routed)
+└── 30 routable L3 skills        # tool ×15 / workflow ×7 / policy ×6 / meta ×2
+    └── plus 8 deprecated files kept for cross-reference safety (not routed)
 
 external/                       # Copies of external skills referenced by the family (related_skills deps)
     └── 27 (language/platform/tool skills; for repo completeness/distribution only, not routed)
@@ -180,7 +180,8 @@ L4  Exec skill   concrete skills (dev-assistant / quick-dev / vibe-coding / dev-
 | v3.5 | Cognitive enhancement | knowledge-extraction, confirmation SLA, project-context weighting, smart /simple, meta-governance |
 | v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, compatibility contract |
 | **v1.1.0** | **Official release** | **Great Simplicity + structure rework. Four-layer routing; dev-assistant co-pilot protocol; quick-dev all-in-one; 3 merged skill groups; one-line profile; contract layer ≤5 lines** |
-| **v1.2.0** | **Official release (current)** | **Security × quality × memory × parallel. Security three-layer defense (SQLi hook verified); AI review engine (2 critical bugs in 12s); dual-layer memory + metrics loop; git-worktree + reverse-ops auth gate; doubt-driven + context-engineering; workflow distillation (user layer); end-to-end field validation** |
+| **v1.2.0** | **Official release** | **Security × quality × memory × parallel. Security three-layer defense (SQLi hook verified); AI review engine (2 critical bugs in 12s); dual-layer memory + metrics loop; git-worktree + reverse-ops auth gate; doubt-driven + context-engineering; workflow distillation (user layer); end-to-end field validation** |
+| **v1.3.0** | **Docs internationalization + DeepSeek Harness (upcoming)** | **Bilingual docs (EN default + zh-CN + LANG switch); bilingual CONTRIBUTING/SECURITY; DeepSeek Harness adaptation (36 skills, description ≤500, convert-dsh.py); real-run screenshots; About + Topics optimized; token slimming v2.0 (hub -23%, 2 merges)** |
 
 ---
 
@@ -195,7 +196,7 @@ L4  Exec skill   concrete skills (dev-assistant / quick-dev / vibe-coding / dev-
 
 ## 🤝 Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) — new skills must carry a ≤5-line contract layer, pass a 7-day cooling period, and prove they can't be composed from existing skills.
+See [CONTRIBUTING.md](CONTRIBUTING.md) (English) / [CONTRIBUTING.zh-CN.md](CONTRIBUTING.zh-CN.md) (中文) — new skills must carry a ≤5-line contract layer, pass a 7-day cooling period, and prove they can't be composed from existing skills.
 
 ## 🐋 DeepSeek Harness 适配版
 
@@ -209,7 +210,7 @@ mkdir -p ~/.agents/skills && cp -r deepseek-harness/vibe-coding-family/* ~/.agen
 
 ## 🔒 Security
 
-See [SECURITY.md](SECURITY.md) — security architecture, vulnerability reporting, and the three-layer defense model.
+See [SECURITY.md](SECURITY.md) (English) / [SECURITY.zh-CN.md](SECURITY.zh-CN.md) (中文) — security architecture, vulnerability reporting, and the three-layer defense model.
 
 ## License
 

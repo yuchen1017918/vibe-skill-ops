@@ -1,54 +1,56 @@
 # Contributing to Vibe-Skill-Ops
 
-感谢你考虑为 Vibe-Skill-Ops 做贡献!全家桶的核心哲学是**大道至简** —— 每一个新 skill 都在增加常驻上下文的成本,所以新增比删减难得多。以下规则保证全家桶在增长的同时不失控。
+[中文](CONTRIBUTING.zh-CN.md) | English
 
-## 新增 skill 的硬性门槛(四条,缺一不可)
+Thank you for considering contributing to Vibe-Skill-Ops! The family's core philosophy is **Simplicity First** — every new skill adds to the always-loaded context cost, so adding is much harder than removing. The rules below keep the family growing without losing control.
 
-1. **契约层 ≤5 行** — description 是唯一常驻可见的部分。必须包含:触发词(trigger)/ 负触发词(negative_trigger)/ 类型(type)/ 依赖(deps)/ 关键规则(key_rule)。超过 5 行会被打回。
-2. **7 天冷静期** — 新 skill 先在 `vibe-skills-gov-patterns` 的冷却区试用,30 天未加载自动 deprecated(文件保留防交叉引用)。
-3. **组合性证明** — 必须证明该能力**无法由现有 skill 组合而成**。如果 2-3 个现有 skill 拼起来能做 80%,那答案是不新增。
-4. **冲突模拟** — 运行场景冲突测试:你的新触发词会不会和现有 skill 抢词?冲突仲裁优先级是什么?
+## Hard gates for new skills (all four required)
 
-## 契约层模板
+1. **Contract layer ≤5 lines** — `description` is the only part that is always visible. It must contain: trigger words / negative triggers / type / dependencies / key rules. Over 5 lines gets rejected.
+2. **7-day cooling period** — new skills first live in the cooling zone (see `vibe-skills-gov-patterns`). If not loaded for 30 days, they are auto-deprecated (file kept to avoid breaking cross-references).
+3. **Composability proof** — you must prove the capability **cannot be composed from existing skills**. If 2–3 existing skills combined cover 80%, the answer is no.
+4. **Conflict simulation** — run trigger-conflict tests: will your new triggers steal words from existing skills? What is the arbitration priority?
+
+## Contract layer template
 
 ```yaml
 ---
 name: your-skill
 description: |
-  <一句话:做什么> + <触发场景>。
-  触发词:<词1>、<词2>。
+  <One line: what it does> + <when to use>.
+  Triggers: <word1>, <word2>.
 version: 1.0.0
 metadata:
   hermes:
     type: tool | workflow | policy | meta
-    related_skills: [相关 skill 列表]
+    related_skills: [related skill list]
 ---
 ```
 
-## 修改现有 skill
+## Modifying existing skills
 
-- 每个规则变更都需要 Changelog 条目:**为什么存在、解决什么痛点**。
-- 保持诚实:文档里要写明"这是惯例(convention)"还是"这是强制(enforced)"。
-- 结构变更(合并/废弃)走 `skill-family-maintenance` 流程:保留主名吸收内容 → 被吸收方标 deprecated → 全库 sed 引用替换(排除合并方与 deprecated)→ 更新 hub 计数/场景表。
+- Every rule change needs a Changelog entry: **why it exists, what pain it solves**.
+- Stay honest: document whether something is a *convention* or *enforced*.
+- Structural changes (merge/deprecate) follow the `skill-family-maintenance` flow: keep the primary name and absorb content → mark the absorbed one deprecated → repo-wide reference replacement (excluding the merger and deprecated files) → update hub counts/scenario tables.
 
-## 提交与 PR
+## Submitting & PRs
 
-1. Fork + 功能分支(遵循 `git-workflow`:原子提交、存档点、Trunk-Based)
-2. 提交前过双闸门:code-security 纪律自查 + security-audit 扫描(commit 会被 hook 拦)
-3. PR 描述写清:痛点 → 方案 → 验证结果(真实运行输出,不是纸面)
-4. 合并前过 `open-code-review` 审查
+1. Fork + feature branch (follow `git-workflow`: atomic commits, save points, trunk-based).
+2. Pass the dual gate before committing: `code-security` discipline self-check + `security-audit` scan (commits get blocked by the hook).
+3. PR description must state: pain → approach → verification results (real run output, not paper claims).
+4. Pass `open-code-review` before merge.
 
-## 什么是不欢迎的
+## What is NOT welcome
 
-- ❌ 一个"关于 X 的 skill" —— description 必须有明确触发条件
-- ❌ 重复已有能力的变体 —— 先搜再写(用 `vibe-code-search`)
-- ❌ 一次性脚本塞进全家桶 —— 一次性任务走 `quick-dev`,沉淀验证后才考虑升级
-- ❌ 超过 300 行的 SKILL.md —— 细节进 references/,正文保持可 30 秒读完
+- ❌ A "skill about X" — the description must have clear trigger conditions.
+- ❌ Duplicate variants of existing capabilities — search first (use `vibe-code-search`).
+- ❌ One-off scripts in the family — one-off tasks go through `quick-dev`; only promote after the approach is proven.
+- ❌ SKILL.md over 300 lines — details go into `references/`; the body must be readable in 30 seconds.
 
-## 风格
+## Style
 
-- 语言:SKILL.md 用中文为主(面向中文用户),关键机制词保留英文原词
-- README 双语文档:英文 `README.md`(默认)+ 中文 `README.zh-CN.md`,顶部 LANG 互链
-- 证据优先:任何"实测""已验证"必须有真实运行输出支撑,禁止编造
+- Language: SKILL.md bodies are primarily Chinese (for Chinese users); key mechanism terms keep their English originals.
+- Bilingual docs: English `README.md` (default) + Chinese `README.zh-CN.md`, with LANG links at the top.
+- Evidence first: any "tested" / "verified" claim must be backed by real run output. No fabrication.
 
-有问题先开 Issue 讨论,不要直接开 PR 大改。谢谢!
+Questions first: open an Issue to discuss before opening a big PR. Thanks!

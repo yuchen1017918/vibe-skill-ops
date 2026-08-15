@@ -26,7 +26,7 @@ Docs: https://yuchen1017918.github.io/vibe-skill-ops/
 ## 2️⃣ NodeSeek 开源板块(中文)
 
 ```
-【开源】给 Hermes Agent 的 42 个可插拔技能包 — 3 秒安装,用完即走
+【开源】给 Hermes Agent 的 36 个可插拔技能包 — 3 秒安装,用完即走
 
 痛点:
 - 每次开新项目都要重新教 agent"按我的流程来"
