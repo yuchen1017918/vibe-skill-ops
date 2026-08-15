@@ -181,7 +181,7 @@ L4  Exec skill   concrete skills (dev-assistant / quick-dev / vibe-coding / dev-
 | v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, compatibility contract |
 | **v1.1.0** | **Official release** | **Great Simplicity + structure rework. Four-layer routing; dev-assistant co-pilot protocol; quick-dev all-in-one; 3 merged skill groups; one-line profile; contract layer ≤5 lines** |
 | **v1.2.0** | **Official release** | **Security × quality × memory × parallel. Security three-layer defense (SQLi hook verified); AI review engine (2 critical bugs in 12s); dual-layer memory + metrics loop; git-worktree + reverse-ops auth gate; doubt-driven + context-engineering; workflow distillation (user layer); end-to-end field validation** |
-| **v1.3.0** | **Docs internationalization + DeepSeek Harness (upcoming)** | **Bilingual docs (EN default + zh-CN + LANG switch); bilingual CONTRIBUTING/SECURITY; DeepSeek Harness adaptation (36 skills, description ≤500, convert-dsh.py); real-run screenshots; About + Topics optimized; token slimming v2.0 (hub -23%, 2 merges)** |
+| **v1.3.0** | **Docs internationalization + DeepSeek Harness (current)** | **Bilingual docs (EN default + zh-CN + LANG switch); bilingual CONTRIBUTING/SECURITY; DeepSeek Harness adaptation (36 skills, description ≤500, convert-dsh.py); real-run screenshots; About + Topics optimized; token slimming v2.0 (hub -23%, 2 merges)** |
 
 ---
 

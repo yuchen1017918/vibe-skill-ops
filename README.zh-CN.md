@@ -180,7 +180,7 @@ L4  执行 skill 具体 skill(dev-assistant / quick-dev / vibe-coding / dev-team
 | v1.0.0 | Official release | Promoted from internal v3.6: trigger governance, lazy-load contract layer, execution-drift log, compatibility contract |
 | **v1.1.0** | **Official release** | **大道至简 + 结构整改。四层组织路由;dev-assistant 副驾驶协议;quick-dev 轻量全包;合并 3 组 skill;一句话画像;契约层 ≤5 行** |
 | **v1.2.0** | **Official release** | **安全×质量×记忆×并行四线增强。安全三层防线(hook 实测拦 SQLi);AI 审查引擎(12s 发现 2 高危 bug);双层记忆(vuln/dev)+ 度量闭环;git-worktree 并行 + reverse-ops 授权闸门;doubt-driven + context-engineering 方法论;工作流蒸馏(用户自定义层);全链路实战验证(CachePilot 裁判全 10 分)** |
-| **v1.3.0** | **文档国际化 + DeepSeek Harness(即将发布)** | **双语文档(英文默认 + 中文 + LANG 切换);CONTRIBUTING/SECURITY 双语;DeepSeek Harness 适配版(36 skills、description ≤500、convert-dsh.py);真实运行截图;About + Topics 优化;token 瘦身 v2.0(hub -23%、两组合并)** |
+| **v1.3.0** | **文档国际化 + DeepSeek Harness(当前)** | **双语文档(英文默认 + 中文 + LANG 切换);CONTRIBUTING/SECURITY 双语;DeepSeek Harness 适配版(36 skills、description ≤500、convert-dsh.py);真实运行截图;About + Topics 优化;token 瘦身 v2.0(hub -23%、两组合并)** |
 
 ---
 
