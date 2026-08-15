@@ -14,7 +14,7 @@ family-version: 1.0.0
 
 - ✅ **管**：编程语言、前端/UI、数据库、移动端、游戏引擎、Web3 的技术栈级 skill
 - ❌ **不管**：主流程/编码纪律 → `dev-core-hub`；环境/容器/部署 → `dev-infra-hub`；多Agent → `dev-agent-hub`；AI/ML 专项 → `dev-ai-hub`
-- 🔄 **协作点**：技术栈确定后才进本层；项目脚手架初始化在 `dev-core-hub`（`project-scaffold`）先做
+- 🔄 **协作点**：技术栈确定后才进本层；项目脚手架初始化在 `dev-core-hub`（`project-init`）先做
 
 ## 🧭 子层路由
 

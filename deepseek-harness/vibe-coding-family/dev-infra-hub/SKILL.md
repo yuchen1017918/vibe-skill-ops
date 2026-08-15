@@ -57,7 +57,7 @@ MCP 能力、部署上线、安全审查。具体细节在 L3 skill 里，这里
 | `china-env-adapt` | 国内环境适配：镜像源切换/超时重试/合规检查 | 国内开发/安装超时/换源（主） |
 | `devops/monitoring-observability` | Prometheus/Grafana | 监控告警 |
 | `cost-agent` | 成本智能体：token 周报/告警/ROI 看板 | 问"token 花了多少"/消耗异常（v3.5 新增） |
-| `rollback-backup` | 部署回滚+备份恢复：备份三件套→部署验证→回滚流程 | 上线/部署/出问题回滚（主） |
+| `release-ops` | 部署回滚+备份恢复：备份三件套→部署验证→回滚流程 | 上线/部署/出问题回滚（主） |
 
 ### Hermes 自动化基建
 | Skill | 作用 | 加载时机 |

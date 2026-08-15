@@ -3,7 +3,7 @@ name: china-env-adapt
 description: |
   国内环境实战适配 skill：镜像源自动检测与切换（pip/npm/maven/docker）、
   网络超时重试策略（针对国内 CDN 不稳定）、合规性检查
-  （敏感词/数据出境/开源协议）。作为 project-scaffold 的可选子模块，
+  （敏感词/数据出境/开源协议）。作为 project-init 的可选子模块，
   当用户在国内网络环境开发、pip/npm 安装超时、docker pull 失败、
   或需要合规检查时加载。触发词：国内、镜像、超时、换源、合规。
 version: 1.0.0
@@ -13,13 +13,13 @@ metadata:
   hermes:
     type: tool
     tags: [vibe-coding, china, mirror, network, compliance, proxy]
-    related_skills: [vibe-coding-hub, project-scaffold, china-cloud-gpu, china-mcp-services, dev-infra-hub]
+    related_skills: [vibe-coding-hub, project-init, china-cloud-gpu, china-mcp-services, dev-infra-hub]
 ---
 
 # 国内环境实战适配（China Env Adapt）
 
 **核心问题**：国内网络访问海外源不稳定（pip/npm/docker/github），下载超时、失败率高。
-**方案**：自动检测与切换镜像源 + 超时重试策略 + 合规检查。作为 `project-scaffold` 的可选子模块。
+**方案**：自动检测与切换镜像源 + 超时重试策略 + 合规检查。作为 `project-init` 的可选子模块。
 
 ## 1️⃣ 镜像源速查表
 
@@ -155,11 +155,11 @@ pip-licenses / license-checker / go-licenses
 
 | Skill | 协作关系 |
 |-------|----------|
-| `project-scaffold` | **作为其可选子模块**：初始化项目时自动检测国内环境并配置镜像源 |
+| `project-init` | **作为其可选子模块**：初始化项目时自动检测国内环境并配置镜像源 |
 | `china-cloud-gpu` | 国内 GPU 租赁 + AI 生成 API（本 skill 管网络层，它管算力层） |
 | `china-mcp-services` | 国内可用 MCP 服务（本 skill 管镜像/网络，它管服务配置） |
 | `vibe-terminal-safe` | 命令执行安全（镜像源切换属于 🟡 受限操作，需授权） |
-| `rollback-backup` | 合规检查通过后才发布，发布失败回滚 |
+| `release-ops` | 合规检查通过后才发布，发布失败回滚 |
 | `global-experience` | 换源/重试经验可沉淀到全局经验库 |
 
 ## ⚠️ 核心原则

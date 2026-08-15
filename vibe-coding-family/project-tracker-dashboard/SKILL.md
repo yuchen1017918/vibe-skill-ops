@@ -13,7 +13,7 @@ metadata:
   hermes:
     type: tool
     tags: [vibe-coding, dashboard, html, visual, tracking, progress, kanban]
-    related_skills: [vibe-coding-hub, snapshot-notes, plan-workflow, rollback-backup, hermes-web-dashboard]
+    related_skills: [vibe-coding-hub, snapshot-notes, project-init, release-ops, hermes-web-dashboard]
 ---
 
 # HTML 可视化项目跟踪（Project Tracker Dashboard）
@@ -87,11 +87,11 @@ agents/*/PLAN.md        ─┘               ├─ 任务进度（✅⬜ + 百�
 | Skill | 协作关系 |
 |-------|----------|
 | `snapshot-notes` | 看板数据源：SNAPSHOT.md 提供阶段/决策/坑 |
-| `plan-workflow` | 看板任务列表来自 plans/PLAN-*.md |
+| `project-init` | 看板任务列表来自 plans/PLAN-*.md |
 | `dev-team` | 开发完成后用看板展示交付成果 |
 | `agent-ops` | 自动循环中定期重新生成看板（进度可视化） |
 | `hermes-web-dashboard` | 通用 Web 面板模式；本 skill 是项目跟踪专用版 |
-| `rollback-backup` | 看板生成前的数据备份（可选） |
+| `release-ops` | 看板生成前的数据备份（可选） |
 
 ## ⚠️ 核心原则
 

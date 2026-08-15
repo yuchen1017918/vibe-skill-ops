@@ -12,7 +12,7 @@ metadata:
   hermes:
     type: workflow
     tags: [vibe-coding, requirement, clarify, grill, interview, decisions]
-    related_skills: [vibe-coding-hub, plan-workflow, dev-core-hub, snapshot-notes]
+    related_skills: [vibe-coding-hub, project-init, dev-core-hub, snapshot-notes]
 ---
 
 # 需求澄清访谈（Requirement Clarify）
@@ -112,10 +112,10 @@ metadata:
 | Skill | 协作 |
 |-------|------|
 | `vibe-coding-hub` | Triage 判定 L1+ 后自动挂载；规模感知联动 L0/L1/L2 |
-| `plan-workflow` | 澄清在前、拆任务在后：DECISIONS.md → PLAN-*.md 的任务清单 |
+| `project-init` | 澄清在前、拆任务在后：DECISIONS.md → PLAN-*.md 的任务清单 |
 | `dev-team` | Phase 0 文档发现前先跑澄清，SPEC.md 有据可依 |
 | `snapshot-notes` | DECISIONS.md 与快照同目录，重要决策自动进入快照"关键决策"段 |
-| `project-scaffold` | 新项目初始化时创建 `.snapshots/DECISIONS.md` 占位 |
+| `project-init` | 新项目初始化时创建 `.snapshots/DECISIONS.md` 占位 |
 
 ## ⚠️ 核心原则
 

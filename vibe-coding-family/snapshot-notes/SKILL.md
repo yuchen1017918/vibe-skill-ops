@@ -55,7 +55,7 @@ metadata:
 
 - `current`：当前有效版本 ID（始终等于最新 SNAPSHOT.md 内容对应版本）
 - `versions`：版本链（新版本前插，最多保留 30 条，超出归档到 history/archive/）
-- `conflicts`：冲突记录（由 agent-collab 状态对齐流程写入）
+- `conflicts`：冲突记录（由 agent-ops 状态对齐流程写入）
 
 ## 🔔 写入时机（Agent 必须自动执行）
 
@@ -126,7 +126,7 @@ metadata:
 
 **目的**：让 L0/L1/L2 判定从"静态规则"变"动态学习"——记录实际执行 vs 初始判定偏差。
 
-每次任务完成后（plan-workflow / agent-loop 触发），在 SNAPSHOT.md 记录：
+每次任务完成后（project-init / agent-ops 触发），在 SNAPSHOT.md 记录：
 
 ```markdown
 ## 复杂度校准（最近 10 条）
@@ -145,7 +145,7 @@ metadata:
 **目的**：同一任务在不同项目复杂度不同（"改单文件"在单体项目是 L0，在微服务可能是 L1）。
 Triage 判定时读取项目画像做动态加权。
 
-**生成时机**：`project-scaffold` 初始化时 / 首次 `plan-workflow` 时自动生成 `.vibe/project-context.yaml`：
+**生成时机**：`project-init` 初始化时自动生成 `.vibe/project-context.yaml`：
 
 ```yaml
 project:
@@ -162,7 +162,7 @@ project:
 - 含敏感域 → 问题 5 直接命中 → L2 + 强制 security-audit
 - 单体低耦合项目 → 判定权重下降（更多任务可走 L0/L1，省 token）
 
-> 无画像时回退到通用判定清单（保持现状）。画像数据也可供 knowledge-extraction 复盘引用。
+> 无画像时回退到通用判定清单（保持现状）。画像数据也可供本 skill 的复盘引用。
 
 ### 🌐 跨设备快照同步（v1.4 可选模块 — 不强制）
 

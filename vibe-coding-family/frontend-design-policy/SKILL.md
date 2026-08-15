@@ -12,7 +12,7 @@ metadata:
   hermes:
     type: policy
     tags: [vibe-coding, frontend, ui, design, policy, aesthetics]
-    related_skills: [vibe-coding-hub, dev-stack-hub, frontend-design, project-scaffold]
+    related_skills: [vibe-coding-hub, dev-stack-hub, frontend-design, project-init]
 ---
 
 # 前端审美约束（Frontend Design Policy）
@@ -52,7 +52,7 @@ metadata:
 - 数字：千分位、单位、合理精度
 
 ### 4. Design Token（项目初始化时注入）
-- project-scaffold 初始化时同步建立 UI 规范文件
+- project-init 初始化时同步建立 UI 规范文件
 - 颜色/间距/圆角/字号全部走 token（CSS variables / Tailwind config）
 - 禁止组件内硬编码颜色值
 
@@ -113,6 +113,6 @@ metadata:
 |-------|------|
 | `frontend-design` | 设计原则管"怎么做好看"，本 policy 管"别犯 AI 味" |
 | `hallmark` | 反模板完整工作流（21 主题+21 宏结构+58 slop 门禁+多样化轮换），本 policy 是持续注入的轻量约束，hallmark 是重型按需执行器 |
-| `project-scaffold` | 初始化时注入 Design Token 规范 |
+| `project-init` | 初始化时注入 Design Token 规范 |
 | `popular-web-designs` | 参考真实设计系统（Stripe/Linear），不凭空造 |
 | `dev-stack-hub` | 前端相关任务路由入口 |

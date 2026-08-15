@@ -13,7 +13,7 @@ family-version: 1.2.0
 ```
 经验分层：
 ├── 项目内快照  .snapshots/SNAPSHOT.md   → 这个项目到哪了（snapshot-notes）
-├── 个人工位    agents/<角色>/EXPERIENCE.md → 这个Agent的坑（agent-workspace）
+├── 个人工位    agents/<角色>/EXPERIENCE.md → 这个Agent的坑（agent-ops）
 └── 全局经验库  ~/.hermes/experience/      → 所有项目共享的坑与模式（本 skill）🆕
 ```
 
@@ -112,7 +112,7 @@ family-version: 1.2.0
 动作：
 1. 判断经验归属：
    - 单项目细节 → 项目 .snapshots/（snapshot-notes）
-   - 个人角色视角 → agents/<角色>/EXPERIENCE.md（agent-workspace）
+   - 个人角色视角 → agents/<角色>/EXPERIENCE.md（agent-ops）
    - 跨项目可复用 → 全局经验库（本 skill）🆕
 2. 按模板写入 ~/.hermes/experience/pitfalls/ 或 patterns/
 3. 更新 INDEX.md（加索引条目）
@@ -142,8 +142,8 @@ family-version: 1.2.0
 | Skill | 协作关系 |
 |-------|----------|
 | `snapshot-notes` | 管项目内快照；项目完成时把可复用经验"提升"到全局库 |
-| `agent-workspace` | 管个人工位经验；工位里的通用坑可"提升"到全局库 |
-| `plan-workflow` | 新项目计划时先查全局经验库，把已知坑写进计划风险段 |
+| `agent-ops` | 管个人工位经验；工位里的通用坑可"提升"到全局库 |
+| `project-init` | 新项目计划时先查全局经验库，把已知坑写进计划风险段 |
 | `dev-team` | 团队开发时主Agent 定期把项目经验沉淀到全局库 |
 | `agent-ops` | 自动循环中每次踩坑解决 → 判断是否入全局库 |
 

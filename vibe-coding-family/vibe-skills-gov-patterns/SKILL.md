@@ -111,7 +111,7 @@ metadata:
 | 类型 | 定义 | 保鲜策略 |
 |------|------|----------|
 | 高频型 | 日常触发（snapshot-notes、vibe-coding） | 90 天未触发 → 🟡 黄色告警 → 检查是否路由失效 |
-| 保险型 | 触发一次就救命（rollback-backup、security-audit） | 180 天未触发 → 🔵 蓝色提示 → 运行一次模拟演练 |
+| 保险型 | 触发一次就救命（release-ops、security-audit） | 180 天未触发 → 🔵 蓝色提示 → 运行一次模拟演练 |
 | 元型 | 系统级（fallback-general-dev、vibe-skills-gov-patterns） | 永不自动废弃，每季度人工 review |
 
 **场景冲突模拟的范围控制**（v1.2）：

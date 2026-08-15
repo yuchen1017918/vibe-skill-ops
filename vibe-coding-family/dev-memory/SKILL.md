@@ -14,7 +14,7 @@ metadata:
   hermes:
     type: tool
     tags: [vibe-coding, memory, dev, experience, tencentdb, learning]
-    related_skills: [vuln-memory, global-experience, snapshot-notes, snapshot-notes, vibe-code-search]
+    related_skills: [vuln-memory, global-experience, snapshot-notes, vibe-code-search]
 ---
 
 # Dev Memory（开发级记忆库）

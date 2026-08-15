@@ -13,7 +13,7 @@ metadata:
   hermes:
     type: workflow
     tags: [vibe-coding, multi-agent, workspace, collab, cubicle, teamwork]
-    related_skills: [vibe-coding-hub, dev-team, agent-loop, agent-permissions, snapshot-notes]
+    related_skills: [vibe-coding-hub, dev-team, agent-permissions, snapshot-notes]
 ---
 
 # 多Agent基础设施（Agent Ops）
@@ -165,4 +165,4 @@ Step 3 发起方验证闭环:重新测试 → ✅ 关闭 或 ❌ 升级主Agent;
 | Agent 忘记写工位 | 主Agent 委派提示词强制要求读写工位路径 |
 | 协作响应无证据 | 退回,要求补测试数/运行输出 |
 | 双方改同一文件 | 升级主Agent,切串行 |
-| 协作 2 轮未闭环 | 升级主Agent(走 agent-loop 决策路由) |
+| 协作 2 轮未闭环 | 升级主Agent(走 agent-ops 决策路由) |

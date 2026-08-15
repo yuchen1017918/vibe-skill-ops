@@ -64,7 +64,7 @@ metadata:
 8. 合并后 diff -rq 宿主 vs 仓库 + 全量索引零缺失零重复
 ```
 
-**计数口径**：路由内 L3 / hub / deprecated 三数并列（如 28 路由内 + 6 hub + 8 deprecated = 42 目录）；
+**计数口径**：路由内 L3 / hub / deprecated 三数并列（如 30 路由内 + 6 hub + 8 deprecated = 44 目录）；
 README 结构图计数发布时必过时，每次同步核对。
 
 ## 3️⃣ 可继续压的候选（未做，按需）
@@ -72,6 +72,17 @@ README 结构图计数发布时必过时，每次同步核对。
 - agent-permissions(5K) / vibe-skills-gov-patterns(5K) 细节 references 化
 - description 从 ~250 字符压到 150（保守，达标不强制）
 - hub 触发词治理表 ~1.5K 精简为"冲突仲裁优先级"3 条，完整表移 references
+
+## 4️⃣ 多 Harness 适配分发（dsh 适配版维护）
+
+全家桶除 Hermes 原生格式外，维护 DeepSeek Harness (dsh) 适配版（2026-08-15 落地，36 skills）：
+
+- 转换脚本：仓库根 `scripts/convert-dsh.py`（幂等，单一真相源）
+- **改任意 Hermes 版 skill 后必须重跑**：
+  `python3 scripts/convert-dsh.py ~/.hermes/skills/vibe-coding-family deepseek-harness/vibe-coding-family`
+- DSH 格式要点/转换规则/开发坑：见 `references/dsh-skill-format.md`
+- 新增 skill 自动进入 DSH 版（非 deprecated 即转换）；deprecated 自动排除
+- 提交前验证：SKILL.md 数量 = active 数、description 全部 ≤500、无 deprecated 残留、name 与目录一致
 
 ## 快速排障
 

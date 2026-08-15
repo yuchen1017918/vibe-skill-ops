@@ -116,7 +116,7 @@ vibe-coding-family/
     └── 另有 8 个 deprecated 保留文件(文件保留防交叉引用,不进路由)
 
 external/                       # 被全家桶引用的外部 skill 副本(related_skills 依赖)
-    └── 27 个(语言/平台/工具 skill;仅供仓库完整性/分发,不参与路由)
+    └── 28 个(语言/平台/工具 skill;仅供仓库完整性/分发,不参与路由)
 ```
 
 L3 skills 的 frontmatter `metadata.hermes.type` 标签定义调用方式:

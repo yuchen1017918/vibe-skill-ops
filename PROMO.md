@@ -3,7 +3,7 @@
 ## 1️⃣ Discord — Hermes Agent show-and-tell(最高优先级,英文)
 
 ```
-🛠 Vibe-Skill-Ops — 42 pluggable skills for Hermes Agent (open source, MIT)
+🛠 Vibe-Skill-Ops — 36 pluggable skills for Hermes Agent (open source, MIT)
 
 Tired of re-teaching your agent the same workflow on every project? Losing context between sessions? No security gate before commit? No idea where your tokens go?
 
@@ -51,6 +51,6 @@ Docs: https://yuchen1017918.github.io/vibe-skill-ops/
 ## 3️⃣ X(Twitter)— @NousResearch 简短版
 
 ```
-42 pluggable skills for @NousResearch Hermes Agent — auto-routing workflows, security gate, cross-session memory, AI code review. 3s install, graceful fallback to native mode, zero lock-in. MIT.
+36 pluggable skills for @NousResearch Hermes Agent — auto-routing workflows, security gate, cross-session memory, AI code review. 3s install, graceful fallback to native mode, zero lock-in. MIT.
 https://github.com/yuchen1017918/vibe-skill-ops
 ```

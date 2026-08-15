@@ -117,7 +117,7 @@ vibe-coding-family/
     └── plus 8 deprecated files kept for cross-reference safety (not routed)
 
 external/                       # Copies of external skills referenced by the family (related_skills deps)
-    └── 27 (language/platform/tool skills; for repo completeness/distribution only, not routed)
+    └── 28 (language/platform/tool skills; for repo completeness/distribution only, not routed)
 ```
 
 L3 skills use the `metadata.hermes.type` frontmatter tag to define invocation style:

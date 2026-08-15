@@ -65,7 +65,7 @@ author: user-custom
 metadata:
   hermes:
     type: workflow
-    related_skills: [<自动映射的全家桶 skill>]
+    related_skills: [<自动映射的全家桶, skill>]
 ---
 # <工作流名>（用户自定义）
 

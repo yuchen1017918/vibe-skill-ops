@@ -11,13 +11,13 @@
 
 ## 一、这是什么
 
-`vibe-coding-family` 是运行在 Hermes Agent 上的**自治理 Vibe Coding skill 体系**（v1.1.0 正式版）：
+`vibe-coding-family` 是运行在 Hermes Agent 上的**自治理 Vibe Coding skill 体系**(v1.3.0):
 
 - **四层组织路由**：L1 组织形态（团队/企业）→ L2 开发模式（助手/全盘）→ L3 四格场景 → L4 执行 skill
 - **大道至简**：token × 质量乘积最优——合并 3 组重叠 skill、契约层 ≤5 行、一句话画像路由、30 天未加载自动 deprecated
 - **核心机制**：复杂度 Triage、确认交互契约（Confirmation SLA）、介入深度 L0-L4、升降天花板、证据消费、知识萃取、成本治理
 - **形态**：全部是标准 Markdown SKILL.md（带 YAML frontmatter），**不是可执行程序**
-- **规模**：6 个目录 skill + 22 个 L3 skill = **28 个路由内 skill**；另附 6 个 deprecated 保留文件（防交叉引用,不进路由,可安全忽略）
+- **规模**：36 个活跃 skill（6 个 hub 目录 + 30 个路由内 L3 skill）；另附 8 个 deprecated 保留文件（防交叉引用,不进路由,可安全忽略）
 
 > 安装后用户使用：发需求 → Agent 按触发词加载 hub → 四层路由（一句话画像）→ 落到具体 skill 流程。
 
@@ -88,7 +88,7 @@ curl -L -o vibe-skill-ops.zip https://ghproxy.net/https://github.com/yuchen10179
 ## 七、安装完成后第一件事（Agent 必做）
 
 1. 读取 L1 总目录：`vibe-coding-hub` 的 SKILL.md
-2. 向用户说明：**「全家桶 v1.1.0 安装完成，共 28 个路由内 skill，可以开始 vibe coding 了」**
+2. 向用户说明：**「全家桶 v1.3.0 安装完成，共 36 个活跃 skill（30 路由内 + 6 hub），可以开始 vibe coding 了」**
 3. 提示用户可查看网页版介绍：`https://yuchen1017918.github.io/vibe-skill-ops/`
 
 ## 八、更新与卸载
@@ -104,4 +104,4 @@ rm -rf ~/.hermes/skills/vibe-coding-family
 
 ---
 
-*本仓库：https://github.com/yuchen1017918/vibe-skill-ops · MIT License · v1.1.0*
+*本仓库：https://github.com/yuchen1017918/vibe-skill-ops · MIT License · v1.3.0*

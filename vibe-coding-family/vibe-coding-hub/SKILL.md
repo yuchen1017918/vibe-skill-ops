@@ -55,12 +55,12 @@ L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
 
 | 类型 | 含义 | 调用方式 | 自建 L3 示例 |
 |------|------|----------|--------------|
-| `tool` | 做一件具体事，有明确输入输出 | 按需显式调用 | snapshot-notes / security-audit / project-scaffold / china-env-adapt |
-| `workflow` | 管一段流程，有阶段和状态 | 阶段推进式调用 | plan-workflow / agent-ops / snapshot-notes |
+| `tool` | 做一件具体事，有明确输入输出 | 按需显式调用 | snapshot-notes / security-audit / project-init / china-env-adapt |
+| `workflow` | 管一段流程，有阶段和状态 | 阶段推进式调用 | project-init / agent-ops / snapshot-notes |
 | `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
 | `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
 
-> 29 个自建 L3 全量标注：tool 14 个 / workflow 7 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发；v1.4 融合 addyosmani/agent-skills：doubt-driven-development 对抗审查 + context-engineering 上下文分层；v2.0 token 优化：knowledge-extraction 并入 snapshot-notes + agent-loop 并入 agent-ops，净减 2；v2.1 新增 workflow-distillation 用户工作流蒸馏层）。
+> 30 个自建 L3 全量标注：tool 15 个 / workflow 7 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发；v1.4 融合 addyosmani/agent-skills：doubt-driven-development 对抗审查 + context-engineering 上下文分层；v2.0 token 优化：knowledge-extraction 并入 snapshot-notes + agent-loop 并入 agent-ops，净减 2；v2.1 新增 workflow-distillation 用户工作流蒸馏层）。
 > 已合并 deprecated（文件保留防交叉引用）：project-scaffold+plan-workflow → project-init；
 > agent-workspace+agent-collab → agent-ops；release-management+rollback-backup → release-ops。
 
@@ -147,9 +147,9 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 
 | 级别 | 处理方式 |
 |------|----------|
-| **L0 微小改动** | 跳过 plan-workflow，直接 tool 级快进快出，不上全套 |
+| **L0 微小改动** | 跳过 project-init，直接 tool 级快进快出，不上全套 |
 | **L1 中等功能** | 三件事：明确边界 → 步骤追踪 → 完成前验证 |
-| **L2 高风险/核心链路** | 完整流程：dev-team + agent-ops + plan-workflow，买确定性 |
+| **L2 高风险/核心链路** | 完整流程：dev-team + agent-ops + project-init，买确定性 |
 
 > 误判护栏：L0 任务中途发现牵连（import 链/多文件）→ 立即升级 L1/L2，不硬撑。
 > 校准机制：任务完成后记录"实际耗时 vs 初始判定"（见 snapshot-notes 复杂度校准），
@@ -159,7 +159,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 
 ```
 【成本提示】workflow 型任务开始时评估：本次预计触发几个 skill，预估 token 消耗范围。
-- 判定 L0/L1 → 不加载 plan-workflow / agent-ops 全套
+- 判定 L0/L1 → 不加载 project-init / agent-ops 全套
 - 记录 ~/.vibe/metrics/usage.log（skill 名/调用次数/预估 token），月度复盘
 - 提交动作时：未过 security-audit/code-security 纪律 → 追加 ~/.vibe/metrics/security-drift.log（时间/原因），cost-agent 周报消费（v1.3 度量闭环）
 ```
@@ -230,7 +230,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 
 > addyosmani/agent-skills 其余精华（Hyrum's Law/Performance Budget/Pre-Launch Checklist/6条行为准则等）见 `references/addyosmani-essence.md`，涉及对应主题时按需加载。
 | 审查代码/Review | `open-code-review`（执行引擎）+ `code-review`（方法论） | "审查代码" / "review" / "审查PR" |
-| 国内环境适配 | `china-env-adapt` + `project-scaffold` | "换源" / "国内环境" |
+| 国内环境适配 | `china-env-adapt` + `project-init` | "换源" / "国内环境" |
 | 路由失败/兜底 | `fallback-general-dev`（自动触发） | 无需指令 |
 
 ### 单点直达（场景模板外的专项需求）
@@ -262,7 +262,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 降级记录 .snapshots/;最多降级 2 层仍失败 → 保存状态等用户。
 ```
 
-## 🎯 触发词治理（v3.6 新增 — 35 个 skill 的信号仲裁）
+## 🎯 触发词治理（v3.6 新增 — 36 个 skill 的信号仲裁）
 
 **目的**：多个 skill 抢同一个关键词（"继续"→snapshot？"复盘"→knowledge？），
 没有仲裁机制会全加载（上下文爆炸）或随机选（行为不可预测）。
@@ -276,7 +276,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 
 **冲突仲裁优先级**（多 skill 触发词同时命中时）：
 1. 场景模板 > 单个 skill（"发布"优先命中 release 场景模板，而非 security-audit）
-2. workflow > tool（"计划"优先 plan-workflow，而非 project-scaffold）
+2. workflow > tool（"计划"优先 project-init，而非拆分前的脚手架）
 3. 最近使用 > 历史记录
 4. 仍不确定 → **显式消歧**：列出候选让用户选，或 /all 全加载
 
@@ -299,7 +299,7 @@ deps: 依赖 skill（进入该阶段时懒加载）
 key_rule: 一条必须记住的核心规则
 ```
 
-> v1.3 大道至简：契约层压缩至 ≤5 行，31 skill × 5 行 ≈ 155 行常驻（较原 310 行减半）。
+> v1.3 大道至简：契约层压缩至 ≤5 行，36 skill × 5 行 ≈ 155 行常驻（较原 310 行减半）。
 
 **加载策略**：
 - 初始：只读契约层（skills_list / description），**不全文加载**
