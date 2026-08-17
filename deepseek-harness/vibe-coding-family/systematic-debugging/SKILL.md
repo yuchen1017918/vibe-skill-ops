@@ -1,6 +1,6 @@
 ---
 name: systematic-debugging
-description: "4-phase root cause debugging: understand bugs before fixing."
+description: - 4 阶段根因调试：先理解再修（错误三分支→根因调查→模式分析→假设验证→实施）。 v1.2 防御验证三原则：Defense-in-Depth 多层校验 / Verification Gate 验证门 / Root Cause Tracing 根因回溯。 当遇到任何 Bug、测试失败、意外行为、或声称修复/完成前需要验证时加载。 触发词：调试、bug、测试失败、根因、定位问题、修不好。
 family-type: tool
 family-version: 1.2.0
 ---
