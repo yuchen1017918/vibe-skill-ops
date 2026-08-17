@@ -15,7 +15,7 @@
 | 正文 | 原样 | 原样(DSH 全文加载) |
 | 资源目录 | references/scripts/templates/assets | 一并拷贝 |
 
-**DSH 版共 36 个 skill**(29 L3 + 6 hub + 1 user-workflows 层),全部 description 单行化 + ≤500 字符。
+**DSH 版共 37 个 skill**(30 L3 + 6 hub + 1 user-workflows 层),全部 description 单行化 + ≤500 字符。
 
 ## 安装
 

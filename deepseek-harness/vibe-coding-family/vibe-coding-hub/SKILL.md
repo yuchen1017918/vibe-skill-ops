@@ -51,7 +51,7 @@ L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
 | `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
 | `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
 
-> 30 个自建 L3 全量标注：tool 15 个 / workflow 7 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发；v1.4 融合 addyosmani/agent-skills：doubt-driven-development 对抗审查 + context-engineering 上下文分层；v2.0 token 优化：knowledge-extraction 并入 snapshot-notes + agent-loop 并入 agent-ops，净减 2；v2.1 新增 workflow-distillation 用户工作流蒸馏层）。
+> 30 个自建 L3 全量标注：tool 15 个 / workflow 7 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发；v1.4 融合 addyosmani/agent-skills：doubt-driven-development 对抗审查 + context-engineering 上下文分层；v2.0 token 优化：knowledge-extraction 并入 snapshot-notes + agent-loop 并入 agent-ops，净减 2；v2.1 新增 workflow-distillation 用户工作流蒸馏层；v2.2 8 仓对比融合（supabase/twostraws/apify/claudekit/vision/WordPress/ASO/callstack）：复活 systematic-debugging（v1.2 补 claudekit 防御验证三原则）+ doubt-driven-development 破局技法库 + vibe-code-search 整仓打包/llms.txt + code-review 接收反馈协议 + context-engineering 压缩技术；7 个悬空引用清理（TDD/spike/simplify-code/dogfood/node-inspect/github-4 件套））。
 > 已合并 deprecated（文件保留防交叉引用）：project-scaffold+plan-workflow → project-init；
 > agent-workspace+agent-collab → agent-ops；release-management+rollback-backup → release-ops。
 
