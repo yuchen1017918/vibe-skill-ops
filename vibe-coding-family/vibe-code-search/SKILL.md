@@ -5,7 +5,7 @@ description: |
   通过语义检索/结构化搜索定位目标代码。当项目规模大、需要找特定函数/类/
   报错相关代码时加载。覆盖内置搜索工具 + 真实可用的 MCP 代码搜索方案。
   v1.1 新增：经验检索钩子——遇到报错/性能瓶颈时自动查全局经验库。
-version: 1.3.0
+version: 1.4.0
 author: Hermes Agent
 license: MIT
 metadata:
@@ -78,7 +78,40 @@ mcp:
 - 每个文件读完做摘要笔记（写到 `docs/context-notes.md`），后续不再重读。
 - 报错定位：先搜报错关键字所在文件，再读周边代码。
 
-## 五、经验检索钩子（v1.1 新增）
+## 五、整仓打包与外部文档（v1.4 新增 — claudekit repomix/docs-seeker 精华）
+
+检索的反面是**打包**：有些场景不需要"找"，需要"整个喂给另一个 agent"。
+
+### 整仓打包送子 agent（Repomix 模式）
+
+`delegate_task` 子 agent 无会话历史，需要完整项目上下文时，别让子 agent 自己漫游文件系统——先打包：
+
+```bash
+# 方案 A: Repomix CLI（npx，无需全局安装）
+npx repomix --output /tmp/proj.xml --include "src/**,*.md" --exclude "node_modules,dist" /path/to/proj
+# 方案 B: 轻量自制（<50 文件的小仓/子目录）
+find src -name "*.py" -exec sh -c 'echo "===== $1 ====="; cat "$1"' _ {} \; > /tmp/proj-bundle.txt
+```
+
+要点：
+- **格式**：XML 保留文件结构（AI 解析最稳）> Markdown > 纯文本
+- **token 意识**：打包后先 `wc -c` 估 token（约 字符数/4），超 50K 先裁子目录
+- **粒度**：只打包任务相关子目录 + 关键配置，不要全仓（node_modules 必排除）
+- **场景**：委派大任务给子 agent、跨项目问"这个项目怎么做的"
+
+### 外部文档搜索（llms.txt 标准）
+
+查最新库/框架文档，**先试 `<site>/llms.txt`**（2025 年起的 LLM 友好文档索引标准，直出 markdown）：
+
+```bash
+curl -sL https://docs.astral.sh/llms.txt | head -50   # 类库文档索引
+curl -sL https://nextjs.org/llms.txt                  # 框架文档
+# 无 llms.txt 时降级: sitemap.xml → 找 docs 子域 → 常规搜索
+```
+
+优先级：官方 llms.txt > sitemap 定位文档页 > web_search。抓回来的文档同样按 §四 控制在 10% 上下文预算内。
+
+## 六、经验检索钩子（v1.1 新增）
 
 **目的**：让 global-experience 从"被动记录"变为"主动召回"——遇到问题时自动查经验库。
 

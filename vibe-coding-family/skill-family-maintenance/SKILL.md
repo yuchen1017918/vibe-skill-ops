@@ -54,18 +54,24 @@ metadata:
 3. 文件保留（防交叉引用破坏），不物理删除
 4. references 转移：被合并方 references/ → 吸收方 references/（改名标注来源，
    如 agent-loop/references/trust-chain.md → agent-ops/references/agent-loop-extra.md）
-5. 全库引用替换用 sed，必须排除两类文件：
-   - 吸收方（含"合并自"说明，误替换破坏合并记录）
-   - 所有 deprecated 文件（历史，保留原引用=防交叉引用原意）
-   其余 active 文件 `sed -i 's/旧名/新名/g'`
-6. 替换后检查吸收方 related_skills 是否重复（sed 副作用：agent-loop→agent-ops
-   后 hub 里 agent-ops 出现两次，需手动去重）
-7. hub 计数/触发词/场景表/类型标签全量同步
-8. 合并后 diff -rq 宿主 vs 仓库 + 全量索引零缺失零重复
+5. 全库引用替换用 Python 按行处理，必须排除两类文件 + 按行跳过历史叙事：
+   - 排除文件：吸收方（含"合并自"说明，误替换破坏合并记录）+ 所有 deprecated 文件
+   - **按行 skip 规则**（2026-08-15 实测踩坑）：行内出现 `合并自`/`合并产物`/`已合并`/`deprecated`/`防交叉引用`/`合并进本` → 跳过（历史叙事必须保留原旧名）
+   - 其余 active 文件的活跃指引行替换旧名→新名
+   - **误伤案例**（替换后必须人工复核 diff，本次 4 处语病）：
+     a) skill-family-maintenance 自身"实测：snapshot-notes+knowledge-extraction 都管…"（合并证据行）
+     b) "如 agent-loop/references/trust-chain.md → agent-ops/…"（references 迁移指引示例）
+     c) vibe-coding-hub "已合并 deprecated"清单的续行（> 开头，不含"已合并"字样但属同一清单）
+     d) 语义对比行："计划优先 plan-workflow，而非 project-scaffold" → 替换成"project-init 而非 project-init"语病
+6. 替换后检查吸收方 related_skills 是否重复（sed 副作用：agent-loop→agent-ops 后 hub 里 agent-ops 出现两次，需手动去重）+ **自引用清理**（被合并方并入吸收方后 related_skills 可能出现吸收方自引用，删掉）
+7. **合并后零引用验证（必须）**：跑 `scripts/verify-family-health.py` 确认活跃 skill 的 related_skills 与正文活跃指引零引用 deprecated。2026-08-15 实测发现此前 3 组合并遗留 7 个活跃 skill 共 42 处引用未更新（agent-collab/agent-loop/agent-workspace→agent-ops、plan-workflow/project-scaffold→project-init、rollback-backup→release-ops）——sed 排除规则没拦住"活跃文件里的活跃指引行"，必须事后脚本验证
+8. hub 计数/触发词/场景表/类型标签全量同步
+9. 合并后 diff -rq 宿主 vs 仓库 + 全量索引零缺失零重复
 ```
 
 **计数口径**：路由内 L3 / hub / deprecated 三数并列（如 30 路由内 + 6 hub + 8 deprecated = 44 目录）；
 README 结构图计数发布时必过时，每次同步核对。
+**数字口径变更 = 全库扫描**（2026-08-15 实测）：旧数字（42/29/28/27 等）不止在 README——Tutorial、PROMO、index.html(含 JS i18n 字典)、assets/*.svg 文本节点、hub 内部计数示例（"31 skill × 5 行"）、DSH 版副本全都要 grep 更新；EVALUATION 类历史档案例外（顶部加"历史档案"声明保留旧口径）。
 
 ## 3️⃣ 可继续压的候选（未做，按需）
 
@@ -89,6 +95,8 @@ README 结构图计数发布时必过时，每次同步核对。
 | 症状 | 处理 |
 |------|------|
 | 移动章节后没留指引 | Agent 不知道机制还在 → 每次移动必须留 `> 机制说明移 references/...` 行 |
-| sed 替换破坏"合并自"说明 | 替换时排除吸收方 + deprecated 文件 |
-| hub related_skills 重复 | sed 副作用 → 替换后 grep 检查吸收方数组去重 |
+| sed 替换破坏"合并自"说明 | 替换时排除吸收方 + deprecated 文件 + **按行 skip 历史叙事**（合并自/已合并/deprecated 等词） |
+| 替换后出现语病（"project-init 而非 project-init"） | 语义对比行（"X 优先 A，而非 B"）替换前先看语境，人工复核 diff |
+| hub related_skills 重复/自引用 | sed 副作用 → 替换后 grep 检查吸收方数组去重 + 删自引用 |
 | 计数对不上 | 三口径并列核对（路由内/hub/deprecated）+ README 同步 |
+| 合并后活跃 skill 仍引用 deprecated | **跑 `scripts/verify-family-health.py`**（frontmatter/零 deprecated 引用/触发词冲突/Jaccard/悬空引用/计数 6 项一键查） |

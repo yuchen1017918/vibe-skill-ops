@@ -3,7 +3,7 @@ name: code-review
 model: reasoning
 category: testing
 description: Systematic code review patterns covering security, performance, maintainability, correctness, and testing — with severity levels, structured feedback guidance, review process, and anti-patterns to avoid. Use when reviewing PRs, establishing review standards, or improving review quality.
-version: 1.0
+version: 1.2
 ---
 
 # Code Review Checklist
@@ -224,6 +224,46 @@ Avoid these common traps that waste time and damage team trust:
 | **Scope Creep Reviews** | Requesting unrelated refactors that should be separate PRs. |
 | **Stale Reviews** | Letting PRs sit for days. Review within 24 hours or hand off to someone else. |
 | **Emotional Language** | "This is terrible" or "obviously wrong." Critique the code, not the person. |
+
+---
+
+## 接收反馈协议（reviewee 视角，v1.2 新增 — claudekit 精华）
+
+上面全是"怎么审别人"；这一节管**"收到反馈怎么接"**。核心原则：**技术正确性 > 社交舒适**。
+
+### Response Pattern
+
+```
+READ → UNDERSTAND → VERIFY → EVALUATE → RESPOND → IMPLEMENT
+读全     确认理解      技术验证     评估合理性     回应         实施
+```
+
+### 关键规则
+
+- ❌ **禁表演式同意**："You're absolutely right!" / "Great point!" / 无脑 "Thanks"——客气话不产生正确代码
+- ❌ **禁未验证就实施**：外部反馈先技术验证再动手
+- ✅ 正确回应：复述需求 / 提问 / 用技术理由反驳 / 直接开工（四选一）
+- ✅ 反馈不清 → **STOP，先把所有不清楚的点问清**，别猜着改
+- ✅ YAGNI 检查：建议加"正经"特性前，先 grep 有没有实际调用方
+
+### 来源分级
+
+| 反馈来源 | 处理 |
+|----------|------|
+| 人类伙伴 | 信任——理解后直接实施，不搞表演式客气 |
+| 外部审查者（AI/陌生人） | 技术验证：对了吗？会引入破坏吗？错了就反驳 |
+
+### 请求审查（subagent 模式）
+
+```
+1. 拿 git SHA: BASE_SHA=$(git rev-parse HEAD~1)  HEAD_SHA=$(git rev-parse HEAD)
+2. delegate_task 委派 code-reviewer 子 agent，喂: 实现说明+计划/需求+BASE_SHA+HEAD_SHA
+3. 对反馈分级行动: Critical 立即修 / Important 推进前修 / Minor 记下后补
+```
+
+### 验证门（联动）
+
+声称"测试过/构建成功/修好了"前，必须先跑出**新鲜验证证据**——完整协议见 `systematic-debugging` §Verification Gate。禁词自查：**should / probably / seems to / "应该没问题"** 出现即停。
 
 ---
 
