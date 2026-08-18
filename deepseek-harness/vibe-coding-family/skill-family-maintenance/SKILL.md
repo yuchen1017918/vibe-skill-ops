@@ -70,7 +70,7 @@ README 结构图计数发布时必过时，每次同步核对。
 
 ## 4️⃣ 多 Harness 适配分发（dsh 适配版维护）
 
-全家桶除 Hermes 原生格式外，维护 DeepSeek Harness (dsh) 适配版（2026-08-15 落地，36 skills）：
+全家桶除 Hermes 原生格式外，维护 DeepSeek Harness (dsh) 适配版（2026-08-15 落地，2026-08-17 融合后 37 skills）：
 
 - 转换脚本：仓库根 `scripts/convert-dsh.py`（幂等，单一真相源）
 - **改任意 Hermes 版 skill 后必须重跑**：
@@ -78,6 +78,21 @@ README 结构图计数发布时必过时，每次同步核对。
 - DSH 格式要点/转换规则/开发坑：见 `references/dsh-skill-format.md`
 - 新增 skill 自动进入 DSH 版（非 deprecated 即转换）；deprecated 自动排除
 - 提交前验证：SKILL.md 数量 = active 数、description 全部 ≤500、无 deprecated 残留、name 与目录一致
+
+**四端同步闭环**（2026-08-17 融合实战确认，任何全家桶改动走完这四端才算完成）：
+
+| 端 | 路径 | 动作 |
+|----|------|------|
+| ① 宿主 Hermes | `~/.hermes/skills/vibe-coding-family/` | 直接改（权威源） |
+| ② 仓库 Hermes 版 | `~/workspace/vibe-skill-ops/vibe-coding-family/` | `cp` 改动文件 |
+| ③ 仓库 DSH 版 | `deepseek-harness/vibe-coding-family/` | 重跑 convert-dsh.py |
+| ④ 宿主机 DSH | `~/.dsh/skills/`（散装，与其他 300+ skill 并列） | `rsync -a --delete` 仓库 DSH 版 37 目录覆盖 |
+
+- ③④ 两端都要检查 `deepseek-harness/README.md` 的计数行（如"共 36 个 skill(29 L3+6 hub+1)"→ 37）——README 计数是发布口径
+- ④ 同步后 DSH 服务跑旧 catalog，**新 skill 要重启 DSH 才生效**（勿擅自重启用户进行中的会话，提示重启命令）
+- ③ 新增/复活 skill 的 description 若为英文（archive 遗留），顺手中文化 + 补触发词，对齐全家桶风格
+
+**归档悬空引用检查（融合/归档后必查）**：skill 被移入 `.archive/` 后，hub 注册表/其他 skill 的 related_skills/正文指引可能仍引用它（= 软悬空，加载时找不到）。2026-08-17 实测发现 10 处遗留（v2.0 归档时未清）：TDD/spike/simplify-code/dogfood/node-inspect-debugger/github-4 件套 + doubt-driven-development 误把 `delegate_task` 工具名写进 related_skills。检查法：`find ~/.hermes/skills -name "SKILL.md" -path "*<name>*" ! -path "*/.archive/*"` 无命中 = 悬空；判定活体要先排除 `.archive/`（归档文件不算活）。
 
 ## 快速排障
 
@@ -89,3 +104,6 @@ README 结构图计数发布时必过时，每次同步核对。
 | hub related_skills 重复/自引用 | sed 副作用 → 替换后 grep 检查吸收方数组去重 + 删自引用 |
 | 计数对不上 | 三口径并列核对（路由内/hub/deprecated）+ README 同步 |
 | 合并后活跃 skill 仍引用 deprecated | **跑 `scripts/verify-family-health.py`**（frontmatter/零 deprecated 引用/触发词冲突/Jaccard/悬空引用/计数 6 项一键查） |
+| verify 脚本"external 快照"警告刷屏 | 正常现象——引用指向仓库 `external/` 快照的 skill 都报"检查同步"，只看 **错误数** 和"悬空"项 |
+| verify 脚本报"悬空"但 skill 实际活着 | 脚本只查 family+external 两目录——其他分类（devops/research 等）的 skill 会被误报悬空，人工确认目录存在即跳过 |
+| patch 表格行后出现重复/缺行 | **fuzzy 匹配坑**（2026-08-17 三次事故）：patch 工具对相似表格行模糊匹配会误删/误插。规则：表格行 patch 的 old_string 带 ≥3 行独特上下文；改完立即 `sed -n` 读回验证；发现重复行用整块替换而非行级 patch |

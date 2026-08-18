@@ -60,7 +60,7 @@ L4  执行 skill 具体 skill（含 dev-assistant / quick-dev / dev-team…）
 | `policy` | 注入纪律/约束，持续生效 | 自动注入上下文 | karpathy-coding-dscpln / vibe-terminal-safe / agent-permissions / frontend-design-policy / cost-agent |
 | `meta` | 管其他 skill 的行为 | 系统级自动触发 | fallback-general-dev / vibe-skills-gov-patterns |
 
-> 30 个自建 L3 全量标注：tool 15 个 / workflow 7 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发；v1.4 融合 addyosmani/agent-skills：doubt-driven-development 对抗审查 + context-engineering 上下文分层；v2.0 token 优化：knowledge-extraction 并入 snapshot-notes + agent-loop 并入 agent-ops，净减 2；v2.1 新增 workflow-distillation 用户工作流蒸馏层；v2.2 8 仓对比融合（supabase/twostraws/apify/claudekit/vision/WordPress/ASO/callstack）：复活 systematic-debugging（v1.2 补 claudekit 防御验证三原则）+ doubt-driven-development 破局技法库 + vibe-code-search 整仓打包/llms.txt + code-review 接收反馈协议 + context-engineering 压缩技术；7 个悬空引用清理（TDD/spike/simplify-code/dogfood/node-inspect/github-4 件套））。
+> 31 个自建 L3 全量标注：tool 15 个 / workflow 8 个 / policy 6 个 / meta 2 个（v1.3 合并 3 组净减 3；v1.2 安全线新增 code-security；v1.3 新增 open-code-review 审查引擎 + vuln-memory 漏洞记忆 + dev-memory 开发记忆 + reverse-ops 逆向路由 + git-worktree 并行开发；v1.4 融合 addyosmani/agent-skills：doubt-driven-development 对抗审查 + context-engineering 上下文分层；v2.0 token 优化：knowledge-extraction 并入 snapshot-notes + agent-loop 并入 agent-ops，净减 2；v2.1 新增 workflow-distillation 用户工作流蒸馏层；v2.2 8 仓对比融合（supabase/twostraws/apify/claudekit/vision/WordPress/ASO/callstack）：复活 systematic-debugging（v1.2 补 claudekit 防御验证三原则）+ doubt-driven-development 破局技法库 + vibe-code-search 整仓打包/llms.txt + code-review 接收反馈协议 + context-engineering 压缩技术；7 个悬空引用清理（TDD/spike/simplify-code/dogfood/node-inspect/github-4 件套）；v2.3 新增 bug-hunting 缺陷猎手（bug 全生命周期：三角色对抗发现←danpeg/bug-hunt、三层修复、哨兵防复活、shipcheck 式回归双审查、bug 档案记忆）+ project-tracker-dashboard v1.1 Bug 追踪面板三区渲染））。
 > 已合并 deprecated（文件保留防交叉引用）：project-scaffold+plan-workflow → project-init；
 > agent-workspace+agent-collab → agent-ops；release-management+rollback-backup → release-ops。
 
@@ -214,6 +214,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 |------|------------------|----------|
 | 需求澄清/方向对齐(全盘模式前置) | `requirement-clarify` + `project-init` | "先问清楚" / "grill me" / 模糊需求 |
 | 疑难 Bug | `systematic-debugging` + `vibe-code-search` | "有 Bug" / "调试" |
+| Bug 追踪/防复发/回归测试 | `bug-hunting`（v2.3 新增：编号/三态/三层修复/哨兵）+ `project-tracker-dashboard` | "记 bug" / "bug 追踪" / "配哨兵" / "回归测试" |
 | 新建项目/初始化+计划 | `project-init`（v1.3 合并，含嗅探） | "新建项目" / "脚手架" / "做个计划" |
 | 跨对话恢复/任务后沉淀 | `snapshot-notes`（v2.0 含知识萃取：快照+经验沉淀统一入口） | "继续上次" / "别丢上下文" / "复盘" / "知识萃取" |
 | 发布/打版本/回滚 | `release-ops`（v1.3 合并）+ `security-audit` | "发布" / "打版本" / "回滚" |
@@ -262,7 +263,7 @@ L4 执行 skill（dev-assistant / quick-dev / dev-team / vibe-coding…）
 降级记录 .snapshots/;最多降级 2 层仍失败 → 保存状态等用户。
 ```
 
-## 🎯 触发词治理（v3.6 新增 — 36 个 skill 的信号仲裁）
+## 🎯 触发词治理（v3.6 新增 — 38 个 skill 的信号仲裁）
 
 **目的**：多个 skill 抢同一个关键词（"继续"→snapshot？"复盘"→knowledge？），
 没有仲裁机制会全加载（上下文爆炸）或随机选（行为不可预测）。

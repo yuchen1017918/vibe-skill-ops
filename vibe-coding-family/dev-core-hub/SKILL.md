@@ -64,6 +64,7 @@ cost-agent 周报消费——让"跳过安全"有可见成本；usage.log（toke
 | Skill | 作用 | 加载时机 |
 |-------|------|----------|
 | `systematic-debugging` | 4 阶段根因调试（先理解再修）+ 防御验证三原则（v1.2 复活+claudekit 精华） | 任何疑难 Bug |
+| `bug-hunting` | 缺陷猎手：bug 全生命周期（编号/三态/三层修复/哨兵防复活/回归测试/档案记忆） | "记 bug"/"bug 追踪"/"配哨兵"/"回归测试"（v2.3 新增） |
 | `rest-graphql-debug` | REST/GraphQL 状态码/auth/schema 排障 | 接口调试 |
 
 ### 测试

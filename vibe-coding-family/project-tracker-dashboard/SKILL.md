@@ -6,7 +6,7 @@ description: |
   当用户说"项目可视化"、"看板"、"进度面板"、"HTML跟踪"、
   "可视化项目"、或想把当前项目状态变成网页查看时加载。
   配套 project-init（计划）+ snapshot-notes（状态）→ 本 skill 做可视化。
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
 metadata:
@@ -49,17 +49,19 @@ agents/*/PLAN.md        ─┘               ├─ 任务进度（✅⬜ + 百�
 4. 可选：python -m http.server 起本地服务 / 端口转发到手机
 ```
 
-## 📊 看板模块（7 块）
+## 📊 看板模块（8 块）
 
 | 模块 | 内容 | 数据来源 |
 |------|------|----------|
 | ① 项目概要 | 名称/技术栈/当前阶段/最后更新 | SNAPSHOT.md 概要 |
 | ② 任务进度 | 任务列表 + ✅⬜ + 完成百分比 | PLAN-*.md |
 | ③ 阶段甘特 | Phase 0-5 进度条 | SNAPSHOT.md 已完成/进行中 |
-| ④ Bug 统计 | 🔴🟠🟡🔵 数量 + 趋势 | test-report-*.md |
+| ④ Bug 追踪面板 | 三区（🔥活跃/💤不活跃/💀已灭绝）+ 编号归类 + 三层修复进度条 + 复活次数 | .vibe/bugs/BUG-*.md |
 | ⑤ 关键决策 | 决策表（选择/理由/替代） | SNAPSHOT.md 关键决策 |
 | ⑥ 坑与解法 | 踩坑时间线 | SNAPSHOT.md 坑与解法 |
 | ⑦ 下一步 | 待办清单（按优先级） | PLAN.md 待办 |
+
+> ④ Bug 追踪面板 v1.1 升级（联动 `bug-hunting`）：不再是统计数字，读 `.vibe/bugs/BUG-*.md` 渲染完整三区面板——活跃（修复中/复活）/不活跃（哨兵监视待根治）/已灭绝（根治+观察期满），每卡显示编号、严重级徽章、三层修复进度（定位→止血→根治→哨兵）、复活次数。bug 档案由 `bug-hunting` skill 维护，看板只读渲染。
 
 ## 🎨 深色主题模板 + 🐍 生成脚本
 
@@ -90,6 +92,7 @@ agents/*/PLAN.md        ─┘               ├─ 任务进度（✅⬜ + 百�
 | `project-init` | 看板任务列表来自 plans/PLAN-*.md |
 | `dev-team` | 开发完成后用看板展示交付成果 |
 | `agent-ops` | 自动循环中定期重新生成看板（进度可视化） |
+| `bug-hunting` | Bug 档案生产者（.vibe/bugs/）；本 skill 只读渲染三区面板 |
 | `hermes-web-dashboard` | 通用 Web 面板模式；本 skill 是项目跟踪专用版 |
 | `release-ops` | 看板生成前的数据备份（可选） |
 
